@@ -10,3 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PARSING_H
+# define PARSING_H
+
+# include "libft.h"
+# include "parsing.h"
+# include "execution.h"
+# include <stdio.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <sys/types.h>
+# include <unistd.h>
+# include <signal.h>
+# include <stdbool.h>
+# define MAIN 0
+# define CHILD 2
+# define PARENT 1
+
+typedef struct s_free
+{
+	char	**split;
+}	t_free;
+
+#endif
