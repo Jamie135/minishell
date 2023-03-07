@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 14:10:06 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/06 14:10:07 by pbureera         ###   ########.fr       */
+/*   Created: 2023/03/08 02:00:30 by pbureera          #+#    #+#             */
+/*   Updated: 2023/03/08 02:00:30 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-
-# include "libft.h"
-# include "parsing.h"
-
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
-# include <string.h>
-# include <fcntl.h>
-# include <limits.h>
-# include <errno.h>
-# include <signal.h>
-# include <dirent.h>
-# include <sys/wait.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <termios.h>
-# include <curses.h>
-# include <sys/ioctl.h>
 
-# define SYNTAXE_ERR "syntax error"
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 255
+# endif
+
+char	*get_next_line(int fd);
+
+//get_next_line_utils.c
+size_t	ft_strlen_gnl(char *s);
+char	*ft_strchr_gnl(char *s, int c);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+char	*ft_split_gnl(char *str);
+char	*ft_substr_gnl(char *s, size_t start, size_t len);
 
 #endif

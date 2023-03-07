@@ -1,18 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 14:10:40 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/06 14:10:41 by pbureera         ###   ########.fr       */
+/*   Created: 2022/10/18 23:15:13 by pbureera          #+#    #+#             */
+/*   Updated: 2022/10/18 23:15:13 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../../includes/libft.h"
 
-int	main(int ac, char **argv, char **env)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*save;
+	char	*tab;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	if (!s)
+		return (NULL);
+	tab = (char *)malloc(sizeof(*s) * (len + 1));
+	if (!tab)
+		return (NULL);
+	while (s[i])
+	{
+		if (i >= start && j < len)
+		{
+			tab[j] = s[i];
+			j++;
+		}
+		i++;
+	}
+	tab[j] = '\0';
+	return (tab);
 }

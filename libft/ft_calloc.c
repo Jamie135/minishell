@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 14:10:40 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/06 14:10:41 by pbureera         ###   ########.fr       */
+/*   Created: 2022/06/13 14:56:09 by pbureera          #+#    #+#             */
+/*   Updated: 2022/07/07 13:30:06 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../../includes/libft.h"
 
-int	main(int ac, char **argv, char **env)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char	*save;
+	void	*ptr;
+
+	if (nmemb && (nmemb * size / nmemb) != size)
+		return (NULL);
+	ptr = malloc(nmemb * size);
+	if (!ptr)
+		return (NULL);
+	ft_memset(ptr, 0, nmemb * size);
+	return (ptr);
 }

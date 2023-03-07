@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 14:10:40 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/06 14:10:41 by pbureera         ###   ########.fr       */
+/*   Created: 2023/03/08 00:44:44 by pbureera          #+#    #+#             */
+/*   Updated: 2023/03/08 00:44:44 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../../includes/libft.h"
 
-int	main(int ac, char **argv, char **env)
+//to iter with i all the string, it's for modify the string with anther function
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	char	*save;
+	size_t	i;
+	size_t	len;
+
+	if (!s || !f)
+		return ;
+	i = 0;
+	len = ft_strlen(s);
+	if (len == 0)
+		return ;
+	while (i < len)
+	{
+		f((unsigned int)i, (s + i));
+		i++;
+	}
 }

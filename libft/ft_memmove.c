@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 14:10:40 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/06 14:10:41 by pbureera         ###   ########.fr       */
+/*   Created: 2022/10/18 23:12:09 by pbureera          #+#    #+#             */
+/*   Updated: 2022/10/18 23:12:09 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../../includes/libft.h"
 
-int	main(int ac, char **argv, char **env)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char	*save;
+	char			*str_dest;
+	char			*str_src;
+
+	str_dest = (char *)dest;
+	str_src = (char *)src;
+	if (str_dest > str_src)
+	{
+		while (n--)
+			str_dest[n] = str_src[n];
+	}
+	else if (str_dest < str_src)
+		ft_memcpy(dest, src, n);
+	return (dest);
 }

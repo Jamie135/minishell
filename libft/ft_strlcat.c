@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 14:10:40 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/06 14:10:41 by pbureera         ###   ########.fr       */
+/*   Created: 2022/10/18 23:13:30 by pbureera          #+#    #+#             */
+/*   Updated: 2022/10/18 23:13:30 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../../includes/libft.h"
 
-int	main(int ac, char **argv, char **env)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	char	*save;
+	size_t	i;
+	size_t	str;
+
+	i = 0;
+	while (*dst && i < size)
+	{
+		++dst;
+		++i;
+	}
+	str = ft_strlcpy(dst, src, size - i);
+	return (str + i);
 }

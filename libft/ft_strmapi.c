@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 14:10:40 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/06 14:10:41 by pbureera         ###   ########.fr       */
+/*   Created: 2022/10/18 23:14:24 by pbureera          #+#    #+#             */
+/*   Updated: 2022/10/18 23:14:24 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../../includes/libft.h"
 
-int	main(int ac, char **argv, char **env)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*save;
+	int		i;
+	char	*tab;
+
+	i = 0;
+	if (!s || !f)
+		return (NULL);
+	tab = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (tab == 0)
+		return (NULL);
+	while (s[i])
+	{
+		tab[i] = (*f)(i, s[i]);
+		i++;
+	}
+	tab[i] = '\0';
+	return (tab);
 }
