@@ -12,7 +12,14 @@
 
 #include "../includes/minishell.h"
 
-int	main(int ac, char **argv, char **env)
+int	main(int argc, char **argv, char **env)
 {
 	char	*save;
+	t_list	*list;
+	t_free	to_free;
+
+	save = NULL;
+	list = NULL;
+	(void)argc;
+	(void)argv;
 }
