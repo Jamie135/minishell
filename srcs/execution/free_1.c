@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   free_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 01:32:57 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/08 01:32:57 by pbureera         ###   ########.fr       */
+/*   Created: 2023/03/11 22:41:19 by pbureera          #+#    #+#             */
+/*   Updated: 2023/03/11 22:41:19 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#include "../../includes/minishell.h"
 
-# include "libft.h"
-# include "parsing.h"
-# include "execution.h"
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <sys/types.h>
-# include <unistd.h>
-# include <signal.h>
-# include <stdbool.h>
-
-typedef struct s_free
+void	free_ptr(void **ptr)
 {
-	char	**split;
-}	t_free;
+	if (ptr)
+	{
+		free(*ptr);
+		*ptr = NULL;
+	}
+}
 
-/* signals.c */
-int		sigaction(int process);
+void	free_envi(t_envi *envi)
+{
+	t_envi	*tmp;
 
-#endif
+	while (envi)
+	{
+		tmp = envi->next;
+		free_ptr((void **)&envi->key);
+		free_ptr((void **)&envi->value);
+		free_ptr((void **)&envi);
+		envi = tmp;
+	}
+}

@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   environment_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 01:32:57 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/08 01:32:57 by pbureera         ###   ########.fr       */
+/*   Created: 2023/03/11 23:23:09 by pbureera          #+#    #+#             */
+/*   Updated: 2023/03/11 23:23:09 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#include "../../includes/minishell.h"
 
-# include "libft.h"
-# include "parsing.h"
-# include "execution.h"
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <sys/types.h>
-# include <unistd.h>
-# include <signal.h>
-# include <stdbool.h>
-
-typedef struct s_free
+t_envi	*get_last_envi(t_envi *envi)
 {
-	char	**split;
-}	t_free;
-
-/* signals.c */
-int		sigaction(int process);
-
-#endif
+	if (!envi)
+		return (NULL);
+	while (envi && envi->next)
+		envi = envi->next;
+	return (envi);
+}

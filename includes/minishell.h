@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "parsing.h"
+# include "execution.h"
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -31,7 +32,5 @@
 # include <termios.h>
 # include <curses.h>
 # include <sys/ioctl.h>
-
-# define SYNTAXE_ERR "syntax error"
 
 #endif
