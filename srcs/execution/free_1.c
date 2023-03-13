@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 22:41:19 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/11 22:41:19 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/13 13:57:33 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	free_envi(t_envi *envi)
 	while (envi)
 	{
 		tmp = envi->next;
-		free_ptr((void **)&envi->key);
+		free_ptr((void **)&envi->cmd);
 		free_ptr((void **)&envi->value);
 		free_ptr((void **)&envi);
 		envi = tmp;

@@ -6,24 +6,24 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 21:03:03 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/13 13:04:59 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/13 13:39:40 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*env_key(char *env)
+char	*env_cmd(char *env)
 {
 	int		len;
-	char	*key;
+	char	*cmd;
 
 	len = 0;
 	while (env[len] && env[len] != '=')
 		len++;
-	key = ft_substr(env, 0, len);
-	if (!key)
+	cmd = ft_substr(env, 0, len);
+	if (!cmd)
 		return (NULL);
-	return (key);
+	return (cmd);
 }
 
 char	*env_value(char *env)
@@ -40,16 +40,16 @@ char	*env_value(char *env)
 	return (value);
 }
 
-t_envi	*cpy_struct_envi(char *key, char *value, int type)
+t_envi	*cpy_struct_envi(char *cmd, char *value, int type)
 {
 	t_envi	*cpy;
 
-	if (!key || !value)
+	if (!cmd || !value)
 		return (NULL);
 	cpy = malloc(sizeof(t_envi));
 	if (!cpy)
 		return (NULL);
-	cpy->key = key;
+	cpy->cmd = cmd;
 	cpy->value = value;
 	cpy->type = type;
 	cpy->next = NULL;
@@ -75,7 +75,7 @@ t_envi	*init_envi(char **envp)
 {
 	t_envi	*envi;
 	t_envi	*cpy;
-	char	*key;
+	char	*cmd;
 	char	*value;
 	int		i;
 
@@ -85,11 +85,11 @@ t_envi	*init_envi(char **envp)
 	envi = NULL;
 	while (envp[i])
 	{
-		key = env_key(envp[i]);
+		cmd = env_cmd(envp[i]);
 		value = env_value(envp[i]);
-		if (!key || !value)
+		if (!cmd || !value)
 			return (free_envi(envi), -1);
-		cpy = cpy_struct_envi(key, value, VALID);
+		cpy = cpy_struct_envi(cmd, value, VALID);
 		if (!cpy)
 			return (free_envi(envi), -1);
 		add_back_envi(&envi, cpy);
