@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   environment.c                                      :+:      :+:    :+:   */
+/*   environment_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 21:03:03 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/10 21:03:03 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/13 13:04:59 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*env_key(char *env)
 	char	*key;
 
 	len = 0;
-	while (env[len] && && env[len] != '=')
+	while (env[len] && env[len] != '=')
 		len++;
 	key = ft_substr(env, 0, len);
 	if (!key)
@@ -71,7 +71,7 @@ void	add_back_envi(t_envi **envi, t_envi *cpy)
 	back->next = cpy;
 }
 
-t_envi	init_envi(char **envp)
+t_envi	*init_envi(char **envp)
 {
 	t_envi	*envi;
 	t_envi	*cpy;
@@ -79,14 +79,14 @@ t_envi	init_envi(char **envp)
 	char	*value;
 	int		i;
 
-	if (!envi)
+	if (!envp)
 		return (NULL);
 	i = 0;
 	envi = NULL;
-	while (env[i])
+	while (envp[i])
 	{
-		key = env_key(env[i]);
-		value = env_value(env[i]);
+		key = env_key(envp[i]);
+		value = env_value(envp[i]);
 		if (!key || !value)
 			return (free_envi(envi), -1);
 		cpy = cpy_struct_envi(key, value, VALID);
