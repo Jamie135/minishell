@@ -6,12 +6,13 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:23:09 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/13 13:58:39 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/13 15:52:04 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+//	placer envi au dernier indice de la liste chainee
 t_envi	*get_last_envi(t_envi *envi)
 {
 	if (!envi)

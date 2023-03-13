@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:49:29 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/13 14:20:45 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/13 16:09:58 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	line_null(char *line, t_envi *envp)
 	return (0);
 }
 
+// lire et ajouter en historique la ligne "minishell> "
 char	*ft_readline(char *line, int *count, t_envi *envp, int *exit)
 {
 	(*count)++;
@@ -83,6 +84,7 @@ char	*ft_readline(char *line, int *count, t_envi *envp, int *exit)
 	return (line);
 }
 
+// fonction commande ()
 int	run(char **envp, char *line, t_list *list)
 {
 	static int		count;

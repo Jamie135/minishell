@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 21:08:33 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/13 13:51:16 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/13 15:29:15 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 typedef struct s_envi
 {
-	char			*cmd;
+	char			*ve;
 	char			*value;
 	int				type;
 	struct s_envi	*next;
@@ -39,9 +39,9 @@ int		run(char **envp, char *line, t_list *list);
 
 /* environment.c */
 t_envi	*init_envi(char **envp);
-char	*env_cmd(char *env);
-char	*env_value(char *env);
-t_envi	*cpy_struct_envi(char *cmd, char *value, int type);
+char	*variable_env(char *env);
+char	*value_env(char *env);
+t_envi	*cpy_struct_envi(char *ve, char *value, int type);
 void	add_back_envi(t_envi **envi, t_envi *cpy);
 t_envi	*get_last_envi(t_envi *envi);
 t_envi	*null_envi(t_envi *envi);

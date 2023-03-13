@@ -6,27 +6,29 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 21:03:03 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/13 13:39:40 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/13 15:52:33 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*env_cmd(char *env)
+//	retourner la variable environementale de envp[i]
+char	*variable_env(char *env)
 {
 	int		len;
-	char	*cmd;
+	char	*ve;
 
 	len = 0;
 	while (env[len] && env[len] != '=')
 		len++;
-	cmd = ft_substr(env, 0, len);
-	if (!cmd)
+	ve = ft_substr(env, 0, len);
+	if (!ve)
 		return (NULL);
-	return (cmd);
+	return (ve);
 }
 
-char	*env_value(char *env)
+//	retourner la valeur de la variable environementale de envp[i]
+char	*value_env(char *env)
 {
 	int		len;
 	char	*value;
@@ -40,22 +42,24 @@ char	*env_value(char *env)
 	return (value);
 }
 
-t_envi	*cpy_struct_envi(char *cmd, char *value, int type)
+//	attribuer les valeurs de ve, value et type au structure t_envi
+t_envi	*cpy_struct_envi(char *ve, char *value, int type)
 {
 	t_envi	*cpy;
 
-	if (!cmd || !value)
+	if (!ve || !value)
 		return (NULL);
 	cpy = malloc(sizeof(t_envi));
 	if (!cpy)
 		return (NULL);
-	cpy->cmd = cmd;
+	cpy->ve = ve;
 	cpy->value = value;
 	cpy->type = type;
 	cpy->next = NULL;
 	return (cpy);
 }
 
+//	placer envi au dernier indice de la liste chainee
 void	add_back_envi(t_envi **envi, t_envi *cpy)
 {
 	t_envi	*back;
@@ -75,7 +79,7 @@ t_envi	*init_envi(char **envp)
 {
 	t_envi	*envi;
 	t_envi	*cpy;
-	char	*cmd;
+	char	*ve;
 	char	*value;
 	int		i;
 
@@ -85,11 +89,11 @@ t_envi	*init_envi(char **envp)
 	envi = NULL;
 	while (envp[i])
 	{
-		cmd = env_cmd(envp[i]);
-		value = env_value(envp[i]);
-		if (!cmd || !value)
+		ve = variable_env(envp[i]);
+		value = value_env(envp[i]);
+		if (!ve || !value)
 			return (free_envi(envi), -1);
-		cpy = cpy_struct_envi(cmd, value, VALID);
+		cpy = cpy_struct_envi(ve, value, VALID);
 		if (!cpy)
 			return (free_envi(envi), -1);
 		add_back_envi(&envi, cpy);
