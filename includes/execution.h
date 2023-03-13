@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 21:08:33 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/13 15:29:15 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/13 16:16:11 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ enum e_value
 };
 
 /* run.c */
-int		run(char **envp, char *line, t_list *list);
+int		run(char **envp, char *line, t_list *list, t_free *to_free);
 
 /* environment.c */
 t_envi	*init_envi(char **envp);

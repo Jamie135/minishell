@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:49:29 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/13 16:09:58 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/13 16:15:54 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	*ft_readline(char *line, int *count, t_envi *envp, int *exit)
 }
 
 // fonction commande ()
-int	run(char **envp, char *line, t_list *list)
+int	run(char **envp, char *line, t_list *list, t_free *to_free)
 {
 	static int		count;
 	static int		exit;
@@ -104,5 +104,6 @@ int	run(char **envp, char *line, t_list *list)
 		line = ft_readline(line, &count, env, exit);
 		if (line == NULL)
 			continue ;
+		list = fill_list(line, to_free);
 	}
 }
