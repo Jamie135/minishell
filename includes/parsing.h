@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 01:32:57 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/13 16:20:08 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/14 15:39:36 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,5 @@ typedef struct s_free
 t_list	*fill_list(char *str, t_free *to_free);
 
 /* signals.c */
-int		sigaction(int process);
 
 #endif
