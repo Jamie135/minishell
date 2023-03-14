@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 01:32:57 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/14 15:39:36 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/14 17:23:33 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,35 @@ typedef struct s_free
 }	t_free;
 
 /* list.c */
-t_list	*fill_list(char *str, t_free *to_free);
+t_list		*fill_list(char *str, t_free *to_free);
+
+/* quote.c */
+int			valid_quote(char *str);
+int			valid_single(char *str, int *single_quote, int *double_quote, int *i);
+int			valid_double(char *str, int *single_quote, int *double_quote, int *i);
+int			valid_open(char *str);
+
+/* string.c */
+char		*get_string(char *str);
+int			len_string(char *str);
+static void	string_1(int *i, int *j, char *str, char *new);
+static void	string_2(int *i, int *j, char *str, char *new);
+char		*final_string(char *new);
+
+/* string_utils.c */
+int			quote_index(char *str, int index, char c);
+int			single_quote_index(char *str, char *new, int i, int j);
+int			double_quote_index(char *str, char *new, int i, int j);
+int			new_string_single(char *new, char *str, char c);
+int			new_string_double(char *new, char *str, char c);
+
+/* split_pipe.c */
+char		*split_pipe(char *str);
+int			len_pipe(char *str);
+void		complete_string(char *new, int *i, int *j, char *str);
+
+/* free_parsing.c */
+void		*free_quote(char *str);
 
 /* signals.c */
 
