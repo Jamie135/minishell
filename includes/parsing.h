@@ -59,8 +59,18 @@ char		*split_pipe(char *str);
 int			len_pipe(char *str);
 void		complete_string(char *new, int *i, int *j, char *str);
 
+/* split_string.c && split_string_utils.c */
+char		**split_string(char const *s, char c);
+size_t		increment_single_quote(const char *s);
+size_t		increment_double_quote(const char *s);
+int			increment_word(const char *s, int quote);
+
 /* free_parsing.c */
 void		*free_quote(char *str);
+void		free_line_and_split(char *line, char **split);
+void		free_null_list(t_list *list, t_free *to_free, char *line, t_envi *env);
+static char	**free_tab(char **tab, size_t j);
+void		*free_fill(char **tab, t_list *list, char *str);
 
 /* signals.c */
 

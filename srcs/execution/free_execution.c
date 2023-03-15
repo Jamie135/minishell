@@ -34,3 +34,29 @@ void	free_envi(t_envi *envi)
 		envi = tmp;
 	}
 }
+
+void	free_list(t_list *list)
+{
+	t_list	*tmp;
+
+	while (list)
+	{
+		tmp = list->next;
+		free_ptr((void **)&list->content);
+		free_ptr((void **)&list);
+		list = tmp;
+	}
+}
+
+void	free_split(char **tab)
+{
+	size_t	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free_ptr((void **)&tab[i]);
+		i++;
+	}
+	free_ptr((void **)&tab);
+}

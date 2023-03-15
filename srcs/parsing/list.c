@@ -14,9 +14,9 @@
 
 t_list	*fill_list(char *str, t_free *to_free)
 {
-	t_list	*list;
-	char	**dup;
 	char	*new;
+	t_list	*list;
+	char	**tab;
 
 	if (valid_quote(str) == -1)
 		return (free_quote(str));
@@ -28,5 +28,7 @@ t_list	*fill_list(char *str, t_free *to_free)
 	if (!list)
 		return (NULL);
 	list->next = NULL;
-	dup = split_parsing(new, ' ');
+	tab = split_string(new, ' ');
+	if (!tab)
+		return (free_fill(tab, list, str));
 }

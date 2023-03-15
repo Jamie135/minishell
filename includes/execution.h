@@ -49,6 +49,8 @@ t_envi	*null_envi(t_envi *envi);
 /* free.c */
 void	free_ptr(void **ptr);
 void	free_envi(t_envi *envi);
+void	free_list(t_list *list);
+void	free_split(char **tab);
 
 /* message.c */
 void	malloc_err(char *str);

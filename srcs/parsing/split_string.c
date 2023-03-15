@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   split_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbureera <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/21 15:52:06 by pbureera          #+#    #+#             */
-/*   Updated: 2022/06/14 11:37:37 by pbureera         ###   ########.fr       */
+/*   Created: 2023/03/15 19:26:41 by pbureera          #+#    #+#             */
+/*   Updated: 2023/03/15 19:26:41 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/libft.h"
+#include "../../includes/minishell.h"
 
 static char	**free_tab(char **tab, size_t j)
 {
@@ -31,8 +31,8 @@ static size_t	num_word(char const *s, char c)
 	size_t	num;
 	size_t	i;
 
-	i = 0;
 	num = 0;
+	i = 0;
 	while (s[i])
 	{
 		while (s[i] == c)
@@ -42,7 +42,13 @@ static size_t	num_word(char const *s, char c)
 				return (num);
 		}
 		while (!(s[i] == c) && s[i])
+		{
+			if (s[i] == '\'')
+				i += increment_word(&s[i], 1);
+			if (s[i] == '\"')
+				i += increment_word(&s[i], 1);
 			i++;
+		}
 		num++;
 	}
 	return (num);
@@ -50,15 +56,17 @@ static size_t	num_word(char const *s, char c)
 
 static size_t	len_word(const char *s, char c)
 {
-	size_t	i;
 	size_t	len;
 
-	i = 0;
 	len = 0;
-	while (s[i] && !(s[i] == c))
+	while (s[len] && !(s[len] == c))
 	{
-		len++;
-		i++;
+		if (s[len] == '\'')
+			len += increment_single_quote(&s[len]);
+		else if (s[len] == '\"')
+			len += increment_double_quote(&s[len]);
+		else
+			len++;
 	}
 	return (len);
 }
@@ -81,7 +89,7 @@ static char	*dup_word(const char *s, size_t len)
 	return (dup);
 }
 
-char	**ft_split(char const *s, char c)
+char	**split_string(char const *s, char c)
 {
 	char	**tab;
 	size_t	i;

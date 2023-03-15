@@ -57,12 +57,12 @@ int	line_space(char *line)
 	return (-1);
 }
 
-int	line_null(char *line, t_envi *envp)
+int	line_null(char *line, t_envi *env)
 {
 	if (line == NULL)
 	{
 		ft_putendl_fd("exit", STDOUT);
-		free_envi(envp);
+		free_envi(env);
 		exit(0);
 	}
 	if (line[0] == '\0')
@@ -74,12 +74,12 @@ int	line_null(char *line, t_envi *envp)
 }
 
 // lire et ajouter en historique la ligne "minishell> "
-char	*ft_readline(char *line, int *count, t_envi *envp, int *exit)
+char	*ft_readline(char *line, int *count, t_envi *env, int *exit)
 {
 	(*count)++;
 	line = readline("minishell> ");
 	add_history(line);
-	if (line_null(line, envp) == -1 || line_space(line) == -1)
+	if (line_null(line, env) == -1 || line_space(line) == -1)
 		return (NULL);
 	return (line);
 }
@@ -105,5 +105,9 @@ int	run(char **envp, char *line, t_list *list, t_free *to_free)
 		if (line == NULL)
 			continue ;
 		list = fill_list(line, to_free);
+		if (list == NULL)
+			continue;
+		if (free_null_list(list, to_free, line, env) == EXIT_SUCCESS)
+			continue;
 	}
 }
