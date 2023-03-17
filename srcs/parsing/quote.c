@@ -6,12 +6,13 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 16:54:21 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/14 17:15:33 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/17 15:42:49 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+// verifier les double quotes dans un single quote
 int	valid_single(char *str, int *single_quote, int *double_quote, int *i)
 {
 	if (*single_quote == 1)
@@ -41,6 +42,7 @@ int	valid_single(char *str, int *single_quote, int *double_quote, int *i)
 	return (0);
 }
 
+// verifier les single quotes dans un double quote
 int	valid_double(char *str, int *single_quote, int *double_quote, int *i)
 {
 	if (*double_quote == 0)
@@ -70,6 +72,7 @@ int	valid_double(char *str, int *single_quote, int *double_quote, int *i)
 	return (0);
 }
 
+// verifier si les quotes ouverts sont fermes
 int	valid_open(char *str)
 {
 	int	i;
@@ -97,6 +100,7 @@ int	valid_open(char *str)
 	return (0);
 }
 
+// verifier les quotes
 int	valid_quote(char *str)
 {
 	int	i;

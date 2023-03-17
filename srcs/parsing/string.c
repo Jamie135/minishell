@@ -6,19 +6,20 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:13:37 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/14 16:52:33 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/17 15:51:21 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+// compter le len du string de commande
 int	len_string(char *str)
 {
-	int	size;
 	int	i;
+	int	len;
 
 	i = -1;
-	size = (int)ft_strlen(str);
+	len = (int)ft_strlen(str);
 	while (str[++i])
 	{
 		if (i > 0 && str[i] == '>' && ((str[i - 1] && str[i - 1] != ' ')
@@ -26,17 +27,17 @@ int	len_string(char *str)
 		{
 			if (str[i + 1] == '>')
 				i += 1;
-			size += 3;
+			len += 3;
 		}
 		else if (i > 0 && str[i] == '<' && ((str[i - 1] && str[i - 1] != ' ')
 				|| (str[i + 1] && str[i + 1] != ' ') || str[i + 1] == '<'))
 		{
 			if (str[i + 1] == '<')
 				i += 1;
-			size += 3;
+			len += 3;
 		}
 	}
-	return (size + i);
+	return (len + i);
 }
 
 static void	string_1(int *i, int *j, char *str, char *new)
@@ -75,14 +76,14 @@ char	*get_string(char *str)
 	int			i;
 	int			j;
 	char		*new;
-	const int	size = ft_strlen(str);
+	const int	len = ft_strlen(str);
 
 	i = 0;
 	j = 0;
 	new = ft_calloc(sizeof(char), (len_string(str) + 2));
 	if (!new)
 		return (NULL);
-	while (i <= size)
+	while (i <= len)
 	{
 		if (str[i] == '\'')
 			i = single_quote_index(str, new, i, j) + 1;
