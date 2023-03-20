@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:49:29 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/20 16:23:10 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:50:40 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,5 @@ int	run(char **envp, char *line, t_list *list, t_free *free_var)
 			continue ;
 		if (free_null_list(list, free_var, line, env) == EXIT_SUCCESS)
 			continue ;
-		
 	}
 }

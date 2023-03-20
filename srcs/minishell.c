@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 14:10:40 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/20 12:59:32 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:41:59 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,5 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	run(envp, line, list, &free_var);
+	return (0);
 }
