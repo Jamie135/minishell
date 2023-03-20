@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:49:29 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/20 17:00:17 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/20 17:31:22 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,24 +84,24 @@ char	*ft_readline(char *line, int *count, t_envi *env, int *exit)
 	return (line);
 }
 
-// fonction commande ()
+// fonction qui lance minishell
 int	run(char **envp, char *line, t_list *list, t_free *free_var)
 {
 	static int		count;
-	static int		exit;
+	static int		exit_value;
 	static t_envi	*env;
 
 	count = 0;
-	exit = 0;
+	exit_value = 0;
 	env = NULL;
 	env = init_envi(envp);
 	if (env == NULL)
 		env = null_envi(env);
 	if (env == -1)
-		return (malloc_err("main.c"), EXIT_FAILURE);
+		return (malloc_err("run.c"), EXIT_FAILURE);
 	while (1)
 	{
-		line = ft_readline(line, &count, env, exit);
+		line = ft_readline(line, &count, env, exit_value);
 		if (line == NULL)
 			continue ;
 		list = fill_list(line, free_var);
@@ -110,5 +110,8 @@ int	run(char **envp, char *line, t_list *list, t_free *free_var)
 		if (free_null_list(list, free_var, line, env) == EXIT_SUCCESS)
 			continue ;
 		ft_exit(list, env, line, free_var);
+		env = execution(list, env, &count, &exit_value);
+		if (env == -1)
+			return (malloc_err("run.c"), EXIT_FAILURE);
 	}
 }
