@@ -6,11 +6,11 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:49:29 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/17 16:54:40 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:23:10 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../includes/minishell.h"
 
 int	valid_syntax(char *line)
 {
@@ -85,7 +85,7 @@ char	*ft_readline(char *line, int *count, t_envi *env, int *exit)
 }
 
 // fonction commande ()
-int	run(char **envp, char *line, t_list *list, t_free *to_free)
+int	run(char **envp, char *line, t_list *list, t_free *free_var)
 {
 	static int		count;
 	static int		exit;
@@ -104,10 +104,11 @@ int	run(char **envp, char *line, t_list *list, t_free *to_free)
 		line = ft_readline(line, &count, env, exit);
 		if (line == NULL)
 			continue ;
-		list = fill_list(line, to_free);
+		list = fill_list(line, free_var);
 		if (list == NULL)
-			continue;
-		if (free_null_list(list, to_free, line, env) == EXIT_SUCCESS)
-			continue;
+			continue ;
+		if (free_null_list(list, free_var, line, env) == EXIT_SUCCESS)
+			continue ;
+		
 	}
 }

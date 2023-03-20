@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 01:51:52 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/08 01:51:52 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:00:26 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <stdbool.h>
 # define INT_MIN -2147483648
 
 int		ft_isascii(int c);
@@ -78,9 +79,11 @@ typedef struct s_list
 	char			*content;
 	int				type;
 	struct s_list	*next;
+	bool			unexpended;
 }	t_list;
 
 t_list	*ft_lstnew(char *content, int type);
+t_list	*ft_lstnew_2(char *content, int type, bool unexpended, bool quoted);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);

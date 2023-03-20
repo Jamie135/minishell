@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbureera <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 13:54:38 by pbureera          #+#    #+#             */
-/*   Updated: 2022/06/14 14:19:27 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:01:12 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,21 @@ t_list	*ft_lstnew(char *content, int type)
 	contenu = malloc(sizeof(*contenu));
 	if (!contenu)
 		return (NULL);
+	contenu->content = content;
+	contenu->type = type;
+	contenu->next = NULL;
+	return (contenu);
+}
+
+t_list	*ft_lstnew_2(char *content, int type, bool unexpended, bool quoted)
+{
+	t_list	*contenu;
+
+	(void)quoted;
+	contenu = ft_calloc(sizeof(*contenu), 1);
+	if (!contenu)
+		return (NULL);
+	contenu->unexpended = unexpended;
 	contenu->content = content;
 	contenu->type = type;
 	contenu->next = NULL;

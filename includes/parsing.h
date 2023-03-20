@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 01:32:57 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/14 17:23:33 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:22:46 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,30 @@
 typedef struct s_free
 {
 	char	**split;
-	bool	not_expend;
-	bool	*is_in_quote;
+	bool	*unexpended;
+	bool	*quoted;
 }	t_free;
 
 /* list.c */
-t_list		*fill_list(char *str, t_free *to_free);
+t_list		*fill_list(char *str, t_free *free_var);
+t_list		*fill(t_free *free_var, t_list *list);
 
-/* quote.c */
+/* quote.c && quote_utils.c */
 int			valid_quote(char *str);
 int			valid_single(char *str, int *single_quote, int *double_quote, int *i);
 int			valid_double(char *str, int *single_quote, int *double_quote, int *i);
+char		*single_quote(char *str, int index);
+char		*double_quote(char *str, int index);
 int			valid_open(char *str);
+int			is_unexpended(char *str);
+int			is_quoted(char *str);
 
-/* string.c */
+/* string.c && string_utils.c */
 char		*get_string(char *str);
 int			len_string(char *str);
 static void	string_1(int *i, int *j, char *str, char *new);
 static void	string_2(int *i, int *j, char *str, char *new);
 char		*final_string(char *new);
-
-/* string_utils.c */
 int			quote_index(char *str, int index, char c);
 int			single_quote_index(char *str, char *new, int i, int j);
 int			double_quote_index(char *str, char *new, int i, int j);
@@ -61,16 +64,29 @@ void		complete_string(char *new, int *i, int *j, char *str);
 
 /* split_string.c && split_string_utils.c */
 char		**split_string(char const *s, char c);
+static char	**free_tab(char **tab, size_t j);
 size_t		increment_single_quote(const char *s);
 size_t		increment_double_quote(const char *s);
 int			increment_word(const char *s, int quote);
+int			len_split(char **split);
 
-/* free_parsing.c */
+/* trim.c && trim_utils.c */
+int			trim_split(char **split, t_free *free_var);
+int			trim_protect(char **split, t_free *free_var);
+char		*strdup_free(char *str, int free_var);
+
+/* type.c */
+void		type(t_list *list);
+int			get_type(char *str, int	last_type);
+int			get_type_redir(char *str);
+
+/* free_parsing_1.c && free_parsing_2.c */
 void		*free_quote(char *str);
 void		free_line_and_split(char *line, char **split);
-void		free_null_list(t_list *list, t_free *to_free, char *line, t_envi *env);
-static char	**free_tab(char **tab, size_t j);
+int			free_null_list(t_list *list, t_free *free_var, char *line, t_envi *env);
 void		*free_fill(char **tab, t_list *list, char *str);
+int			free_trim(t_free *free_var, int i);
+void		*free_split_index(char **split, int index, int message);
 
 /* signals.c */
 

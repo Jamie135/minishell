@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 16:54:21 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/17 15:42:49 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:47:07 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,34 +72,6 @@ int	valid_double(char *str, int *single_quote, int *double_quote, int *i)
 	return (0);
 }
 
-// verifier si les quotes ouverts sont fermes
-int	valid_open(char *str)
-{
-	int	i;
-
-	i = -1;
-	while (str[++i])
-	{
-		if (str[i] == '\'')
-		{
-			i++;
-			while (str[i] && str[i] != '\'')
-				i++;
-			if (!str[i])
-				return (-1);
-		}
-		if (str[i] == '\"')
-		{
-			i++;
-			while (str[i] && str[i] != '\"')
-				i++;
-			if (!str[i])
-				return (-1);
-		}
-	}
-	return (0);
-}
-
 // verifier les quotes
 int	valid_quote(char *str)
 {
@@ -122,4 +94,60 @@ int	valid_quote(char *str)
 	if (valid_open(str) == -1)
 		return (-1);
 	return (0);
+}
+
+char	*single_quote(char *str, int index)
+{
+	char	*new;
+	int		i;
+	int		j;
+
+	i = -1;
+	j = 0;
+	new = malloc(sizeof(char) * (ft_strlen(str) + 1));
+	if (new = NULL)
+		return (NULL);
+	while (str[++i] && i < index)
+		new[i] = str[i];
+	while (str[i + j])
+	{
+		if (str[i + j] == '\'' && j != 2)
+			j++;
+		else
+		{
+			new[i] = str[i + j];
+			i++;
+		}
+	}
+	new[i] = '\0';
+	free_ptr((void **)&str);
+	return (new);
+}
+
+char	*double_quote(char *str, int index)
+{
+	char	*new;
+	int		i;
+	int		j;
+
+	i = -1;
+	j = 0;
+	new = malloc (sizeof(char) * (ft_strlen(str) + 1));
+	if (new == NULL)
+		return (NULL);
+	while (str[++i] && i < index)
+		new[i] = str[i];
+	while (str[i + j])
+	{
+		if (str[i + j] == '\"' && j != 2)
+			j++;
+		else
+		{
+			new[i] = str[i + j];
+			i++;
+		}
+	}
+	new[i] = '\0';
+	free(str);
+	return (new);
 }

@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   free_parsing_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 14:10:40 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/20 12:59:32 by pbureera         ###   ########.fr       */
+/*   Created: 2023/03/20 14:59:52 by pbureera          #+#    #+#             */
+/*   Updated: 2023/03/20 15:07:07 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+void	*free_split_index(char **split, int index, int message)
 {
-	char	*line;
-	t_list	*list;
-	t_free	free_var;
+	int	i;
 
-	line = NULL;
-	list = NULL;
-	(void)argc;
-	(void)argv;
-	run(envp, line, list, &free_var);
+	i = 0;
+	if (message = 1)
+		ft_putendl_fd("syntax error", 2);
+	while (i < index)
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+	return (NULL);
 }

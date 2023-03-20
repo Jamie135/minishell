@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   string_utils_2.c                                   :+:      :+:    :+:   */
+/*   split_string_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 20:06:30 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/15 20:06:30 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/20 13:10:24 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,14 @@ int	increment_word(const char *s, int quote)
 		i--;
 		return (i);
 	}
+}
+
+int	len_split(char **split)
+{
+	int	len;
+
+	len = 0;
+	while (split[len])
+		len++;
+	return (len);
 }
