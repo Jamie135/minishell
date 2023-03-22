@@ -35,30 +35,30 @@ t_list	*fill(t_free *free_var, t_list *list)
 	return (list);
 }
 
-t_list	*fill_list(char *str, t_free *free_var)
+t_list	*fill_list(char *line, t_free *free_var)
 {
-	char	*new;
+	char	*str;
 	t_list	*list;
 	char	**tab;
 
-	if (valid_quote(str) == -1)
-		return (free_quote(str));
-	new = get_string(str);
-	if (!new)
-		return (free(str), NULL);
+	if (valid_quote(line) == -1)
+		return (free_quote(line));
+	str = get_string(line);
+	if (!str)
+		return (free(line), NULL);
 	list = NULL;
 	list = ft_calloc(sizeof(*list), 1);
 	if (!list)
 		return (NULL);
 	list->next = NULL;
-	tab = split_string(new, ' ');
+	tab = split_line(str, ' ');
 	if (!tab)
-		return (free_fill(tab, list, str));
+		return (free_fill(tab, list, line));
 	if (trim_split(tab, free_var) == -1)
 		return (free_list(list), free_split(tab),
-			free(str), free(new), NULL);
+			free(line), free(str), NULL);
 	list = fill(list, free_var);
 	if (!list)
 		return (NULL);
-	return (free(new), list);
+	return (free(str), list);
 }

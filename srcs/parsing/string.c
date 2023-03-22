@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-// compter le len du string de commande
+//agrandir la taille de la copie de la ligne de commande
 int	len_string(char *str)
 {
 	int	i;
@@ -71,6 +71,9 @@ char	*final_string(char *new)
 		return (new);	
 }
 
+//retourner une "copie" de la ligne de commande, mais mieux espacer, 
+//l'interet est de bien espacer la ligne de commande pour qu'on puisse
+//la split apres
 char	*get_string(char *str)
 {
 	int			i;

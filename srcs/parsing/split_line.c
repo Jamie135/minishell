@@ -89,7 +89,9 @@ static char	*dup_word(const char *s, size_t len)
 	return (dup);
 }
 
-char	**split_string(char const *s, char c)
+//split la ligne de commande en fonction du delimiteur c
+//(' ' est le delimiteur en general)
+char	**split_line(char const *s, char c)
 {
 	char	**tab;
 	size_t	i;

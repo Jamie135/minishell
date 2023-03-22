@@ -12,7 +12,7 @@
 
 #include "../includes/minishell.h"
 
-//verifier si la syntaxe est correcte
+//verifier si la syntaxe est correcte (ouverture et fermeture des quotes)
 int	valid_syntax(char *line)
 {
 	int	i;

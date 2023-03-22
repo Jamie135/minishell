@@ -32,7 +32,7 @@ typedef struct s_free
 }	t_free;
 
 /* list.c */
-t_list		*fill_list(char *str, t_free *free_var);
+t_list		*fill_list(char *line, t_free *free_var);
 t_list		*fill(t_free *free_var, t_list *list);
 
 /* quote.c && quote_utils.c */
@@ -62,8 +62,8 @@ char		*split_pipe(char *str);
 int			len_pipe(char *str);
 void		complete_string(char *new, int *i, int *j, char *str);
 
-/* split_string.c && split_string_utils.c */
-char		**split_string(char const *s, char c);
+/* split_line.c && split_line_utils.c */
+char		**split_line(char const *s, char c);
 static char	**free_tab(char **tab, size_t j);
 size_t		increment_single_quote(const char *s);
 size_t		increment_double_quote(const char *s);
