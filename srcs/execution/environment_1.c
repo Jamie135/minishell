@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-//	retourner la variable environementale de envp[i]
+//retourner la variable d'environnement de envp[i]
 char	*variable_env(char *env)
 {
 	int		len;
@@ -27,7 +27,7 @@ char	*variable_env(char *env)
 	return (ve);
 }
 
-//	retourner la valeur de la variable environementale de envp[i]
+//retourner la valeur de la variable d'environnement de envp[i]
 char	*value_env(char *env)
 {
 	int		len;
@@ -42,7 +42,7 @@ char	*value_env(char *env)
 	return (value);
 }
 
-//	attribuer les valeurs de ve, value et type au structure t_envi
+//attribuer les valeurs de ve, value et type au struct cpy
 t_envi	*cpy_struct_envi(char *ve, char *value, int type)
 {
 	t_envi	*cpy;
@@ -59,7 +59,7 @@ t_envi	*cpy_struct_envi(char *ve, char *value, int type)
 	return (cpy);
 }
 
-//	placer envi au dernier indice de la liste chainee
+//ajouter la struct cpy a la fin de la liste envi
 void	add_back_envi(t_envi **envi, t_envi *cpy)
 {
 	t_envi	*back;
@@ -75,6 +75,7 @@ void	add_back_envi(t_envi **envi, t_envi *cpy)
 	back->next = cpy;
 }
 
+//creer une "copie" de l'environnement sous forme d'une liste de struct envi
 t_envi	*init_envi(char **envp)
 {
 	t_envi	*envi;

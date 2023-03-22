@@ -12,6 +12,7 @@
 
 #include "../includes/minishell.h"
 
+//verifier si la syntaxe est correcte
 int	valid_syntax(char *line)
 {
 	int	i;
@@ -40,6 +41,7 @@ int	valid_syntax(char *line)
 	return (0);
 }
 
+//verifier si la ligne de commande a uniquement que des espaces
 int	line_space(char *line)
 {
 	int	i;
@@ -57,6 +59,7 @@ int	line_space(char *line)
 	return (-1);
 }
 
+//verifier si la ligne de commande est vide
 int	line_null(char *line, t_envi *env)
 {
 	if (line == NULL)
@@ -73,7 +76,7 @@ int	line_null(char *line, t_envi *env)
 	return (0);
 }
 
-// lire et ajouter en historique la ligne "minishell> "
+//retourner la ligne de commande lue par readline en l'ajoutant en historique
 char	*ft_readline(char *line, int *count, t_envi *env, int *exit)
 {
 	(*count)++;
@@ -84,7 +87,7 @@ char	*ft_readline(char *line, int *count, t_envi *env, int *exit)
 	return (line);
 }
 
-// fonction qui lance minishell
+//fonction qui lance minishell
 int	run(char **envp, char *line, t_list *list, t_free *free_var)
 {
 	static int		count;

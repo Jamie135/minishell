@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-//	placer envi au dernier indice de la liste chainee
+//retourner la derniere struct de la liste envi
 t_envi	*get_last_envi(t_envi *envi)
 {
 	if (!envi)
@@ -79,6 +79,8 @@ static int	underscore_envi(t_envi **envi)
 	return (EXIT_SUCCESS);
 }
 
+//si on a un environnement null, on essaye de retourner la liste envi
+//en ajoutant les environnements: PWD, SHLVL et _(underscore)
 t_envi	*null_envi(t_envi *envi)
 {
 	if (pwd_envi(&envi) == EXIT_FAILURE)
