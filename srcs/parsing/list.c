@@ -12,6 +12,7 @@
 
 #include "../../includes/minishell.h"
 
+//recopier les valeurs de la struct t_free a la struct t_list
 t_list	*fill(t_free *free_var, t_list *list)
 {
 	t_list	*tmp;
@@ -35,6 +36,8 @@ t_list	*fill(t_free *free_var, t_list *list)
 	return (list);
 }
 
+//creer une liste qui separe la ligne de commande
+//ex: echo "hey"'hey' -> [echo][hey][hey]
 t_list	*fill_list(char *line, t_free *free_var)
 {
 	char	*str;

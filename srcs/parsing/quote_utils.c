@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-// verifier si les quotes ouverts sont fermes
+//verifier si les quotes ouverts sont fermes
 int	valid_open(char *str)
 {
 	int	i;
@@ -63,6 +63,7 @@ int	is_unexpended(char *str)
 	return (0);
 }
 
+//verifier si str est entre guillemets '\'' '\"'
 int	is_quoted(char *str)
 {
 	int	i;
