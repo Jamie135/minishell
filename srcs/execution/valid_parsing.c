@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 15:45:53 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/24 16:11:26 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:18:58 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,13 @@ int	redir_num(t_list *list)
 						expected_token(">");
 					else
 						expected_token("<");
-					ft
+					free_list((t_list *)tmp);
+					return (-1);
 				}
+				i++;
 			}
-			
 		}
-		
+		list->next;
 	}
 	return (0);
 }
