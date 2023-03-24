@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 21:08:33 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/24 16:05:00 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:35:28 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,15 @@ void		add_back_envi(t_envi **envi, t_envi *cpy);
 t_envi		*get_last_envi(t_envi *envi);
 t_envi		*null_envi(t_envi *envi);
 
+/* execution.c */
+t_envi		*execution(t_list *list, t_envi *env, int *count, int *exit_value);
+
+/* valid_parsing.c */
+int			valid_redir_num(t_list *list);
+int			valid_arrow_pipe(t_list *list);
+int			valid_next_arrow(t_list *list);
+int			valid_pipe(t_list *list);
+
 /* exec_1.c */
 size_t		num_command(t_list *list);
 
@@ -79,7 +88,7 @@ void		free_split(char **tab);
 /* message.c */
 void		malloc_err(char *str);
 int			syntax_err(char *line);
-void		expected_token(char *str);
+void		print_token(char *str);
 
 
 #endif

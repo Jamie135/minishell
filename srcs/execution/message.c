@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:33:31 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/24 16:10:19 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:33:15 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	syntax_err(char *line)
 	return (-1);
 }
 
-void	expected_token(char *str)
+void	print_token(char *str)
 {
 	ft_putstr_fd(SYNTAX_ERR, STDERR);
 	ft_putstr_fd(" `", STDERR);
