@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 01:32:57 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/20 16:22:46 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:07:19 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <unistd.h>
 # include <signal.h>
 # include <stdbool.h>
+
+# define SYNTAX_ERR "syntax error near unexpected token"
 
 typedef struct s_free
 {

@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 21:08:33 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/20 17:10:32 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:05:00 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,26 @@ typedef struct s_envi
 	int				type;
 	struct s_envi	*next;
 }	t_envi;
+
+typedef struct s_shell
+{
+	t_list	*list;
+	char	**environment;
+	t_envi	*envi;
+	int		cid;
+	int		cmd_id;
+	int		cmd_num;
+	int		redir_num;
+	t_list	**redir;
+	int		*infile;
+	int		*outfile;
+	pid_t	*pid;
+	int		**pipes;
+	char	***args;
+	int		status;
+	int		*line_num;
+	int		*exit_value;
+}	t_shell;
 
 typedef enum e_fd
 {
@@ -59,6 +79,7 @@ void		free_split(char **tab);
 /* message.c */
 void		malloc_err(char *str);
 int			syntax_err(char *line);
+void		expected_token(char *str);
 
 
 #endif
