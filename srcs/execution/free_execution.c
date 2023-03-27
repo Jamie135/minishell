@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_1.c                                           :+:      :+:    :+:   */
+/*   free_execution.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 22:41:19 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/14 17:16:38 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/27 17:23:39 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,17 @@ void	free_split(char **tab)
 		i++;
 	}
 	free_ptr((void **)&tab);
+}
+
+void	free_heredoc(t_heredoc *heredoc, char *limiter, char *line, int fd)
+{
+	if (heredoc->list)
+		free_list(heredoc->list);
+	if (heredoc->envi)
+		free_envi(heredoc->envi);
+	if (limiter)
+		free_ptr((void **)&limiter);
+	if (line)
+		free_ptr((void **)&line);
+	close_fd(&fd);
 }

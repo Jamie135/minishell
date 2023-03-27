@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:33:31 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/24 16:33:15 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/27 17:20:11 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,20 @@ void	print_token(char *str)
 	ft_putstr_fd(" `", STDERR);
 	ft_putstr_fd(str, STDERR);
 	ft_putendl_fd("\'", STDERR);	
+}
+
+void	message_heredoc(t_heredoc *heredoc, char *str, int n, void (*f)(int))
+{
+	if (n > 0 && str)
+		perror(str);
+	else if (n > 0)
+		ft_putendl_fd(strerror(errno), STDERR);
+	if (!f && heredoc)
+		free_heredoc(heredoc, NULL, NULL, -1);
+	if (f)
+	{
+		if (heredoc)
+			free_heredoc(heredoc, NULL, NULL, -1);
+		f(n);
+	}
 }

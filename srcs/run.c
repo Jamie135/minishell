@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:49:29 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/20 17:31:22 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:48:32 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	run(char **envp, char *line, t_list *list, t_free *free_var)
 	if (env == NULL)
 		env = null_envi(env);
 	if (env == -1)
-		return (malloc_err("run.c"), EXIT_FAILURE);
+		return (malloc_err("run.c (1)"), EXIT_FAILURE);
 	while (1)
 	{
 		line = ft_readline(line, &count, env, exit_value);
@@ -115,6 +115,6 @@ int	run(char **envp, char *line, t_list *list, t_free *free_var)
 		ft_exit(list, env, line, free_var);
 		env = execution(list, env, &count, &exit_value);
 		if (env == -1)
-			return (malloc_err("run.c"), EXIT_FAILURE);
+			return (malloc_err("run.c (2)"), EXIT_FAILURE);
 	}
 }
