@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 21:08:33 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/24 16:35:28 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:46:28 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ t_envi		*null_envi(t_envi *envi);
 t_envi		*execution(t_list *list, t_envi *env, int *count, int *exit_value);
 
 /* valid_parsing.c */
-int			valid_redir_num(t_list *list);
-int			valid_arrow_pipe(t_list *list);
-int			valid_next_arrow(t_list *list);
+int			valid_num_redir(t_list *list);
+int			valid_extra_token(t_list *list);
+int			valid_after_redir(t_list *list);
 int			valid_pipe(t_list *list);
 
 /* exec_1.c */

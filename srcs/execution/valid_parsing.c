@@ -6,13 +6,13 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 15:45:53 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/27 15:16:57 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:51:16 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	valid_redir_num(t_list *list)
+int	valid_num_redir(t_list *list)
 {
 	const t_list	*tmp = list;
 	int				i;
@@ -41,9 +41,9 @@ int	valid_redir_num(t_list *list)
 	return (0);
 }
 
-//verifier si on a une mauvaise syntaxe des tokens
-//ex: ">>>", "<<<"
-int	valid_arrow_pipe(t_list *list)
+//verifier si on a des tokens en trop
+//ex: ">>>", "<<<", "||"
+int	valid_extra_token(t_list *list)
 {
 	const t_list	*tmp = list;
 	int				type;
@@ -71,8 +71,8 @@ int	valid_arrow_pipe(t_list *list)
 	return (0);
 }
 
-//verifier si ceux qui suivent apres ">", ">>", "<<",... ne sont pas vides
-int	valid_next_arrow(t_list *list)
+//verifier qu'on a pas uniquement un \n apres les redirections
+int	valid_after_redir(t_list *list)
 {
 	int				i;
 	const t_list	*tmp = list;
@@ -94,6 +94,8 @@ int	valid_next_arrow(t_list *list)
 	return (0);
 }
 
+//verifier si on a une mauvaise syntaxe des pipes
+//ex: "|.", "|?", "!|"
 int	valid_pipe(t_list *list)
 {
 	const t_list	*tmp = list;
