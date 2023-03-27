@@ -6,12 +6,14 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 15:45:53 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/27 13:19:31 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/27 14:53:37 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+//verifier si on a une mauvaise syntaxe des tokens
+//ex: ">>>", "<<<"
 int	valid_redir_num(t_list *list)
 {
 	const t_list	*tmp = list;
