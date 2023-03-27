@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 15:45:53 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/24 16:36:39 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/27 13:19:31 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	valid_arrow_pipe(t_list *list)
 	return (0);
 }
 
+//verifier si ceux qui suivent apres ">", ">>", "<<",... ne sont pas vides
 int	valid_next_arrow(t_list *list)
 {
 	int				i;

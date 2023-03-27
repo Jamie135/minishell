@@ -6,12 +6,13 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:06:50 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/20 16:18:44 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/27 13:04:11 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+//verifier si le type est une redirection
 int	get_type_redir(char *str)
 {
 	if (ft_strncmp(str, ">", 1) == 0)
@@ -25,6 +26,7 @@ int	get_type_redir(char *str)
 	return (-1);
 }
 
+//determiner le type
 int	get_type(char *str, int	last_type)
 {
 	if (get_type_redir(str) != 1)
@@ -39,6 +41,7 @@ int	get_type(char *str, int	last_type)
 		return (CMD);
 }
 
+//donner un type a chaque indice de la liste
 void	type(t_list *list)
 {
 	int	last_type;
