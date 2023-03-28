@@ -70,6 +70,7 @@ t_envi		*cpy_struct_envi(char *ve, char *value, int type);
 void		add_back_envi(t_envi **envi, t_envi *cpy);
 t_envi		*get_last_envi(t_envi *envi);
 t_envi		*null_envi(t_envi *envi);
+char		*find_value_envi(char *name, t_envi *envi);
 
 /* execution.c */
 t_envi		*execution(t_list *list, t_envi *env, int *count, int *exit_value);
@@ -83,10 +84,26 @@ int			valid_pipe(t_list *list);
 /* heredoc.c */
 int			heredoc(t_list *list, t_envi *env, int *count, int *exit_value);
 int			heredoc_init(t_heredoc *heredoc, t_list *list);
-void		heredoc_exec(t_heredoc *heredoc, char *limiter, char *name);
+void		heredoc_exec(t_heredoc *heredoc, char *limiter, char *name, int signal_flag);
+char		*heredoc_get_line(t_heredoc *heredoc, char *limiter, int fd);
+void		heredoc_unlink(t_list *list);
 
 /* heredoc_utils.c */
 char		*random_string(int len);
+void		heredoc_error(t_heredoc *heredoc, char *limiter, int fd);
+void		exit_heredoc(t_heredoc *heredoc, char *limiter, char *line, int fd);
+
+/* expend.c */
+char		*expend_str(t_envi *envi, char *str, int exit_value);
+char		*expend_var(t_envi *envi, char *str, int exit_value);
+char		*expend_join(t_envi *envi, t_list **join, char *str);
+int			expend_exit(char *str, t_list **join, int exit_value);
+
+/* expend_utils.c */
+char		*add_space_to_dollars(char *str);
+size_t		count_dollar(char *str);
+char		*add_value_to_ve(char *ve, t_envi *envi);
+int			is_special_var(char c);
 
 /* exec_1.c */
 size_t		num_command(t_list *list);
@@ -98,6 +115,9 @@ static void	ft_exit_alphabet(t_list *list, t_envi *env);
 /* close.c */
 void		close_fd(int *fd);
 void		close_pipes(int	**pipes, size_t num);
+
+/* utils.c */
+int			is_str_alnum(char *str);
 
 /* free.c */
 void		free_ptr(void **ptr);

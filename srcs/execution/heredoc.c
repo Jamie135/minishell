@@ -12,22 +12,69 @@
 
 #include "../../includes/minishell.h"
 
+//enlever les fichiers de heredoc
+void	heredoc_unlink(t_list *list)
+{
+	while (list)
+	{
+		if (list->type == REDIR && ft_strcmp(list->content, "<<\0") == 0)
+		{
+			if (list->next)
+			{
+				list = list->next;
+				unlink(list->content);
+			}
+		}
+		if (list)
+			list = list->next;
+	}
+}
+
+//recuperer la ligne de commande de heredoc
+char	*heredoc_get_line(t_heredoc *heredoc, char *limiter, int fd)
+{
+	char	*line;
+	char	*tmp;
+
+	line = readline("heredoc> ");
+	heredoc->line_num[0]++;
+	if (line)
+	{
+		if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
+			return (free_heredoc(heredoc, limiter, line, fd), exit(0), NULL);
+		tmp = line;
+		line = expend_str(heredoc->envi, tmp, heredoc->exit_value[0]);
+		if (!line)
+			return (message_heredoc(heredoc, "malloc", errno, &exit), NULL);
+	}
+	return (line);
+}
+
 //ouvrir le fichier *name et executer heredoc
-void	heredoc_exec(t_heredoc *heredoc, char *limiter, char *name)
+void	heredoc_exec(t_heredoc *heredoc, char *limiter, char *name, int signal_flag)
 {
 	int		fd;
 	char	*line;
-	int		signal;
 
 	fd = open(name, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 		return (message_heredoc(heredoc, "open heredoc", errno, &exit));
-	signal = 0;
-	while (!signal)
+	signal_flag = 0;
+	while (!signal_flag)
 	{
-		/* code */
+		line = heredoc_get_line(heredoc, limiter, fd);
+		if (!line || signal_flag == 1)
+		{
+			if (!signal_flag)
+				heredoc_error(heredoc, limiter, fd);
+			break ;
+		}
+		ft_putendl_fd(line, fd);
+		free_ptr((void **)line);
 	}
-	
+	if (signal_flag == 1)
+		exit_heredoc(heredoc, limiter, line, fd);
+	return (free_heredoc(heredoc, limiter, NULL, fd), exit(0));
 }
 
 //determiner le limiteur et recopier le nom du fichier depuis la liste
@@ -54,6 +101,9 @@ int	heredoc_init(t_heredoc *heredoc, t_list *list)
 		return (free(tmp), free(limiter), perror("pipe heredoc"), 1);
 	if (pid == 0)
 		heredoc_exec(limiter, list->content, heredoc);
+	else
+		waitpid(pid, NULL, 0);
+	return(free_ptr((void **)&limiter), EXIT_SUCCESS);
 }
 
 //attribuer les valeurs des arguments aux struct t_heredoc

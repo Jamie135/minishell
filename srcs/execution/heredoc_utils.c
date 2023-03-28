@@ -12,6 +12,27 @@
 
 #include "../../includes/minishell.h"
 
+void	exit_heredoc(t_heredoc *heredoc, char *limiter, char *line, int fd)
+{
+	free_heredoc(heredoc, limiter, line, fd);
+	exit(130);
+}
+
+void	heredoc_error(t_heredoc *heredoc, char *limiter, int fd, int signal_flag)
+{
+	if (signal_flag == 1)
+	{
+		free_heredoc(heredoc, limiter, NULL, fd);
+		signal_flag = 0;
+		exit(2);
+	}
+	ft_putstr_fd("bash: warning: here-document at line ", 2);
+	ft_putnbr_fd(heredoc->line_num[0], 2);
+	ft_putstr_fd(" delimited by end-of-file (wanted `", 2);
+	ft_putstr_fd(limiter, 2);
+	ft_putendl_fd("')", 2);
+}
+
 //rendre le caractere c affichable si besoin  
 static int	char_mod(int c)
 {
