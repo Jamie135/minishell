@@ -17,10 +17,17 @@ void	heredoc_exec(t_heredoc *heredoc, char *limiter, char *name)
 {
 	int		fd;
 	char	*line;
+	int		signal;
 
 	fd = open(name, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 		return (message_heredoc(heredoc, "open heredoc", errno, &exit));
+	signal = 0;
+	while (!signal)
+	{
+		/* code */
+	}
+	
 }
 
 //determiner le limiteur et recopier le nom du fichier depuis la liste
