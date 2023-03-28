@@ -12,6 +12,17 @@
 
 #include "../../includes/minishell.h"
 
+//verifier si on a un '$' a la fin de str
+int	is_dollar(char *str)
+{
+	int	len;
+
+	len = (int)ft_strlen(str);
+	if (str[len - 1] == '$')
+		return (1);
+	return (0);
+}
+
 //verifier si ce n'est pas un caractere special ou non affichable
 int	is_special_var(char c)
 {

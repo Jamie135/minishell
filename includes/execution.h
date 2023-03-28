@@ -98,12 +98,14 @@ char		*expend_str(t_envi *envi, char *str, int exit_value);
 char		*expend_var(t_envi *envi, char *str, int exit_value);
 char		*expend_join(t_envi *envi, t_list **join, char *str);
 int			expend_exit(char *str, t_list **join, int exit_value);
+int			expend_list(t_envi *envi, t_list *list, int exit_value);
 
 /* expend_utils.c */
 char		*add_space_to_dollars(char *str);
 size_t		count_dollar(char *str);
 char		*add_value_to_ve(char *ve, t_envi *envi);
 int			is_special_var(char c);
+int			is_dollar(char *str);
 
 /* exec_1.c */
 size_t		num_command(t_list *list);
@@ -119,12 +121,13 @@ void		close_pipes(int	**pipes, size_t num);
 /* utils.c */
 int			is_str_alnum(char *str);
 
-/* free.c */
+/* free_execution.c */
 void		free_ptr(void **ptr);
 void		free_envi(t_envi *envi);
 void		free_list(t_list *list);
 void		free_split(char **tab);
 void		free_heredoc(t_heredoc *heredoc, char *limiter, char *line, int fd);
+void		free_one_envi(t_envi *envi);
 
 /* message.c */
 void		malloc_err(char *str);

@@ -12,6 +12,28 @@
 
 #include "../../includes/minishell.h"
 
+int	expend_list(t_envi *envi, t_list *list, int exit_value)
+{
+	t_list	*lst;
+
+	lst = NULL;
+	while (envi && list)
+	{
+		if (ft_strchr(list->content, '$') && list->unexpended == false \
+			&& !is_dollar(list->content))
+		{
+			list->content = expend_str(envi, list->content, exit_value);
+			if (!list->content)
+				return (EXIT_FAILURE);
+			if (!ft_strcmp(list->content, ""))
+				free_one_envi(&list, lst);
+		}
+		lst = list;
+		list = list->next;
+	}
+	return (EXIT_SUCCESS);
+}
+
 int	expend_exit(char *str, t_list **join, int exit_value)
 {
 	char	*to_join;
