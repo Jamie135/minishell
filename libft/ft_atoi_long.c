@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/libft.h"
+#include "../includes/libft.h"
 
 //the fonction for white space and space
 static int	ft_is_white_space(char c)

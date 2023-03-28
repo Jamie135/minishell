@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/libft.h"
+#include "../includes/libft.h"
 
 static size_t	ft_lstjoin_len(t_list *to_join)
 {

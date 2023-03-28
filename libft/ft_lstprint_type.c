@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/libft.h"
+#include "../includes/libft.h"
 
 static char	*ft_print_type(int type)
 {

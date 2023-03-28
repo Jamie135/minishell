@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/libft.h"
+#include "../includes/libft.h"
 
 //to iter with i all the string, it's for modify the string with anther function
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))

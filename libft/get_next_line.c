@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/get_next_line.h"
+#include "../includes/get_next_line.h"
 
 static char	*error(char *tmp, char *buffer)
 {
