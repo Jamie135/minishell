@@ -1,45 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   free_execution_3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/28 21:46:54 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/29 14:37:18 by pbureera         ###   ########.fr       */
+/*   Created: 2023/03/29 15:10:41 by pbureera          #+#    #+#             */
+/*   Updated: 2023/03/29 15:15:08 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-//retourner le len de **args 
-int	len_array(char **args)
+void	free_redir(t_list **list, int n)
 {
-	int	len;
+	t_list	*tmp;
+	int		i;
 
-	len = 0;
-	while (args[len])
-		len++;
-	return (len);
-}
-
-//verifier si str est composer uniquement de caractere alphanumerique
-int	is_str_alnum(char *str)
-{
-	size_t	i;
-	size_t	n;
-	size_t	len;
-
-	len = ft_strlen(str);
 	i = 0;
-	n = 0;
-	while (str[i])
+	while (i < n)
 	{
-		if (ft_isalnum(str[i]))
-			n++;
+		while (list[i])
+		{
+			tmp = list[i]->next;
+			free_ptr((void **)&list[i]);
+			list[i] = tmp;
+		}
 		i++;
 	}
-	if (n == len)
-		return (1);
-	return (0);
+	free(list);
+}
+
+void	free_pipes(int **pipes, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		free_ptr((void **)&pipes[i]);
+		i++;
+	}
+	free_ptr((void **)&pipes);
+}
+
+void	free_args(char ***args, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		free_split(args[i]);
+		args[i] = NULL;
+		i++;
+	}
+	free(args);
 }

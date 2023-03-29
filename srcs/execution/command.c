@@ -1,16 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_1.c                                           :+:      :+:    :+:   */
+/*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:07:21 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/20 17:09:44 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:26:17 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+size_t	num_redir(t_list *list)
+{
+	size_t	num;
+
+	num = 0;
+	while (list)
+	{
+		if (list->type == REDIR)
+			num++;
+		list = list->next;
+	}
+	return (num);
+}
 
 size_t	num_command(t_list *list)
 {

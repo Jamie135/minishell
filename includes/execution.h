@@ -6,12 +6,18 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 21:08:33 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/27 17:27:05 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:25:53 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTION_H
 # define EXECUTION_H
+
+# include "minishell.h"
+# include "parsing.h"
+
+# define SUCCESS 0
+# define FAILURE -1
 
 typedef struct s_envi
 {
@@ -56,6 +62,15 @@ typedef enum e_fd
 	STDERR
 }	t_fd;
 
+typedef enum e_error
+{
+	MALLOC = -1,
+	SYNTAX = -2,
+	PATH = -3,
+	COMMAND = -4,
+	EXIT = -5
+}	t_error;
+
 enum e_value
 {
 	VALID,
@@ -71,6 +86,8 @@ void		add_back_envi(t_envi **envi, t_envi *cpy);
 t_envi		*get_last_envi(t_envi *envi);
 t_envi		*null_envi(t_envi *envi);
 char		*find_value_envi(char *name, t_envi *envi);
+char		**init_env(t_envi *envi);
+size_t		len_envi(t_envi *envi);
 
 /* execution.c */
 t_envi		*execution(t_list *list, t_envi *env, int *count, int *exit_value);
@@ -107,8 +124,12 @@ char		*add_value_to_ve(char *ve, t_envi *envi);
 int			is_special_var(char c);
 int			is_dollar(char *str);
 
-/* exec_1.c */
+/* shell_struct.c */
+t_shell		*shell_struct(t_list *list, t_envi *envi, int *count, int *exit_value);
+
+/* command.c */
 size_t		num_command(t_list *list);
+size_t		num_redir(t_list *list);
 
 /* builtins.c */
 void		ft_exit(t_list *list, t_envi *env, char *line, t_free *free_var);
@@ -120,6 +141,7 @@ void		close_pipes(int	**pipes, size_t num);
 
 /* utils.c */
 int			is_str_alnum(char *str);
+int			len_array(char **args);
 
 /* free_execution.c */
 void		free_ptr(void **ptr);
@@ -128,12 +150,18 @@ void		free_list(t_list *list);
 void		free_split(char **tab);
 void		free_heredoc(t_heredoc *heredoc, char *limiter, char *line, int fd);
 void		free_one_envi(t_envi *envi);
+void		free_n_split(char **split, int n);
+void		free_shell_1(t_shell *shell);
+void		free_redir(t_list **list, int n);
+void		free_pipes(int **pipes, size_t n);
+void		free_args(char ***args, size_t n);
 
 /* message.c */
 void		malloc_err(char *str);
 int			syntax_err(char *line);
 void		print_token(char *str);
 void		message_heredoc(t_heredoc *heredoc, char *str, int n, void (*f)(int));
+void		message_free_exit(t_shell *shell, char *str, int value, void (*f)(int));
 
 
 #endif
