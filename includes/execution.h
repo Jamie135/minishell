@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 21:08:33 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/29 15:25:53 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:16:49 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ typedef struct s_shell
 	char	**environment;
 	t_envi	*envi;
 	int		cid;
-	int		cmd_id;
 	int		cmd_num;
+	int		no_cmd;
 	int		redir_num;
 	t_list	**redir;
 	int		*infile;
@@ -55,12 +55,25 @@ typedef struct s_heredoc
 	int		*exit_value;
 }	t_heredoc;
 
+typedef enum e_filemode
+{
+	INFILE,
+	OUTFILE,
+}	t_mode;
+
 typedef enum e_fd
 {
 	STDIN,
 	STDOUT,
 	STDERR
 }	t_fd;
+
+typedef enum e_redir
+{
+	TO_INFILE,
+	TRUNC,
+	APPEND
+}	t_redir;
 
 typedef enum e_error
 {
@@ -126,6 +139,14 @@ int			is_dollar(char *str);
 
 /* shell_struct.c */
 t_shell		*shell_struct(t_list *list, t_envi *envi, int *count, int *exit_value);
+
+/* shell_redir.c */
+int			list_redir(t_shell *shell, t_list *list);
+int			no_cmd_list_redir(t_shell *shell, t_list *list, t_list **redir);
+
+/* shell_utils.c */
+void		valid_next(t_shell *shell, t_list *list, int type[2], int *i);
+int			mode_file(int mode, int type[2]);
 
 /* command.c */
 size_t		num_command(t_list *list);
