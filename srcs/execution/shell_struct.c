@@ -12,6 +12,7 @@
 
 #include "../../includes/minishell.h"
 
+//creer un array de pipes
 int	init_pipes(t_shell *shell)
 {
 	int		**pipes;
@@ -24,8 +25,23 @@ int	init_pipes(t_shell *shell)
 	if (!pipes)
 		return (message_free_exit(shell, "shell_struct.c (8)", MALLOC, NULL), ERROR);
 	i = -1;
+	while (++i < shell->cmd_num - 1)
+	{
+		pipes[i] = (int *)ft_calloc(sizeof(int), 2);
+		if (!pipes[i])
+			return (free_pipes(pipes, (int)i), \
+					close_pipes(pipes, shell->cmd_num - 1), \
+					message_free_exit(shell, "shell_struct.c (9)", MALLOC, NULL), ERROR);
+	}
+	i = -1;
+	while (++i < shell->cmd_num - 1)
+		if(pipe(pipes[i]) == -1)
+			return (close_pipes(pipes, shell->cmd_num - 1), \
+					message_free_exit(shell, "pipes: ", errno, NULL), ERROR);
+	return (pipes);
 }
 
+//creer un array d'args
 char	***init_args(t_shell *shell, t_list *list)
 {
 	char	***args;
@@ -54,6 +70,7 @@ char	***init_args(t_shell *shell, t_list *list)
 	return (args);
 }
 
+//creer un array de pid
 pid_t	init_pid(t_shell *shell)
 {
 	pid_t	*pid;

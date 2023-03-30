@@ -102,9 +102,11 @@ t_envi		*null_envi(t_envi *envi);
 char		*find_value_envi(char *name, t_envi *envi);
 char		**init_env(t_envi *envi);
 size_t		len_envi(t_envi *envi);
+t_envi		*update_value_envi(char *ve, char *value, int type, t_envi *envi);
 
 /* execution.c */
 t_envi		*execution(t_list *list, t_envi *env, int *count, int *exit_value);
+void		shlvl_var(t_shell *shell);
 
 /* valid_parsing.c */
 int			valid_num_redir(t_list *list);
@@ -152,6 +154,9 @@ int			no_cmd_list_redir(t_shell *shell, t_list *list, t_list **redir);
 /* shell_utils.c */
 void		valid_next(t_shell *shell, t_list *list, int type[2], int *i);
 int			mode_file(int mode, int type[2]);
+
+/* shell_mode.c */
+int			shell_no_cmd(t_shell *shell);
 
 /* command.c */
 size_t		num_command(t_list *list);

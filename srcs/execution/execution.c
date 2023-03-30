@@ -12,6 +12,42 @@
 
 #include "../../includes/minishell.h"
 
+int	parent_process(t_shell *shell, t_envi *envi)
+{
+	int	status;
+
+	status = 0;
+	if (shell->cmd_num == 0 && shell->redir_num > 0)
+		status = shell_no_cmd(shell);
+}
+
+//update la variable SHLVL de l'environnement
+void	shlvl_var(t_shell *shell)
+{
+	static int	flag = 0;
+	char		*shlvl;
+	int			n;
+
+	if (flag == 0)
+	{
+		shlvl = find_value_envi("SHLVL", shell->envi);
+		if (shlvl)
+		{
+			free_split(shell->environment);
+			n = ft_atoi(shlvl) + 1;
+			shlvl = ft_itoa(n);
+			if (!shlvl)
+				return (malloc_err("execution.c (2)"));
+			shell->envi = update_value_envi("SHLVL", shlvl, 0, shell->envi);
+			shell->environment = init_env(shell->envi);
+			if (shell->env == FAIL)
+				return (malloc_err("execution.c (88)"));
+			free(shlvl);
+		}
+		flag = 1;
+	}
+}
+
 //execution des commandes
 t_envi	*execution(t_list *list, t_envi *env, int *count, int *exit_value)
 {
@@ -29,4 +65,9 @@ t_envi	*execution(t_list *list, t_envi *env, int *count, int *exit_value)
 	if (expend_list(env, list, *exit_value))
 		return (free_list(list), malloc_err("execution.c (1)"), env);
 	shell = shell_struct(list, env, count, exit_value);
+	if (!shell)
+		return (NULL);
+	shlvl_var(shell);
+	if (parent_process(shell, envi))
+		return (envi);
 }
