@@ -12,6 +12,16 @@
 
 #include "../../includes/minishell.h"
 
+void	pid_return(int mode)
+{
+	if (mode == 130)
+		ft_putchar_fd('\n', STDERR);
+	else if (mode == 131)
+		ft_putendl_fd("Quit (core dumped)", STDERR);
+	else
+		return ;
+}
+
 //retourner le len de **args 
 int	len_array(char **args)
 {

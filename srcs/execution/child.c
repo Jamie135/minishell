@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 14:10:40 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/20 16:41:59 by pbureera         ###   ########.fr       */
+/*   Created: 2023/03/30 23:51:54 by pbureera          #+#    #+#             */
+/*   Updated: 2023/03/30 23:51:54 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+void	child_no_cmd(t_shell *shell)
 {
-	char	*line;
-	t_list	*list;
-	t_free	free_var;
+	const int	id = shell->cid;
+	int			infile;
+	int			outfile;
 
-	line = NULL;
-	list = NULL;
-	(void)argc;
-	(void)argv;
-	//init_signal(MINISHELL);
-	run(envp, line, list, &free_var);
-	return (0);
+	infile = -1;
+	outfile = -1;
+	infile = open_infile(shell, shell->redir[id]);
+	close_fd(&infile);
+	outfile = open_outfile(shell, shell->redir[id]);
+	close_fd(&outfile);
+	free_shell_1(shell);
+	exit(EXIT_SUCCESS);
 }

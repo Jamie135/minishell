@@ -24,6 +24,11 @@
 # include <signal.h>
 # include <stdbool.h>
 
+# define MINISHELL 0
+# define PARENT 1
+# define CHILD 2
+# define HEREDOC 3
+
 # define SYNTAX_ERR "syntax error near unexpected token"
 
 typedef struct s_free

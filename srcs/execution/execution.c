@@ -14,11 +14,13 @@
 
 int	parent_process(t_shell *shell, t_envi *envi)
 {
-	int	status;
+	int	mode;
 
-	status = 0;
+	mode = 0;
 	if (shell->cmd_num == 0 && shell->redir_num > 0)
-		status = shell_no_cmd(shell);
+		mode = parent_no_cmd(shell);
+	if (shell->cmd_num == 1 && shell->redir_num == 0)
+		mode = parent_one_cmd(shell);
 }
 
 //update la variable SHLVL de l'environnement

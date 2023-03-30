@@ -43,7 +43,7 @@ typedef struct s_shell
 	pid_t	*pid;
 	int		**pipes;
 	char	***args;
-	int		status;
+	int		mode;
 	int		*line_num;
 	int		*exit_value;
 }	t_shell;
@@ -72,7 +72,7 @@ typedef enum e_fd
 typedef enum e_redir
 {
 	TO_INFILE,
-	TRUNC,
+	TO_OUTFILE,
 	APPEND
 }	t_redir;
 
@@ -156,7 +156,11 @@ void		valid_next(t_shell *shell, t_list *list, int type[2], int *i);
 int			mode_file(int mode, int type[2]);
 
 /* shell_mode.c */
-int			shell_no_cmd(t_shell *shell);
+int			parent_no_cmd(t_shell *shell);
+int			parent_one_cmd(t_shell *shell);
+
+/* child.c */
+void		child_no_cmd(t_shell *shell);
 
 /* command.c */
 size_t		num_command(t_list *list);
@@ -169,17 +173,23 @@ int			check_space_cmd(t_list *list);
 int			split_space_cmd(t_list *list, char **args, size_t *i);
 int			before_space(char *str);
 
-/* builtins.c */
-void		ft_exit(t_list *list, t_envi *env, char *line, t_free *free_var);
-static void	ft_exit_alphabet(t_list *list, t_envi *env);
+/* open.c */
+int			open_infile(t_shell *shell, t_list *redir);
+int			open_outfile(t_shell *shell, t_list *redir);
+int			open_file(char *name, t_redir type);
 
 /* close.c */
 void		close_fd(int *fd);
 void		close_pipes(int	**pipes, size_t num);
 
+/* exit.c */
+void		ft_exit(t_list *list, t_envi *env, char *line, t_free *free_var);
+static void	ft_exit_alphabet(t_list *list, t_envi *env);
+
 /* utils.c */
 int			is_str_alnum(char *str);
 int			len_array(char **args);
+void		pid_return(int mode);
 
 /* free_execution.c */
 void		free_ptr(void **ptr);

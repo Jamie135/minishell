@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-int	shell_no_cmd(t_shell *shell)
+int	parent_no_cmd(t_shell *shell)
 {
 	pid_t	*pid;
 
@@ -23,5 +23,17 @@ int	shell_no_cmd(t_shell *shell)
 	*pid = fork();
 	if (*pid == -1)
 		return (FAILURE);
+	if (*pid == 0)
+	{
+		//init_signal(CHILD);
+		child_no_cmd(shell);
+	}
+	waitpid(*pid, &shell->mode, WUNTRACED);
+	pid_return(shell->mode);
+	return (SUCCESS);
+}
+
+int	parent_one_cmd(t_shell *shell)
+{
 	
 }
