@@ -18,6 +18,7 @@
 
 # define SUCCESS 0
 # define FAILURE -1
+# define ERROR (void *)-1
 
 typedef struct s_envi
 {
@@ -139,6 +140,10 @@ int			is_dollar(char *str);
 
 /* shell_struct.c */
 t_shell		*shell_struct(t_list *list, t_envi *envi, int *count, int *exit_value);
+int			shell_process(t_shell *shell, t_list *list);
+pid_t		init_pid(t_shell *shell);
+char		***init_args(t_shell *shell, t_list *list);
+int			init_pipes(t_shell *shell);
 
 /* shell_redir.c */
 int			list_redir(t_shell *shell, t_list *list);
@@ -151,6 +156,13 @@ int			mode_file(int mode, int type[2]);
 /* command.c */
 size_t		num_command(t_list *list);
 size_t		num_redir(t_list *list);
+
+/* args.c */
+char		**list_args(t_list *list);
+size_t		len_args(t_list *list);
+int			check_space_cmd(t_list *list);
+int			split_space_cmd(t_list *list, char **args, size_t *i);
+int			before_space(char *str);
 
 /* builtins.c */
 void		ft_exit(t_list *list, t_envi *env, char *line, t_free *free_var);

@@ -67,14 +67,14 @@ char	**init_env(t_envi *envi)
 	len = len_envi(envi);
 	env = malloc(sizeof(char *) * (len + 1));
 	if (!env)
-		return (FAILURE);
+		return (ERROR);
 	i = 0;
 	while (i < len)
 	{
 		if (envi->type == VALID)
 		{
 			if (join_envi(env, envi, i) == EXIT_FAILURE)
-				return (FAILURE);
+				return (ERROR);
 			i++;
 		}
 		envi = envi->next;
