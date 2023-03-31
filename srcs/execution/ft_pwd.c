@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <limits.h>
-#include <unistd.h>
-#include <stdio.h>
+#include "../../includes/minishell.h"
 
 void	ft_pwd(void)
 {
@@ -22,7 +20,7 @@ void	ft_pwd(void)
 		printf("%s\n", repertoire_actuel);
 }
 
-int	main(void)
-{
-	ft_pwd();
-}
+// int	main(void)
+// {
+// 	ft_pwd();
+// }

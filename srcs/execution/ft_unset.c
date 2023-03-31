@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "../../includes/minishell.h"
 
 int	identique(char *str1, char *str2)
 {

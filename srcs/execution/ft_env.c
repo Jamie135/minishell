@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "../../includes/minishell.h"
 
 typedef struct s_envi
 {

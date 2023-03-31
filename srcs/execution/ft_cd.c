@@ -10,11 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <stddef.h>
+#include "../../includes/minishell.h"
 
 void	ft_cd(char **arg)
 {
@@ -35,18 +31,18 @@ void	ft_cd(char **arg)
 		printf("cd: ERREUR entrez un chemin relatif ou absolu valide\n");
 }
 
-int	main(int ac, char **av)
-{
-	char	*ousuisje;
-	char	**chemin;
+// int	main(int ac, char **av)
+// {
+// 	char	*ousuisje;
+// 	char	**chemin;
 
-	(void)ac;
-	chemin = av;
-	chemin++;
-	ousuisje = malloc(101);
-	getcwd(ousuisje, 100);
-	printf("%s\n", ousuisje);
-	ft_cd(chemin);
-	getcwd(ousuisje, 100);
-	printf("%s\n", ousuisje);
-}
+// 	(void)ac;
+// 	chemin = av;
+// 	chemin++;
+// 	ousuisje = malloc(101);
+// 	getcwd(ousuisje, 100);
+// 	printf("%s\n", ousuisje);
+// 	ft_cd(chemin);
+// 	getcwd(ousuisje, 100);
+// 	printf("%s\n", ousuisje);
+// }

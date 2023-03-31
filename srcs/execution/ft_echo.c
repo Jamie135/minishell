@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "../../includes/minishell.h"
 
 typedef struct s_envi
 {
@@ -89,14 +87,13 @@ void	ft_echo(t_envi *envi, char **arg)
 	}
 	ecrit(arg, k, option);
 }
-// MAIN DE TEST A SUPPRIMER
 
-int	main(int ac, char **av)
-{
-	char	**argu;
+// int	main(int ac, char **av)
+// {
+// 	char	**argu;
 
-	(void)ac;
-	argu = av;
-	argu++;
-	ft_echo(NULL, argu);
-}
+// 	(void)ac;
+// 	argu = av;
+// 	argu++;
+// 	ft_echo(NULL, argu);
+// }

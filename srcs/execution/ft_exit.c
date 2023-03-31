@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/libft.h"
-#include <unistd.h>
-#include <stddef.h>
+#include "../../includes/minishell.h"
 
 static int	nombre(char *str)
 {
@@ -53,13 +51,13 @@ void	ft_exit(char **arg)
 	exit (statut);
 }
 
-int	main(int ac, char **av)
-{
-	char	**arg;
+// int	main(int ac, char **av)
+// {
+// 	char	**arg;
 
-	arg = av;
-	arg++;
-	ft_exit(arg);
-	while (1)
-		;
-}
+// 	arg = av;
+// 	arg++;
+// 	ft_exit(arg);
+// 	while (1)
+// 		;
+// }

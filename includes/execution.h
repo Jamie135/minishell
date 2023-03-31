@@ -173,6 +173,16 @@ int			check_space_cmd(t_list *list);
 int			split_space_cmd(t_list *list, char **args, size_t *i);
 int			before_space(char *str);
 
+/* builtins.c */
+int			builtins_parent(t_shell *shell);
+void		ft_cd(char **arg);
+void		ft_echo(t_envi *envi, char **arg);
+void		ft_env(t_envi *envi);
+void		ft_exit(char **arg);
+int			ft_export(t_envi *envi, char **arg);
+void		ft_pwd(void);
+void		zft_unset(t_envi *envi, char **arg);
+
 /* open.c */
 int			open_infile(t_shell *shell, t_list *redir);
 int			open_outfile(t_shell *shell, t_list *redir);

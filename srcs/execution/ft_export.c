@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/minishell.h"
+
 static char	*apres_egal(char *str)
 {
 	return (value_env(str));
