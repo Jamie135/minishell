@@ -96,6 +96,7 @@ int	run(char **envp, char *line, t_list *list, t_free *free_var)
 	static int		exit_value;
 	static t_envi	*env;
 
+	//parsing
 	count = 0;
 	exit_value = 0;
 	env = NULL;
@@ -115,6 +116,7 @@ int	run(char **envp, char *line, t_list *list, t_free *free_var)
 		if (free_null_list(list, free_var, line, env) == EXIT_SUCCESS)
 			continue ;
 		ft_exit(list, env, line, free_var);
+		//execution
 		env = execution(list, env, &count, &exit_value);
 		if (env == ERROR)
 			return (malloc_err("run.c (2)"), EXIT_FAILURE);

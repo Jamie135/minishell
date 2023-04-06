@@ -30,7 +30,7 @@ void	heredoc_unlink(t_list *list)
 	}
 }
 
-//recuperer la ligne de commande de heredoc
+//recuperer la ligne de commande de heredoc et verifier si c'est un delimiteur
 char	*heredoc_get_line(t_heredoc *heredoc, char *limiter, int fd)
 {
 	char	*line;
@@ -78,7 +78,7 @@ void	heredoc_exec(t_heredoc *heredoc, char *limiter, char *name, int signal_flag
 	return (free_heredoc(heredoc, limiter, NULL, fd), exit(0));
 }
 
-//determiner le limiteur et recopier le nom du fichier depuis la liste
+//dupliquer le limiteur et recopier le nom du fichier de la liste
 //fork le heredoc et attendre
 int	heredoc_init(t_heredoc *heredoc, t_list *list)
 {
@@ -108,7 +108,7 @@ int	heredoc_init(t_heredoc *heredoc, t_list *list)
 }
 
 //attribuer les valeurs des arguments aux struct t_heredoc
-//executer heredoc avec heredoc_init
+//executer heredoc_init qui lance le heredoc
 int	heredoc(t_list *list, t_envi *env, int *count, int *exit_value)
 {
 	t_heredoc	heredoc;

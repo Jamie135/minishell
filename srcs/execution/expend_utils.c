@@ -32,7 +32,7 @@ int	is_special_var(char c)
 	return (0);
 }
 
-//chercher key dans l'environnement puis 
+//chercher ve dans l'environnement puis 
 //donner et dupliquer sa valeur si on le trouve
 char	*add_value_to_ve(char *ve, t_envi *envi)
 {
@@ -63,7 +63,7 @@ size_t	count_dollar(char *str)
 }
 
 //ajouter un space devant les '$' et transformer les '$' en '-1'
-//pour split avec -1 comme delimiteur
+//pour split *str avec -1 comme delimiteur
 char	*add_space_to_dollar(char *str)
 {
 	size_t	dollars;

@@ -57,7 +57,11 @@ int	expend_exit(char *str, t_list **join, int exit_value)
 	return (EXIT_SUCCESS);
 }
 
-//joindre la variable expended
+//joindre la variable expended str a la liste **join
+//puis retourner la variable 
+//ex:	on a e$A avec $A = cho
+//		expend_join va joindre e avec $A
+//		on obtient ainsi e$A = echo
 char	*expend_join(t_envi *envi, t_list **join, char *str)
 {
 	size_t	i;

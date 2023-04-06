@@ -181,7 +181,7 @@ void		ft_env(t_envi *envi);
 void		ft_exit(char **arg);
 int			ft_export(t_envi *envi, char **arg);
 void		ft_pwd(void);
-void		zft_unset(t_envi *envi, char **arg);
+void		ft_unset(t_envi *envi, char **arg);
 
 /* open.c */
 int			open_infile(t_shell *shell, t_list *redir);
