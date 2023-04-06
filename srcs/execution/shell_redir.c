@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-//donner le type aux redirections 
+//set up les types de redirections 
 int	type_redir(char *str, int type[2])
 {
 	if (ft_strcmp(str, ">\0") == 0)

@@ -103,6 +103,7 @@ int	shell_process(t_shell *shell, t_list *list)
 	return (SUCCESS);
 }
 
+//initialiser la struct de shell
 t_shell	*shell_struct(t_list *list, t_envi *envi, int *count, int *exit_value)
 {
 	t_shell	*shell;

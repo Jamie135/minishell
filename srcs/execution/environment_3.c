@@ -41,6 +41,9 @@ size_t	len_envi(t_envi *envi)
 	return (len);
 }
 
+//joindre ve avec sa valeur
+//ex: ve = "USER" et value = "pbureera"
+//	  join_envi -> "USER = pbureera"
 static int	join_envi(char **env, t_envi *envi, size_t i)
 {
 	char	*tmp;
@@ -55,7 +58,7 @@ static int	join_envi(char **env, t_envi *envi, size_t i)
 	return (EXIT_SUCCESS);
 }
 
-//convertir une t_envi liste en une char ** liste (envi -> env)
+//convertir une liste t_envi en une liste char ** (envi -> env)
 char	**init_env(t_envi *envi)
 {
 	char	**env;
