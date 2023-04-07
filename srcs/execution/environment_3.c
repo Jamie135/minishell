@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-//retourner la valeur du variable environnement de envi
+//retourner la valeur du ve (variable environnement) de envi
 char	*find_value_envi(char *name, t_envi *envi)
 {
 	if (!envi)

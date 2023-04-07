@@ -12,8 +12,8 @@
 
 #include "../../includes/minishell.h"
 
-//creer un array de pipes
-int	init_pipes(t_shell *shell)
+//creer une liste de liste d'entier qu'on va pipe() a chaque indice i
+int	**init_pipes(t_shell *shell)
 {
 	int		**pipes;
 	int		i;
@@ -71,7 +71,7 @@ char	***init_args(t_shell *shell, t_list *list)
 }
 
 //creer un array de pid ou chaque indice est initialise a 0
-pid_t	init_pid(t_shell *shell)
+pid_t	*init_pid(t_shell *shell)
 {
 	pid_t	*pid;
 	int		i;

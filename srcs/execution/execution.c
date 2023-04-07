@@ -24,6 +24,7 @@ int	parent_process(t_shell *shell, t_envi *envi)
 }
 
 //update la variable SHLVL de l'environnement
+//convertir la liste t_envi en une liste char **
 void	shlvl_var(t_shell *shell)
 {
 	static int	flag = 0;
@@ -36,7 +37,8 @@ void	shlvl_var(t_shell *shell)
 		if (shlvl)
 		{
 			free_split(shell->environment);
-			n = ft_atoi(shlvl) + 1;
+			n = ft_atoi(shlvl);
+			n++;
 			shlvl = ft_itoa(n);
 			if (!shlvl)
 				return (malloc_err("execution.c (2)"));

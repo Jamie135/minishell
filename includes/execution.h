@@ -143,9 +143,9 @@ int			is_dollar(char *str);
 /* shell_struct.c */
 t_shell		*shell_struct(t_list *list, t_envi *envi, int *count, int *exit_value);
 int			init_shell(t_shell *shell, t_list *list);
-pid_t		init_pid(t_shell *shell);
+pid_t		*init_pid(t_shell *shell);
 char		***init_args(t_shell *shell, t_list *list);
-int			init_pipes(t_shell *shell);
+int			**init_pipes(t_shell *shell);
 
 /* shell_redir.c */
 int			list_redir(t_shell *shell, t_list *list);

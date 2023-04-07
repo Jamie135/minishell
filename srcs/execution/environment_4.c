@@ -12,6 +12,7 @@
 
 #include "../../includes/minishell.h"
 
+//update la valeur et type du ve
 static int	update_value(t_envi **update, int type, char *value)
 {
 	if ((*update)->value)
@@ -23,6 +24,8 @@ static int	update_value(t_envi **update, int type, char *value)
 	return (EXIT_SUCCESS);
 }
 
+//chercher le variable environnement dans la struct envi qui match *ve
+//update la valeur de *ve dans la liste *envi
 t_envi	*update_value_envi(char *ve, char *value, int type, t_envi *envi)
 {
 	t_envi	*update;
