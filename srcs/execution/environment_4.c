@@ -51,3 +51,8 @@ t_envi	*update_value_envi(char *ve, char *value, int type, t_envi *envi)
 	}
 	return (env);
 }
+
+void	print_envi(t_shell *shell, t_envi *envi)
+{
+
+}

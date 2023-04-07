@@ -27,3 +27,11 @@ void	child_no_cmd(t_shell *shell)
 	free_shell_1(shell);
 	exit(EXIT_SUCCESS);
 }
+
+void	child_cmd(t_shell *shell)
+{
+	const int	id = shell->cid;
+
+	if (builtins_child(shell) != FAILURE)
+		return (message_free_exit(shell, NULL, 0, &exit));
+}

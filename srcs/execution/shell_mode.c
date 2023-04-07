@@ -35,5 +35,20 @@ int	parent_no_cmd(t_shell *shell)
 
 int	parent_one_cmd(t_shell *shell)
 {
-	
+	if (builtins_parent())
+	{
+		shell->pid[0] = fork();
+		if (shell->pid[0] == -1)
+			return (FAILURE);
+		if (shell->pid[0] == 0)
+		{
+			//init_signal(child);
+			child_cmd(shell);
+		}
+	}
+	waitpid(shell->pid[0], &shell->mode, WUNTRACED);
+	if (shell->mode == 2)
+		shell->mode = 130;
+	pid_return(shell->mode);
+	return (SUCCESS);
 }

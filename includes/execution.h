@@ -103,6 +103,7 @@ char		*find_value_envi(char *name, t_envi *envi);
 char		**init_env(t_envi *envi);
 size_t		len_envi(t_envi *envi);
 t_envi		*update_value_envi(char *ve, char *value, int type, t_envi *envi);
+void		print_envi(t_shell *shell, t_envi *envi);
 
 /* execution.c */
 t_envi		*execution(t_list *list, t_envi *env, int *count, int *exit_value);
@@ -162,6 +163,7 @@ int			parent_no_cmd(t_shell *shell);
 int			parent_one_cmd(t_shell *shell);
 
 /* child.c */
+void		child_cmd(t_shell *shell);
 void		child_no_cmd(t_shell *shell);
 
 /* command.c */
@@ -177,6 +179,7 @@ int			before_space(char *str);
 
 /* builtins.c */
 int			builtins_parent(t_shell *shell);
+int			builtins_child(t_shell *shell);
 void		ft_cd(char **arg);
 void		ft_echo(t_envi *envi, char **arg);
 void		ft_env(t_envi *envi);

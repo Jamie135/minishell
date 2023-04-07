@@ -12,6 +12,7 @@
 
 #include "../../includes/minishell.h"
 
+//faire appel aux child proccess dans plusieurs cas differents
 int	parent_process(t_shell *shell, t_envi *envi)
 {
 	int	mode;

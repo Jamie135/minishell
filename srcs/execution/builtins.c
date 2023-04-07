@@ -12,6 +12,21 @@
 
 #include "../../includes/minishell.h"
 
+//executer les builtins echo, env, pwd ou export dans le child
+int	builtins_child(t_shell *shell)
+{
+	if (!ft_strcmp(shell->args[shell->cid][0], "echo"))
+		return (ft_echo(shell));
+	else if (!ft_strcmp(shell->args[shell->cid][0], "env"))
+		return (ft_env(shell));
+	else if (!ft_strcmp(shell->args[shell->cid][0], "pwd"))
+		return (ft_pwd(shell));
+	else if (!ft_strcmp(shell->args[shell->cid][0], "export"))
+		return (ft_envi_print(shell, shell->envi), EXIT_SUCCESS);
+	return (FAILURE);
+}
+
+//executer les builtins cd, export ou unset dans le parent
 int	builtins_parent(t_shell *shell)
 {
 	if (!ft_strcmp(shell->args[shell->cid][0], "cd"))
