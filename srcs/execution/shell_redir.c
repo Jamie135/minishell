@@ -33,6 +33,33 @@ int	type_redir(char *str, int type[2])
 	return (FAILURE);
 }
 
+//set up la liste de redirection avec commande(s)
+int	cmd_list_redir(t_shell *shell, t_list *list, t_list **redir)
+{
+	t_list	*new_list;
+	char	*name;
+	int		type[2];
+	int		i;
+	
+	i = 0;
+	ft_bzero(type, sizeof(int) * 2);
+	while (list && i <= shell->cmd_num)
+	{
+		if (list->type == REDIR && list->next && list->next->type == FILES)
+		{
+			name = list->next->content;
+			new_list = ft_lstnew(name, type_redir(list->content, type));
+			if (!new_list)
+				return (EXIT_FAILURE);
+			ft_lstadd_back(&redir[i], new_list);
+		}
+		valid_next(shell, list, type, &i);
+		list = list->next;
+	}
+	return (EXIT_SUCCESS);
+}
+
+//set up la liste de redirection pour le cas ou on n'a pas de commande
 int	no_cmd_list_redir(t_shell *shell, t_list *list, t_list **redir)
 {
 	t_list	*new_list;
@@ -77,7 +104,7 @@ int	list_redir(t_shell *shell, t_list *list)
 		return (EXIT_FAILURE);
 	if (shell->no_cmd && no_cmd_list_redir(shell, list, shell->redir))
 		return (EXIT_FAILURE);
-	if (!shell->no_cmd && no_cmd_list_redir(shell, list, shell->redir))
+	if (!shell->no_cmd && cmd_list_redir(shell, list, shell->redir))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

@@ -88,6 +88,7 @@ size_t	len_args(t_list *list)
 	return (len + space_flag);
 }
 
+//convertir *list en un char ** d'arguments
 char	**list_args(t_list *list)
 {
 	char	**args;

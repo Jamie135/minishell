@@ -41,7 +41,7 @@ int	init_pipes(t_shell *shell)
 	return (pipes);
 }
 
-//creer un array d'args
+//creer une liste d'arguments de char **
 char	***init_args(t_shell *shell, t_list *list)
 {
 	char	***args;
@@ -70,7 +70,7 @@ char	***init_args(t_shell *shell, t_list *list)
 	return (args);
 }
 
-//creer un array de pid
+//creer un array de pid ou chaque indice est initialise a 0
 pid_t	init_pid(t_shell *shell)
 {
 	pid_t	*pid;
@@ -89,7 +89,8 @@ pid_t	init_pid(t_shell *shell)
 	return (pid);
 }
 
-int	shell_process(t_shell *shell, t_list *list)
+//initialiser la struct de shell
+int	init_shell(t_shell *shell, t_list *list)
 {
 	shell->pid = init_pid(shell);
 	if (!shell->pid)
@@ -125,7 +126,7 @@ t_shell	*shell_struct(t_list *list, t_envi *envi, int *count, int *exit_value)
 		return (message_free_exit(shell, "shell_struct.c (3)", MALLOC, NULL), NULL);
 	if (!shell->redir && shell->redir_num > 0)
 		return (message_free_exit(shell, "shell_struct.c (4)", MALLOC, NULL), NULL);
-	if (shell->cmd_num > 0 && shell_process(shell, list) == FAILURE)
+	if (shell->cmd_num > 0 && init_shell(shell, list) == FAILURE)
 		return (NULL);
 	return (shell);
 }
