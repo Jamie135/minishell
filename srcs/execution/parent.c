@@ -43,7 +43,7 @@ int	parent_one_cmd(t_shell *shell)
 		if (shell->pid[0] == 0)
 		{
 			//init_signal(child);
-			child_cmd(shell);
+			child_cmd_1(shell);
 		}
 	}
 	waitpid(shell->pid[0], &shell->mode, WUNTRACED);
@@ -51,4 +51,69 @@ int	parent_one_cmd(t_shell *shell)
 		shell->mode = 130;
 	pid_return(shell->mode);
 	return (SUCCESS);
+}
+
+int	parent_n_cmd(t_shell *shell)
+{
+	int	i;
+
+	while (shell->cid < shell->cmd_num)
+	{
+		if (builtins_parent(shell) == FAILURE)
+		{
+			shell->pid[shell->cid] = fork();
+			if (shell->pid[shell->cid] == -1);
+				return (FAILURE);
+			if (shell->pid[shell->cid] == 0)
+			{
+				//init_signal(child);
+				child_n_cmd(shell);
+			}
+		}
+		shell->cid++;
+	}
+	close_pipes(shell->pipes, shell->cmd_num - 1);
+	i = 0;
+	while (i < shell->cmd_num)
+		waitpid(shell->pid[i++], &shell->mode, 0);
+	return (SUCCESS);
+}
+
+int	parent_one_cmd_redir(t_shell *shell)
+{
+	if (builtins_parent(shell) == FAILURE)
+	{
+		shell->pid[0] = fork();
+		if (shell->pid[0] == -1)
+			return (FAILURE);
+		if (shell->pid[0] == 0)
+		{
+			//init_signal(child);
+			child_cmd_redir(shell);
+		}
+	}
+	waitpid(shell->pid[0], &shell->mode, 0);
+	return (SUCCESS);
+}
+
+int	parent_n_cmd_redir(t_shell *shell)
+{
+	int	i;
+
+	while (shell->cid < shell->cmd_num)
+	{
+		if (builtins_parent(shell) == FAILURE)
+		{
+			shell->pid[shell->cid] = fork();
+			if (shell->pid[shell->cid] == -1)
+				return (FAILURE);
+			if (shell->pid[shell->cid] == 0)
+			{
+				//init_signal(child);
+				ft_shell_pipe_file_child(shell);
+			}
+		}
+		
+	}
+	
 }

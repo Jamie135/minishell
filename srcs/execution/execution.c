@@ -22,6 +22,12 @@ int	parent_process(t_shell *shell, t_envi *envi)
 		mode = parent_no_cmd(shell);
 	if (shell->cmd_num == 1 && shell->redir_num == 0)
 		mode = parent_one_cmd(shell);
+	else if (shell->cmd_num > 1 && shell->redir_num == 0)
+		mode = parent_n_cmd(shell);
+	else if (shell->cmd_num == 1 && shell->redir_num > 0)
+		mode = parent_one_cmd_redir(shell);
+	else if (shell->cmd_num > 1 && shell->redir_num > 0)
+		mode = parent_n_cmd_redir(shell);
 }
 
 //update la variable SHLVL de l'environnement

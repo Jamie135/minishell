@@ -20,6 +20,15 @@
 # define FAILURE -1
 # define ERROR (void *)-1
 
+# define EXPORT_ERR "export: write error"
+# define ECHO_ERR "echo: write error"
+# define PERMISSION "Permission denied"
+# define NO_ENTRY "No such file or directory"
+# define HOME "HOME not set"
+# define OLDPWD "OLDPWD not set"
+# define ID "not a valid identifier"
+# define TOOMANY "too many arguments"
+
 typedef struct s_envi
 {
 	char			*ve;
@@ -100,10 +109,14 @@ void		add_back_envi(t_envi **envi, t_envi *cpy);
 t_envi		*get_last_envi(t_envi *envi);
 t_envi		*null_envi(t_envi *envi);
 char		*find_value_envi(char *name, t_envi *envi);
+t_envi		*dup_envi(t_envi *envi);
 char		**init_env(t_envi *envi);
 size_t		len_envi(t_envi *envi);
 t_envi		*update_value_envi(char *ve, char *value, int type, t_envi *envi);
 void		print_envi(t_shell *shell, t_envi *envi);
+void		sort_envi(t_envi **front);
+void		swap_envi(t_envi *e_1, t_envi *e_2);
+char		**get_path(t_shell *shell);
 
 /* execution.c */
 t_envi		*execution(t_list *list, t_envi *env, int *count, int *exit_value);
@@ -161,10 +174,17 @@ int			mode_file(int mode, int type[2]);
 /* shell_mode.c */
 int			parent_no_cmd(t_shell *shell);
 int			parent_one_cmd(t_shell *shell);
+int			parent_n_cmd(t_shell *shell);
+int			parent_one_cmd_redir(t_shell *shell);
+int			parent_n_cmd_redir(t_shell *shell);
 
 /* child.c */
-void		child_cmd(t_shell *shell);
 void		child_no_cmd(t_shell *shell);
+void		child_cmd_1(t_shell *shell);
+void		child_cmd_2(t_shell *shell, const int id);
+void		child_n_cmd(t_shell *shell);
+void		child_cmd_redir(t_shell *shell);
+void		child_n_cmd_redir(t_shell *shell);
 
 /* command.c */
 size_t		num_command(t_list *list);
@@ -218,6 +238,7 @@ void		free_shell_1(t_shell *shell);
 void		free_redir(t_list **list, int n);
 void		free_pipes(int **pipes, size_t n);
 void		free_args(char ***args, size_t n);
+void		free_child(t_shell *shell, char **path, char *cmd);
 
 /* message.c */
 void		malloc_err(char *str);

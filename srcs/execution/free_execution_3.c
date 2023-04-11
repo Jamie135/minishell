@@ -12,6 +12,16 @@
 
 #include "../../includes/minishell.h"
 
+void	free_child(t_shell *shell, char **path, char *cmd)
+{
+	if (shell)
+		free_shell_1(shell);
+	if (path)
+		free_split(path);
+	if (cmd)
+		free(cmd);
+}
+
 void	free_redir(t_list **list, int n)
 {
 	t_list	*tmp;

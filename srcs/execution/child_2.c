@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   child.c                                            :+:      :+:    :+:   */
+/*   child_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/30 23:51:54 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/30 23:51:54 by pbureera         ###   ########.fr       */
+/*   Created: 2023/04/11 20:40:11 by pbureera          #+#    #+#             */
+/*   Updated: 2023/04/11 20:40:11 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	child_no_cmd(t_shell *shell)
+static void	child_pipe_in_out(t_shell *shell)
 {
-	const int	id = shell->cid;
-	int			infile;
-	int			outfile;
-
-	infile = -1;
-	outfile = -1;
-	infile = open_infile(shell, shell->redir[id]);
-	close_fd(&infile);
-	outfile = open_outfile(shell, shell->redir[id]);
-	close_fd(&outfile);
-	free_shell_1(shell);
-	exit(EXIT_SUCCESS);
+	
 }
 
-void	child_cmd(t_shell *shell)
+void	child_n_cmd_redir(t_shell *shell)
 {
 	const int	id = shell->cid;
 
-	if (builtins_child(shell) != FAILURE)
-		return (message_free_exit(shell, NULL, 0, &exit));
+	if (shell->infile[id] && shell->outfile[id])
+		
 }

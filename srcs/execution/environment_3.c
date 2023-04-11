@@ -58,6 +58,32 @@ static int	join_envi(char **env, t_envi *envi, size_t i)
 	return (EXIT_SUCCESS);
 }
 
+//dupliquer la liste d'environnement
+t_envi	*dup_envi(t_envi *envi)
+{
+	t_envi	*new;
+	t_envi	*tmp;
+	char	*ve;
+	char	*value;
+
+	if (envi == NULL)
+		return (NULL);
+	new = NULL;
+	while (envi)
+	{
+		ve = ft_strdup(envi->ve);
+		value = ft_strdup(envi->value);
+		if (!ve || !value)
+			return (free_envi(new), malloc_err("environment_3.c (1)"), NULL);
+		tmp = cpy_struct_envi(ve, value, envi->type);
+		if (!tmp)
+			return (NULL);
+		add_back_envi(&new, tmp);
+		envi = envi->next;
+	}
+	return (new);
+}
+
 //convertir une liste t_envi en une liste char ** (envi -> env)
 char	**init_env(t_envi *envi)
 {
