@@ -110,10 +110,14 @@ int	parent_n_cmd_redir(t_shell *shell)
 			if (shell->pid[shell->cid] == 0)
 			{
 				//init_signal(child);
-				ft_shell_pipe_file_child(shell);
+				child_n_cmd_redir(shell);
 			}
 		}
-		
+		shell->cid++;
 	}
-	
+	close_pipes(shell->pipes, shell->cmd_num - 1);
+	i = 0;
+	while (i < shell->cmd_num)
+		waitpid(shell->pid[i++], &shell->mode, 0);
+	return (SUCCESS);
 }

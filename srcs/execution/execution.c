@@ -12,6 +12,27 @@
 
 #include "../../includes/minishell.h"
 
+//update la valeur de exitz
+void	get_exit_value(t_shell *shell)
+{
+	if (shell->mode == 64512)
+		shell->mode = 127;
+	if (shell->mode == 65280)
+		shell->mode = 1;
+	else if (shell->mode == 64256)
+		shell->mode = 128;
+	else if (shell->mode = 5120)
+		shell->mode = 127;
+	else
+	{
+		if (shell->mode > 255)
+		{
+			while (shell->mode > 255)
+				shell->mode -= 255;
+		}
+	}
+}
+
 //faire appel aux child proccess dans plusieurs cas differents
 int	parent_process(t_shell *shell, t_envi *envi)
 {
@@ -28,6 +49,17 @@ int	parent_process(t_shell *shell, t_envi *envi)
 		mode = parent_one_cmd_redir(shell);
 	else if (shell->cmd_num > 1 && shell->redir_num > 0)
 		mode = parent_n_cmd_redir(shell);
+	if (mode == FAILURE)
+	{
+		envi = dup_envi(shell->envi);
+		if (!envi)
+			return (message_free_exit(shell, "execution.c (4)", MALLOC, NULL), \
+					EXIT_FAILURE);
+		message_free_exit(shell, NULL, errno, NULL);
+		return (EXIT_FAILURE);
+	}
+	heredoc_unlink(shell->list);
+	return (EXIT_SUCCESS);
 }
 
 //update la variable SHLVL de l'environnement
@@ -52,7 +84,7 @@ void	shlvl_var(t_shell *shell)
 			shell->envi = update_value_envi("SHLVL", shlvl, 0, shell->envi);
 			shell->environment = init_env(shell->envi);
 			if (shell->env == FAIL)
-				return (malloc_err("execution.c (88)"));
+				return (malloc_err("execution.c (3)"));
 			free(shlvl);
 		}
 		flag = 1;
@@ -81,4 +113,10 @@ t_envi	*execution(t_list *list, t_envi *env, int *count, int *exit_value)
 	shlvl_var(shell);
 	if (parent_process(shell, envi))
 		return (envi);
+	envp = dup_envi(shell->envi);
+	if (envp == ERROR)
+		return (free_shell_1(shell), NULL);
+	get_exit_value(shell);
+	*exit_value = shell->mode;
+	return (free_shell_1(shell). envp);
 }

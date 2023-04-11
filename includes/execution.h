@@ -120,7 +120,9 @@ char		**get_path(t_shell *shell);
 
 /* execution.c */
 t_envi		*execution(t_list *list, t_envi *env, int *count, int *exit_value);
+int			parent_process(t_shell *shell, t_envi *envi);
 void		shlvl_var(t_shell *shell);
+void		get_exit_value(t_shell *shell);
 
 /* valid_parsing.c */
 int			valid_num_redir(t_list *list);
