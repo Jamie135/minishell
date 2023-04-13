@@ -64,7 +64,7 @@ void	message_free_exit(t_shell *shell, char *str, int value, void (*f)(int))
 		if (shell)
 		{
 			if (shell->pipes)
-				close_pipes(shell->pipes, (shell->cmd_id - 1));
+				close_pipes(shell->pipes, (shell->cmd_num - 1));
 			free_shell_1(shell);
 		}
 		f(value);

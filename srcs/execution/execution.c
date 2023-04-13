@@ -83,7 +83,7 @@ void	shlvl_var(t_shell *shell)
 				return (malloc_err("execution.c (2)"));
 			shell->envi = update_value_envi("SHLVL", shlvl, 0, shell->envi);
 			shell->environment = init_env(shell->envi);
-			if (shell->env == FAIL)
+			if (shell->environment == ERROR)
 				return (malloc_err("execution.c (3)"));
 			free(shlvl);
 		}
@@ -111,12 +111,12 @@ t_envi	*execution(t_list *list, t_envi *env, int *count, int *exit_value)
 	if (!shell)
 		return (NULL);
 	shlvl_var(shell);
-	if (parent_process(shell, envi))
-		return (envi);
+	if (parent_process(shell, env))
+		return (env);
 	envp = dup_envi(shell->envi);
 	if (envp == ERROR)
 		return (free_shell_1(shell), NULL);
 	get_exit_value(shell);
 	*exit_value = shell->mode;
-	return (free_shell_1(shell). envp);
+	return (free_shell_1(shell), envp);
 }

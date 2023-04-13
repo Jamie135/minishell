@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-static void	ft_exit_alphabet(t_list *list, t_envi *env)
+static void	exit_alphabet(t_list *list, t_envi *env)
 {
 	const int	num_cmd = num_command(list);
 	
@@ -45,7 +45,7 @@ void	ft_exit(t_list *list, t_envi *env, char *line, t_free *free_var)
 	free(free_var->split);
 	free(free_var->quoted);
 	free(line);
-	ft_exit_alphabet(list, env);
+	exit_alphabet(list, env);
 	if (ft_strcmp(list->content, "exit") == 0 && size <= 2)
 	{
 		if (list->next && list->next->content)

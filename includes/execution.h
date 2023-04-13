@@ -219,10 +219,6 @@ int			open_file(char *name, t_redir type);
 void		close_fd(int *fd);
 void		close_pipes(int	**pipes, size_t num);
 
-/* exit.c */
-void		ft_exit(t_list *list, t_envi *env, char *line, t_free *free_var);
-static void	ft_exit_alphabet(t_list *list, t_envi *env);
-
 /* utils.c */
 int			is_str_alnum(char *str);
 int			len_array(char **args);

@@ -71,7 +71,7 @@ size_t	len_args(t_list *list)
 	space_flag = 0;
 	if (list == NULL)
 		return (len);
-	if (is_space_cmd(list))
+	if (check_space_cmd(list))
 		space_flag = 1;
 	while (list && list->type != CMD)
 		list = list->next;

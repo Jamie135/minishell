@@ -95,6 +95,8 @@ void		*free_fill(char **tab, t_list *list, char *str);
 int			free_trim(t_free *free_var, int i);
 void		*free_split_index(char **split, int index, int message);
 
+void		do_exit(t_list *list, t_envi *env, char *line, t_free *free_var);
+
 /* signals.c */
 
 #endif

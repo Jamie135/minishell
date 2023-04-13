@@ -16,7 +16,7 @@
 int	builtins_child(t_shell *shell)
 {
 	if (!ft_strcmp(shell->args[shell->cid][0], "echo"))
-		return (ft_echo(shell));
+		return (ft_echo(shell->envi, shell->args[shell->cid]));
 	else if (!ft_strcmp(shell->args[shell->cid][0], "env"))
 		return (ft_env(shell));
 	else if (!ft_strcmp(shell->args[shell->cid][0], "pwd"))

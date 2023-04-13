@@ -20,6 +20,7 @@
 # include <stdbool.h>
 # define INT_MIN -2147483648
 
+int		ft_all_isdigit(char *str);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
 int		ft_isalpha(int c);

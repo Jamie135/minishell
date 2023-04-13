@@ -111,9 +111,9 @@ void	print_envi(t_shell *shell, t_envi *envi)
 	while (sorted)
 	{
 		if (ft_putstr_fd("declare -x ", STDOUT) == FAILURE || \
-			ft_putstr_fd(sorted->key, STDOUT) == FAILURE)
+			ft_putstr_fd(sorted->ve, STDOUT) == FAILURE)
 			return (message_free_exit(shell, EXPORT_ERR, errno, &exit));
-		if (sorted->type == NORMAL)
+		if (sorted->type == VALID)
 		{
 			if (ft_putstr_fd("=\"", STDOUT) == FAILURE || \
 				ft_putstr_fd(sorted->value, STDOUT) == FAILURE || \
