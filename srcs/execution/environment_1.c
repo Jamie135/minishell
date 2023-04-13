@@ -93,10 +93,10 @@ t_envi	*init_envi(char **envp)
 		ve = variable_env(envp[i]);
 		value = value_env(envp[i]);
 		if (!ve || !value)
-			return (free_envi(envi), -1);
+			return (free_envi(envi), ERROR);
 		cpy = cpy_struct_envi(ve, value, VALID);
 		if (!cpy)
-			return (free_envi(envi), -1);
+			return (free_envi(envi), ERROR);
 		add_back_envi(&envi, cpy);
 		i++;
 	}
