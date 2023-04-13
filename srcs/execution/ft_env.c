@@ -12,30 +12,18 @@
 
 #include "../../includes/minishell.h"
 
-typedef struct s_envi
+int	ft_env(t_shell *shell)
 {
-	char		*ve;
-	char		*value;
-	struct s_envi	*next;
-}	t_envi;
+	size_t		i;
+	const int	cid = shell->cid;
 
-void	ft_env(t_envi *envi)
-{
-	t_envi	*parcours;
-
-	parcours = envi;
-	while (parcours)
+	if (!shell->environment)
+		return (EXIT_SUCCESS);
+	i = 0;
+	while (shell->environment[i])
 	{
-		printf("%s=%s\n", parcours->ve, parcours->value);
-		parcours = parcours->next;
+		printf("%s\n", shell->environment[i]);
+		i++;
 	}
+	return (SUCCESS);
 }
-/*
-int	main(int ac, char **av, char **env)
-{
-	t_envi	*envi;
-
-	envi = init_envi(env);
-	ft_env(envi);
-}
-*/

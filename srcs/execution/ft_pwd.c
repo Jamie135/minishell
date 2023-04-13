@@ -12,15 +12,13 @@
 
 #include "../../includes/minishell.h"
 
-void	ft_pwd(void)
+int	ft_pwd(t_shell *shell)
 {
 	char	repertoire_actuel[PATH_MAX];
 
-	if (getcwd(repertoire_actuel, sizeof(repertoire_actuel)))
-		printf("%s\n", repertoire_actuel);
+	if (!getcwd(repertoire_actuel, sizeof(repertoire_actuel)))
+		return (message_free_exit(shell, NULL, errno, &exit), EXIT_FAILURE);
+	printf("%s\n", repertoire_actuel);
+	free(repertoire_actuel);
+	return (EXIT_SUCCESS);
 }
-
-// int	main(void)
-// {
-// 	ft_pwd();
-// }

@@ -204,10 +204,10 @@ int			builtins_parent(t_shell *shell);
 int			builtins_child(t_shell *shell);
 void		ft_cd(char **arg);
 void		ft_echo(t_envi *envi, char **arg);
-void		ft_env(t_envi *envi);
+int			ft_env(t_shell *shell);
 void		ft_exit(char **arg);
 int			ft_export(t_envi *envi, char **arg);
-void		ft_pwd(void);
+int			ft_pwd(t_shell *shell);
 void		ft_unset(t_envi *envi, char **arg);
 
 /* open.c */
@@ -244,6 +244,7 @@ int			syntax_err(char *line);
 void		print_token(char *str);
 void		message_heredoc(t_heredoc *heredoc, char *str, int n, void (*f)(int));
 void		message_free_exit(t_shell *shell, char *str, int value, void (*f)(int));
+void		message_builtins(char *cmd, char *arg, char *str);
 
 
 #endif

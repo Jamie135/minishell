@@ -70,3 +70,26 @@ void	message_free_exit(t_shell *shell, char *str, int value, void (*f)(int))
 		f(value);
 	}
 }
+
+//message d'erreur pour les builtins
+void	message_builtins(char *cmd, char *arg, char *str)
+{
+	if (cmd)
+	{
+		ft_putstr_fd(cmd, STDERR);
+		ft_putstr_fd(": ", STDERR);
+	}
+	if (arg && ft_strcmp(cmd, "cd") == 0)
+	{
+		ft_putstr_fd(arg, STDERR);
+		ft_putstr_fd(": ", STDERR);
+	}
+	else if (arg && ft_strcmp(cmd, "export") == 0)
+	{
+		ft_putchar_fd('`', STDERR);
+		ft_putstr_fd(arg, STDERR);
+		ft_putstr_fd("': ", STDERR);
+	}
+	if (str)
+		ft_putendl_fd(str, STDERR);
+}
