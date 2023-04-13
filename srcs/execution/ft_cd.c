@@ -12,9 +12,10 @@
 
 #include "../../includes/minishell.h"
 
-void	ft_cd(char **arg)
+int	ft_cd(t_shell *shell)
 {
-	int	erreur;
+	const char	**arg = (const char **)shell->args[shell->cid];
+	int			erreur;
 
 	if (!arg || !arg[0])
 	{
@@ -29,6 +30,7 @@ void	ft_cd(char **arg)
 	erreur = chdir(arg[0]);
 	if (erreur == -1)
 		printf("cd: ERREUR entrez un chemin relatif ou absolu valide\n");
+	return (EXIT_SUCCESS)
 }
 
 // int	main(int ac, char **av)

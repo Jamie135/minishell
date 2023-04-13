@@ -45,19 +45,23 @@ static void	ajoute(char *str, t_envi envi)
 	envi->next = NULL;
 }
 
-int	ft_export(t_envi *envi, char **arg)
+int	ft_export(t_shell *shell)
 {
-	int		k;
-	int		trouvee;
-	t_envi	*parcours;
+	const char	**arg = (const char **)shell->args[shell->cid];
+	int			k;
+	int			trouvee;
+	t_envi		*parcours;
 
 	k = 0;
 	if (!arg || !arg[0])
-		liste_complete(envi);
+	{
+		liste_complete(shell->envi);
+		return (FAILURE);
+	}
 	while (arg[k])
 	{
 		trouvee = 0;
-		parcours = envi;
+		parcours = shell->envi;
 		while (parcours)
 		{
 			if (identique(parcours->ve, avant_egal(arg[k])))
@@ -71,4 +75,5 @@ int	ft_export(t_envi *envi, char **arg)
 			ajoute(arg[k], envi);
 		k++;
 	}
+	return (EXIT_SUCCESS);
 }

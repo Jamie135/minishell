@@ -28,8 +28,9 @@ int	identique(char *str1, char *str2)
 	return (1);
 }
 
-void	ft_unset(t_envi *envi, char **arg)
+int	ft_unset(t_shell *shell)
 {
+	const char	**arg = (const char **)shell->args[shell->cid];
 	int		k;
 	t_envi	*parcours;
 
@@ -41,7 +42,7 @@ void	ft_unset(t_envi *envi, char **arg)
 	}
 	while (arg[k])
 	{
-		parcours = envi;
+		parcours = shell->envi;
 		while (parcours)
 		{
 			if (identique(parcours->ve, arg[k]))
@@ -50,4 +51,5 @@ void	ft_unset(t_envi *envi, char **arg)
 		}
 		k++;
 	}
+	return (EXIT_SUCCESS);
 }

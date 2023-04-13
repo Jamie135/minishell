@@ -12,50 +12,41 @@
 
 #include "../../includes/minishell.h"
 
-static void	exit_alphabet(t_list *list, t_envi *env)
+static int	nombre(char *str)
 {
-	const int	num_cmd = num_command(list);
-	
-	if (ft_strcmp("exit", list->content) == 0)
+	int	est_nombre;
+	int	k;
+
+	est_nombre = 1;
+	if (!str[0])
+		return (0);
+	while (str[k])
 	{
-		if (list->next && list->next->content)
-		{
-			if (ft_all_isdigit(list->next->content) && num_cmd == 1)
-			{
-				ft_putendl_fd("exit", STDERR);
-				ft_putstr_fd("exit: ", STDERR);
-				ft_putstr_fd(list->next->content, STDERR);
-				ft_putendl_fd(": numeric argument required", STDERR);
-				if (env)
-					ft_free_envi(env);
-				ft_free_lst(list);
-				exit(2);
-			}
-		}
+		if (!ft_isdigit(str[k]))
+			est_nombre = 0;
+		k++;
 	}
+	return (est_nombre);
 }
 
-void	ft_exit(t_list *list, t_envi *env, char *line, t_free *free_var)
+void	do_exit(char **arg)
 {
-	const size_t	size = ft_lstsize(list);
-	int				exit_value;
+	int	statut;
 
-	exit_value = 0;
-	free(free_var->unexpended);
-	free(free_var->split);
-	free(free_var->quoted);
-	free(line);
-	exit_alphabet(list, env);
-	if (ft_strcmp(list->content, "exit") == 0 && size <= 2)
+	statut = 0;
+	if (arg != NULL && arg[0] != NULL)
 	{
-		if (list->next && list->next->content)
-			exit_value = ft_atoi(list->next->content);
-		ft_putendl_fd("exit", STDERR);
-		if (env)
-			free_envi(env);
-		free_list(list);
-		while (exit_value > 255)
-			exit_value -= 256;
-		exit(exit_value);
+		if (!nombre(arg[0]))
+		{
+			printf("l'argument de exit doit être un nombre\n");
+		}
+		else if (arg[1] != NULL)
+		{
+			printf("trop d'argument pour exit.\n");
+			return ;
+		}
+		else
+			statut = ft_atoi(arg[0]);
 	}
+	exit (statut);
 }

@@ -12,12 +12,6 @@
 
 #include "../../includes/minishell.h"
 
-typedef struct s_envi
-{
-	char	*ve;
-	char	*value;
-}	t_envi;
-
 // retourne 1 si il y a l'option n retourne 0 sinon
 static int	option_n(char *str)
 {
@@ -64,12 +58,13 @@ void	ecrit(char **arg, int k, int option)
 }
 
 // option == 1 si -n option == 0 si pas -n
-void	ft_echo(t_envi *envi, char **arg)
+int	ft_echo(t_shell *shell)
 {
+	const char	**arg = (const char **)shell->args[shell->cid];
 	int	option;
 	int	k;
 
-	(void)envi;
+	(void)shell->envi;
 	option = 0;
 	if (arg)
 		option = option_n(arg[0]);
@@ -86,14 +81,5 @@ void	ft_echo(t_envi *envi, char **arg)
 			return ;
 	}
 	ecrit(arg, k, option);
+	return (EXIT_SUCCESS);
 }
-
-// int	main(int ac, char **av)
-// {
-// 	char	**argu;
-
-// 	(void)ac;
-// 	argu = av;
-// 	argu++;
-// 	ft_echo(NULL, argu);
-// }

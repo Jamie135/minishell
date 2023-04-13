@@ -16,13 +16,13 @@
 int	builtins_child(t_shell *shell)
 {
 	if (!ft_strcmp(shell->args[shell->cid][0], "echo"))
-		return (ft_echo(shell->envi, shell->args[shell->cid]));
+		return (ft_echo(shell));
 	else if (!ft_strcmp(shell->args[shell->cid][0], "env"))
 		return (ft_env(shell));
 	else if (!ft_strcmp(shell->args[shell->cid][0], "pwd"))
 		return (ft_pwd(shell));
 	else if (!ft_strcmp(shell->args[shell->cid][0], "export"))
-		return (ft_envi_print(shell, shell->envi), EXIT_SUCCESS);
+		return (print_envi(shell, shell->envi), EXIT_SUCCESS);
 	return (FAILURE);
 }
 
