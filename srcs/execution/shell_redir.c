@@ -18,7 +18,7 @@ int	type_redir(char *str, int type[2])
 	if (ft_strcmp(str, ">\0") == 0)
 	{
 		type[OUTFILE]++;
-		return (TRUNC);
+		return (TO_OUTFILE);
 	}
 	else if (ft_strcmp(str, ">>\0") == 0)
 	{

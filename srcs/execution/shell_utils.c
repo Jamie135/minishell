@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-int	mode_file(int mode, int type[2])
+int	mode_file(int type[2], int mode)
 {
 	if (mode == INFILE)
 	{

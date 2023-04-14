@@ -38,6 +38,8 @@ typedef struct s_free
 	bool	*quoted;
 }	t_free;
 
+int			run(char **envp, char *line, t_list *list, t_free *free_var);
+
 /* list.c */
 t_list		*fill_list(char *line, t_free *free_var);
 t_list		*fill(t_free *free_var, t_list *list);

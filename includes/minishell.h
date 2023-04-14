@@ -33,4 +33,6 @@
 # include <curses.h>
 # include <sys/ioctl.h>
 
+int			run(char **envp, char *line, t_list *list, t_free *free_var);
+
 #endif

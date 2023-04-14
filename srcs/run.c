@@ -103,11 +103,11 @@ int	run(char **envp, char *line, t_list *list, t_free *free_var)
 	env = init_envi(envp);
 	if (env == NULL)
 		env = null_envi(env);
-	if (env == -1)
+	if (env == ERROR)
 		return (malloc_err("run.c (1)"), EXIT_FAILURE);
 	while (1)
 	{
-		line = ft_readline(line, &count, env, exit_value);
+		line = ft_readline(line, &count, env, &exit_value);
 		if (line == NULL)
 			continue ;
 		list = fill_list(line, free_var);

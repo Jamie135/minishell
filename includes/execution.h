@@ -134,13 +134,13 @@ int			valid_pipe(t_list *list);
 /* heredoc.c */
 int			heredoc(t_list *list, t_envi *env, int *count, int *exit_value);
 int			heredoc_init(t_heredoc *heredoc, t_list *list);
-void		heredoc_exec(t_heredoc *heredoc, char *limiter, char *name, int signal_flag);
+void		heredoc_exec(char *limiter, char *name, t_heredoc *heredoc);
 char		*heredoc_get_line(t_heredoc *heredoc, char *limiter, int fd);
 void		heredoc_unlink(t_list *list);
 
 /* heredoc_utils.c */
 char		*random_string(int len);
-void		heredoc_error(t_heredoc *heredoc, char *limiter, int fd);
+void		heredoc_error(t_heredoc *heredoc, char *limiter, int fd, int signal_flag);
 void		exit_heredoc(t_heredoc *heredoc, char *limiter, char *line, int fd);
 
 /* expend.c */
@@ -172,7 +172,7 @@ int			type_redir(char *str, int type[2]);
 
 /* shell_utils.c */
 void		valid_next(t_shell *shell, t_list *list, int type[2], int *i);
-int			mode_file(int mode, int type[2]);
+int			mode_file(int type[2], int mode);
 
 /* shell_mode.c */
 int			parent_no_cmd(t_shell *shell);

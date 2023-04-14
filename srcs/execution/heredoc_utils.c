@@ -73,7 +73,7 @@ char	*random_string(int len)
 	while (i < len)
 	{
 		buffer[i] = char_mod(buffer[i]);
-		i++;z
+		i++;
 	}
 	close(fd);
 	return (buffer);
