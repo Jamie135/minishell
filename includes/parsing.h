@@ -42,7 +42,7 @@ int			run(char **envp, char *line, t_list *list, t_free *free_var);
 
 /* list.c */
 t_list		*fill_list(char *line, t_free *free_var);
-t_list		*fill(t_free *free_var, t_list *list);
+t_list		*fill(t_list *list, t_free *free_var);
 
 /* quote.c && quote_utils.c */
 int			valid_quote(char *str);
@@ -82,6 +82,7 @@ int			len_split(char **split);
 /* trim.c && trim_utils.c */
 int			trim_split(char **split, t_free *free_var);
 int			trim_protect(char **split, t_free *free_var);
+char		*clean_string(char *str, int tmp);
 char		*strdup_free(char *str, int free_var);
 
 /* type.c */

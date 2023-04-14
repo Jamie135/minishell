@@ -13,7 +13,7 @@
 #include "../../includes/minishell.h"
 
 //enlever les quotes (retourner le string sans les guillemets)
-char	clean_string(char *str, int tmp)
+char	*clean_string(char *str, int tmp)
 {
 	int		i;
 	char	*new;
@@ -71,7 +71,7 @@ int	trim_protect(char **split, t_free *free_var)
 //initialiser les variables de la struct t_free: split, unexpended et quoted
 //trim la liste de commande obtenu par split_line(str, ' ')
 //i.e. on enleve les quotes et les espaces en trop
-int	trim_split(char **tab, t_free *free_var)
+int	trim_split(char **split, t_free *free_var)
 {
 	int		i;
 	int		tmp;
@@ -82,11 +82,11 @@ int	trim_split(char **tab, t_free *free_var)
 	while (split[++i])
 	{
 		tmp = 0;
-		free_var->split[i] = clean_string(tab[i], tmp);
+		free_var->split[i] = clean_string(split[i], tmp);
 		if (free_var->split[i])
 			return (free_trim(free_var, i));
-		if (ft_strcmp(free_var->split[i], tab[i])
-			&& is_unexpended(tab[i]))
+		if (ft_strcmp(free_var->split[i], split[i])
+			&& is_unexpended(split[i]))
 			free_var->unexpended[i] = true;
 		if (is_quoted(split[i]))
 			free_var->quoted[i] = true;

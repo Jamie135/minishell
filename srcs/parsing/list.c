@@ -13,7 +13,7 @@
 #include "../../includes/minishell.h"
 
 //recopier les valeurs de la struct t_free a la struct t_list
-t_list	*fill(t_free *free_var, t_list *list)
+t_list	*fill(t_list *list, t_free *free_var)
 {
 	t_list	*tmp;
 	int		i;
