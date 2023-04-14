@@ -19,6 +19,6 @@ int	ft_pwd(t_shell *shell)
 	if (!getcwd(repertoire_actuel, sizeof(repertoire_actuel)))
 		return (message_free_exit(shell, NULL, errno, &exit), EXIT_FAILURE);
 	printf("%s\n", repertoire_actuel);
-	free(repertoire_actuel);
+	//free(repertoire_actuel);
 	return (EXIT_SUCCESS);
 }

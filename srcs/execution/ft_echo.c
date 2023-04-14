@@ -13,7 +13,7 @@
 #include "../../includes/minishell.h"
 
 // retourne 1 si il y a l'option n retourne 0 sinon
-static int	option_n(char *str)
+static int	option_n(const char *str)
 {
 	int	k;
 
@@ -31,7 +31,7 @@ static int	option_n(char *str)
 	return (0);
 }
 
-static int	cherche_premier_argument(char **arg)
+static int	cherche_premier_argument(const char **arg)
 {
 	int	k;
 
@@ -41,7 +41,7 @@ static int	cherche_premier_argument(char **arg)
 	return (k);
 }
 
-void	ecrit(char **arg, int k, int option)
+void	ecrit(const char **arg, int k, int option)
 {
 	while (arg[k])
 	{
@@ -75,10 +75,10 @@ int	ft_echo(t_shell *shell)
 		if (option == 0)
 		{
 			printf("\n");
-			return ;
+			return (EXIT_FAILURE);
 		}
 		if (option == 1)
-			return ;
+			return (EXIT_FAILURE);
 	}
 	ecrit(arg, k, option);
 	return (EXIT_SUCCESS);

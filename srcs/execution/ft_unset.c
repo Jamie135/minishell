@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-int	identique(char *str1, char *str2)
+int	identique(char *str1, const char *str2)
 {
 	int	k;
 
@@ -38,7 +38,7 @@ int	ft_unset(t_shell *shell)
 	if (!arg || !arg[0])
 	{
 		printf("unset: trop peu d'arguments");
-		return ;
+		return (EXIT_FAILURE);
 	}
 	while (arg[k])
 	{

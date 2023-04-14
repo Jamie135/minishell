@@ -12,14 +12,14 @@
 
 #include "../../includes/minishell.h"
 
-static char	*apres_egal(char *str)
+static char	*apres_egal(const char *str)
 {
-	return (value_env(str));
+	return (value_env((char *)str));
 }
 
-static char	*avant_egal(char *str)
+static char	*avant_egal(const char *str)
 {
-	return (variable_env(str));
+	return (variable_env((char *)str));
 }
 
 static void	liste_complete(t_envi *envi)
@@ -36,7 +36,7 @@ static void	liste_complete(t_envi *envi)
 }
 
 // ajoute une nouvelle variable d'environement a la fin de la liste chainee.
-static void	ajoute(char *str, t_envi *envi)
+static void	ajoute(const char *str, t_envi *envi)
 {
 	while (envi->next)
 		envi = envi->next;

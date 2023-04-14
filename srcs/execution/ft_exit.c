@@ -27,8 +27,8 @@ static void	exit_alphabet(t_list *list, t_envi *env)
 				ft_putstr_fd(list->next->content, STDERR);
 				ft_putendl_fd(": numeric argument required", STDERR);
 				if (env)
-					ft_free_envi(env);
-				ft_free_lst(list);
+					free_envi(env);
+				free_list(list);
 				exit(2);
 			}
 		}
