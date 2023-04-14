@@ -117,6 +117,7 @@ void		print_envi(t_shell *shell, t_envi *envi);
 void		sort_envi(t_envi **front);
 void		swap_envi(t_envi *e_1, t_envi *e_2);
 char		**get_path(t_shell *shell);
+char		*get_access(char *cmd, char **path);
 
 /* execution.c */
 t_envi		*execution(t_list *list, t_envi *env, int *count, int *exit_value);
@@ -208,6 +209,7 @@ int			ft_env(t_shell *shell);
 int			ft_export(t_shell *shell);
 int			ft_pwd(t_shell *shell);
 int			ft_unset(t_shell *shell);
+int			identique(char *str1, char *str2);
 
 /* open.c */
 int			open_infile(t_shell *shell, t_list *redir);
@@ -236,6 +238,7 @@ void		free_redir(t_list **list, int n);
 void		free_pipes(int **pipes, size_t n);
 void		free_args(char ***args, size_t n);
 void		free_child(t_shell *shell, char **path, char *cmd);
+void		free_one_list(t_list **list, t_list *lst);
 
 /* message.c */
 void		malloc_err(char *str);

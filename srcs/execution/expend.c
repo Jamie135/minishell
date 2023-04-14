@@ -27,7 +27,7 @@ int	expend_list(t_envi *envi, t_list *list, int exit_value)
 			if (!list->content)
 				return (EXIT_FAILURE);
 			if (!ft_strcmp(list->content, ""))
-				free_one_envi(&list, lst);
+				free_one_list(&list, lst);
 		}
 		lst = list;
 		list = list->next;
@@ -95,7 +95,7 @@ char	*expend_join(t_envi *envi, t_list **join, char *str)
 }
 
 //trouver la variable expended pour join avec expend_join
-char	*expend_var(t_envi *envi, char *str, int exit_value);
+char	*expend_var(t_envi *envi, char *str, int exit_value)
 {
 	char	*new;
 	t_list	*join;
@@ -106,7 +106,7 @@ char	*expend_var(t_envi *envi, char *str, int exit_value);
 		ft_lstadd_front(&join, ft_lstnew(ft_strdup(str), -1));
 	if (str[0] == '$' && is_str_alnum(&str[1]))
 	{
-		new = add_value_to_ve(&vars[1], envi);
+		new = add_value_to_ve(&str[1], envi);
 		if (!new)
 			return (NULL);
 		return (new);
@@ -138,7 +138,7 @@ char	*expend_str(t_envi *envi, char *str, int exit_value)
 	i = -1;
 	while (split[++i])
 	{
-		tmp = expend_var(t_envi *envi, char *str, int exit_value);
+		tmp = expend_var(envi, split[i], exit_value);
 		if (!tmp)
 			return (free_split(split), free_list(join), NULL);
 		ft_lstadd_back(&join, ft_lstnew(tmp, -1));

@@ -67,3 +67,18 @@ void	free_args(char ***args, size_t n)
 	}
 	free(args);
 }
+
+void	free_one_list(t_list **list, t_list *lst)
+{
+	t_list	*next;
+
+	next = (*list)->next;
+	ft_lst_print_type(next);
+	free_ptr((void **)&(*list)->content);
+	free_ptr((void **)list);
+	(*list) = lst;
+	if (next)
+		(*list)->next = next;
+	else
+		(*list)->next = NULL;
+}

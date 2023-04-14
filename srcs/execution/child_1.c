@@ -43,14 +43,14 @@ void	child_cmd_2(t_shell *shell, const int id)
 	if (!cmd)
 		return (free_split(path), free(tmp), \
 				message_free_exit(shell, NULL, MALLOC, &exit));
-	if (cmd == ERROR && !ft_strcmp("exit", shell->args[n][0]))
+	if (cmd == ERROR && !ft_strcmp("exit", shell->args[id][0]))
 		return (free_split(path), free(tmp), \
-				message_free_exit(shell, shell->args[n][0], EXIT, &exit));
+				message_free_exit(shell, shell->args[id][0], EXIT, &exit));
 	if (cmd == ERROR)
-		return (ft_free_strs(path), free(tmp), \
-				message_free_exit(shell, shell->args[n][0], COMMAND, &exit));
+		return (free_split(path), free(tmp), \
+				message_free_exit(shell, shell->args[id][0], COMMAND, &exit));
 	free(tmp);
-	execve(cmd, shell->args[n], shell->environment);
+	execve(cmd, shell->args[id], shell->environment);
 	free_child(shell, path, cmd);
 	exit(EXIT_FAILURE);
 }
@@ -61,12 +61,12 @@ void	child_cmd_1(t_shell *shell)
 
 	if (builtins_child(shell) != FAILURE)
 		return (message_free_exit(shell, NULL, 0, &exit));
-	if ((ft_strncmp("./", shell->args[n][0], 2) == 0 && \
-		access(shell->args[n][0], X_OK) != FAILURE) || \
-		ft_strchr(shell->args[n][0], '/') != NULL)
+	if ((ft_strncmp("./", shell->args[id][0], 2) == 0 && \
+		access(shell->args[id][0], X_OK) != FAILURE) || \
+		ft_strchr(shell->args[id][0], '/') != NULL)
 	{
-		execve(shell->args[n][0], shell->args[n], shell->environment);
-		message_free_exit(shell, shell->args[n][0], errno, &exit);
+		execve(shell->args[id][0], shell->args[id], shell->environment);
+		message_free_exit(shell, shell->args[id][0], errno, &exit);
 	}
 	child_cmd_2(shell, id);
 }

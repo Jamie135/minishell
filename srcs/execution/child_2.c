@@ -41,7 +41,7 @@ static void	child_pipe_in(t_shell *shell)
 	close_fd(&infile);
 	if (id < shell->cmd_num - 1)
 	{
-		if (dup2(shell->pipes[n][1], STDOUT) == FAILURE)
+		if (dup2(shell->pipes[id][1], STDOUT) == FAILURE)
 			return (message_free_exit(shell, NULL, errno, &exit));
 		close_fd(&shell->pipes[id][1]);
 	}
@@ -53,7 +53,7 @@ static void	child_pipe_out(t_shell *shell)
 	const int	id = shell->cid;
 	int			outfile;
 
-	if (n > 0)
+	if (id > 0)
 	{
 		if (dup2(shell->pipes[id - 1][0], STDIN) == FAILURE)
 			return (message_free_exit(shell, NULL, errno, &exit));

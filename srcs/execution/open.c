@@ -14,9 +14,9 @@
 
 int	open_file(char *name, t_redir type)
 {
-	if (type == INFILE)
+	if (type == TO_INFILE)
 		return (open(name, O_RDONLY));
-	else if (type == TRUNC)
+	else if (type == TO_OUTFILE)
 		return (open(name, O_WRONLY | O_CREAT | O_TRUNC, 0644));
 	else if (type == APPEND)
 		return (open(name, O_WRONLY | O_CREAT | O_APPEND, 0644));
@@ -30,11 +30,11 @@ int	open_infile(t_shell *shell, t_list *redir)
 	fd = -2;
 	while (redir)
 	{
-		if (redir->type == INFILE || redir->type == HEREDOC)
+		if (redir->type == TO_INFILE || redir->type == HEREDOC)
 			close_fd(&fd);
-		if (redir->type == INFILE)
+		if (redir->type == TO_INFILE)
 		{
-			fd = open_file(redir->content, INFILE);
+			fd = open_file(redir->content, TO_INFILE);
 			if (fd == -1)
 				return (message_free_exit(shell, redir->content, errno, &exit), FAILURE);
 		}

@@ -35,7 +35,7 @@ int	parent_no_cmd(t_shell *shell)
 
 int	parent_one_cmd(t_shell *shell)
 {
-	if (builtins_parent())
+	if (builtins_parent(shell))
 	{
 		shell->pid[0] = fork();
 		if (shell->pid[0] == -1)

@@ -36,7 +36,7 @@ static void	liste_complete(t_envi *envi)
 }
 
 // ajoute une nouvelle variable d'environement a la fin de la liste chainee.
-static void	ajoute(char *str, t_envi envi)
+static void	ajoute(char *str, t_envi *envi)
 {
 	while (envi->next)
 		envi = envi->next;
@@ -72,7 +72,7 @@ int	ft_export(t_shell *shell)
 		parcours = parcours->next;
 		}
 		if (!trouvee)
-			ajoute(arg[k], envi);
+			ajoute(arg[k], shell->envi);
 		k++;
 	}
 	return (EXIT_SUCCESS);

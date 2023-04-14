@@ -20,31 +20,15 @@ int	ft_cd(t_shell *shell)
 	if (!arg || !arg[0])
 	{
 		chdir("~");
-		return ;
+		return (EXIT_FAILURE);
 	}
 	if (arg[1])
 	{
 		printf("cd: ERREUR trop d'arguments\n");
-		return ;
+		return (EXIT_FAILURE);
 	}
 	erreur = chdir(arg[0]);
 	if (erreur == -1)
 		printf("cd: ERREUR entrez un chemin relatif ou absolu valide\n");
-	return (EXIT_SUCCESS)
+	return (EXIT_SUCCESS);
 }
-
-// int	main(int ac, char **av)
-// {
-// 	char	*ousuisje;
-// 	char	**chemin;
-
-// 	(void)ac;
-// 	chemin = av;
-// 	chemin++;
-// 	ousuisje = malloc(101);
-// 	getcwd(ousuisje, 100);
-// 	printf("%s\n", ousuisje);
-// 	ft_cd(chemin);
-// 	getcwd(ousuisje, 100);
-// 	printf("%s\n", ousuisje);
-// }
