@@ -101,5 +101,7 @@ void		*free_split_index(char **split, int index, int message);
 void		ft_exit(t_list *list, t_envi *env, char *line, t_free *free_var);
 
 /* signals.c */
+void		sig(void);
+void		ctrlc(int signum);
 
 #endif
