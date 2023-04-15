@@ -104,7 +104,7 @@ void	print_envi(t_shell *shell, t_envi *envi)
 	t_envi	*front;
 
 	sorted = dup_envi(envi);
-	if (sorted == NULL);
+	if (sorted == NULL)
 		return ;
 	sort_envi(&sorted);
 	front = sorted;
