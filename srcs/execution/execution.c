@@ -21,7 +21,7 @@ void	get_exit_value(t_shell *shell)
 		shell->mode = 1;
 	else if (shell->mode == 64256)
 		shell->mode = 128;
-	else if (shell->mode = 5120)
+	else if (shell->mode == 5120)
 		shell->mode = 127;
 	else
 	{
