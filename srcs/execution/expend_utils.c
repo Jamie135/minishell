@@ -64,7 +64,7 @@ size_t	count_dollar(char *str)
 
 //ajouter un space devant les '$' et transformer les '$' en '-1'
 //pour split *str avec -1 comme delimiteur
-char	*add_space_to_dollar(char *str)
+char	*add_space_to_dollars(char *str)
 {
 	size_t	dollars;
 	size_t	len;
