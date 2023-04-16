@@ -36,7 +36,7 @@ int	valid_num_redir(t_list *list)
 				i++;
 			}
 		}
-		list->next;
+		list = list->next;
 	}
 	return (0);
 }
