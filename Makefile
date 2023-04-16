@@ -29,7 +29,7 @@ OBJ = $(SRC:.c=.o)
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror -MMD -g3
+FLAGS = -Wall -Wextra -Werror -MMD -g3 -lreadline
 
 all: $(NAME)
 
