@@ -83,7 +83,7 @@ int	trim_split(char **split, t_free *free_var)
 	{
 		tmp = 0;
 		free_var->split[i] = clean_string(split[i], tmp);
-		if (free_var->split[i])
+		if (!free_var->split[i])
 			return (free_trim(free_var, i));
 		if (ft_strcmp(free_var->split[i], split[i])
 			&& is_unexpended(split[i]))
