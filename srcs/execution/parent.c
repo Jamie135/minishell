@@ -62,7 +62,7 @@ int	parent_n_cmd(t_shell *shell)
 		if (builtins_parent(shell) == FAILURE)
 		{
 			shell->pid[shell->cid] = fork();
-			if (shell->pid[shell->cid] == -1);
+			if (shell->pid[shell->cid] == -1)
 				return (FAILURE);
 			if (shell->pid[shell->cid] == 0)
 			{
