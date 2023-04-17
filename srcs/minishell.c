@@ -22,7 +22,7 @@ int	main(int argc, char **argv, char **envp)
 	list = NULL;
 	(void)argc;
 	(void)argv;
-	//init_signal(MINISHELL);
+	sig();
 	run(envp, line, list, &free_var);
 	return (0);
 }
