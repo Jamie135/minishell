@@ -17,7 +17,7 @@ void	*free_split_index(char **split, int index, int message)
 	int	i;
 
 	i = 0;
-	if (message = 1)
+	if (message == 1)
 		ft_putendl_fd("syntax error", 2);
 	while (i < index)
 	{
