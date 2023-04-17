@@ -105,7 +105,7 @@ char	*single_quote(char *str, int index)
 	i = -1;
 	j = 0;
 	new = malloc(sizeof(char) * (ft_strlen(str) + 1));
-	if (new = NULL)
+	if (new == NULL)
 		return (NULL);
 	while (str[++i] && i < index)
 		new[i] = str[i];
