@@ -22,6 +22,7 @@ t_envi	*get_last_envi(t_envi *envi)
 	return (envi);
 }
 
+//ajouter le ve PWD a envi
 static int	pwd_envi(t_envi **envi)
 {
 	char	*cmd;
@@ -41,6 +42,7 @@ static int	pwd_envi(t_envi **envi)
 	return (EXIT_SUCCESS);
 }
 
+//ajouter le ve SHLVL a envi
 static int	shlvl_envi(t_envi **envi)
 {
 	char	*cmd;
@@ -60,6 +62,7 @@ static int	shlvl_envi(t_envi **envi)
 	return (EXIT_SUCCESS);
 }
 
+//ajouter _ a envi
 static int	underscore_envi(t_envi **envi)
 {
 	char	*cmd;
