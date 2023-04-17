@@ -129,7 +129,7 @@ int	heredoc(t_list *list, t_envi *env, int *count, int *exit_value)
 					return (EXIT_FAILURE);
 			}
 		}
-		list->next;
+		list = list->next;
 	}
 	return (EXIT_SUCCESS);
 }
