@@ -67,7 +67,7 @@ char	*random_string(int len)
 	fd = open("/dev/random/", O_RDONLY);
 	if (fd == -1)
 		return (NULL);
-	if (read(fd, buffer, len) == -1);
+	if (read(fd, buffer, len) == -1)
 		return (NULL);
 	i = 0;
 	while (i < len)
