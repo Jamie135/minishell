@@ -98,10 +98,13 @@ void		*free_fill(char **tab, t_list *list, char *str);
 int			free_trim(t_free *free_var, int i);
 void		*free_split_index(char **split, int index, int message);
 
-void		ft_exit(t_list *list, t_envi *env, char *line, t_free *free_var);
+/* utils_parsing*/
+void		fill_inc(char *str, char *new, int *i, int j);
 
 /* signals.c */
 void		sig(void);
 void		ctrlc(int signum);
+
+void		ft_exit(t_list *list, t_envi *envi, t_free *free_var, char *line);
 
 #endif

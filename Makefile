@@ -23,7 +23,7 @@ srcs/parsing/list.c srcs/parsing/type.c srcs/parsing/trim.c srcs/parsing/trim_ut
 srcs/parsing/free_parsing_1.c srcs/parsing/free_parsing_2.c \
 srcs/parsing/quote.c srcs/parsing/quote_utils.c \
 srcs/parsing/split_line.c srcs/parsing/split_line_utils.c srcs/parsing/split_pipe.c \
-srcs/parsing/string.c srcs/parsing/string_utils.c
+srcs/parsing/string.c srcs/parsing/string_utils.c srcs/parsing/utils_parsing.c
 
 OBJ = $(SRC:.c=.o)
 

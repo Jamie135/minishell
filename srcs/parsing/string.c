@@ -97,8 +97,7 @@ char	*get_string(char *str)
 		else if (str[i] && str[i] == '<')
 			string_2(&i, &j, str, new);
 		else
-			new[i + j] = str[i];
-			i++;
+			fill_inc(str, new, &i, j);
 	}
 	return (final_string(new));
 }
