@@ -70,7 +70,7 @@ char	*split_pipe(char *str)
 	{
 		if (str[i] == '\'')
 			i = single_quote_index(str, new, i, j) + 1;
-		else if (str[i] == '\"')
+		if (str[i] == '\"')
 			i = double_quote_index(str, new, i, j) + 1;
 		else if (str[i] != ' ' && str[i + 1] && str[i + 1] == '|')
 			complete_string(new, &i, &j, str);
