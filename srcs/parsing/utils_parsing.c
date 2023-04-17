@@ -12,6 +12,12 @@
 
 #include "../../includes/minishell.h"
 
+void	fill_quote_inc(char *str, char *new, int *i, int j)
+{
+	new[*i + j] = str[*i];
+	(*i)++;
+}
+
 void	fill_inc(char *str, char *new, int *i, int j)
 {
 	new[*i + j] = str[*i];

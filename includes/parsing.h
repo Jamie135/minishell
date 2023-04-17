@@ -54,7 +54,7 @@ int			valid_open(char *str);
 int			is_unexpended(char *str);
 int			is_quoted(char *str);
 
-/* string.c && string_utils.c */
+/* string.c && string_quote.c && string_utils.c */
 char		*get_string(char *str);
 int			len_string(char *str);
 static void	string_1(int *i, int *j, char *str, char *new);
@@ -65,6 +65,10 @@ int			single_quote_index(char *str, char *new, int i, int j);
 int			double_quote_index(char *str, char *new, int i, int j);
 int			new_string_single(char *new, char *str, char c);
 int			new_string_double(char *new, char *str, char c);
+char		*string_quote(char *str);
+int			len_quote(char *str);
+void		fill_quote_single_space(char *str, char *new, int *i, int *j);
+void		fill_quote_double_space(char *str, char *new, int *i, int *j);
 
 /* split_pipe.c */
 char		*split_pipe(char *str);
@@ -100,11 +104,12 @@ void		*free_split_index(char **split, int index, int message);
 
 /* utils_parsing*/
 void		fill_inc(char *str, char *new, int *i, int j);
+void		fill_quote_inc(char *str, char *new, int *i, int j);
 
 /* signals.c */
 void		sig(void);
 void		ctrlc(int signum);
 
-void		ft_exit(t_list *list, t_envi *envi, t_free *free_var, char *line);
+void		ft_exit(t_list *list, t_envi *envi, char *line, t_free *free_var);
 
 #endif

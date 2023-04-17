@@ -67,6 +67,9 @@ char	*final_string(char *new)
 	new = split_pipe(new);
 	if (!new)
 		return (NULL);
+	new = string_quote(new);
+	if (!new)
+		return (NULL);
 	else
 		return (new);	
 }
