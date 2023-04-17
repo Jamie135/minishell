@@ -44,9 +44,9 @@ static size_t	num_word(char const *s, char c)
 		while (!(s[i] == c) && s[i])
 		{
 			if (s[i] == '\'')
-				i += increment_word(&s[i], 1);
+				i += increment_word(&s[i], true);
 			if (s[i] == '\"')
-				i += increment_word(&s[i], 1);
+				i += increment_word(&s[i], false);
 			i++;
 		}
 		num++;

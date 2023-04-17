@@ -34,17 +34,17 @@ size_t	increment_double_quote(const char *s)
 	return (i);
 }
 
-int	increment_word(const char *s, int quote)
+int	increment_word(const char *s, bool quote)
 {
 	size_t	i;
 
-	if (quote == 1)
+	if (quote == true)
 	{
 		i = increment_single_quote(s);
 		i--;
 		return (i);
 	}
-	else if (quote == 2)
+	else
 	{
 		i = increment_double_quote(s);
 		i--;

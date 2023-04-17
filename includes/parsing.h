@@ -80,7 +80,7 @@ char		**split_line(char const *s, char c);
 static char	**free_tab(char **tab, size_t j);
 size_t		increment_single_quote(const char *s);
 size_t		increment_double_quote(const char *s);
-int			increment_word(const char *s, int quote);
+int			increment_word(const char *s, bool quote);
 int			len_split(char **split);
 
 /* trim.c && trim_utils.c */
