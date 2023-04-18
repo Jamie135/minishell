@@ -101,6 +101,7 @@ int			free_null_list(t_list *list, t_free *free_var, char *line, t_envi *env);
 void		*free_fill(char **tab, t_list *list, char *str);
 int			free_trim(t_free *free_var, int i);
 void		*free_split_index(char **split, int index, int message);
+void		free_split_parsing(char **split);
 
 /* utils_parsing*/
 void		fill_inc(char *str, char *new, int *i, int j);

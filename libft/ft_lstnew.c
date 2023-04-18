@@ -36,6 +36,8 @@ t_list	*ft_lstnew_2(char *content, int type, bool unexpended, bool quoted)
 	contenu->unexpended = unexpended;
 	contenu->content = content;
 	contenu->type = type;
+	if (quoted == true)
+		contenu->type = ARG;
 	contenu->next = NULL;
 	return (contenu);
 }

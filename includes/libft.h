@@ -67,12 +67,12 @@ int		ft_putendl_fd(char *s, int fd);
 typedef enum e_type
 {
 	CMD,
-	VAR,
-	OPT,
 	ARG,
 	FILES,
 	REDIR,
-	PIPE
+	PIPE,
+	VAR,
+	OPT
 }	t_type;
 
 typedef struct s_list

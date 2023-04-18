@@ -12,6 +12,16 @@
 
 #include "../../includes/minishell.h"
 
+void	free_split_parsing(char **split)
+{
+	int	i;
+
+	i = len_split(split);
+	while (i--)
+		free(split[i]);
+	free(split);
+}
+
 void	*free_split_index(char **split, int index, int message)
 {
 	int	i;

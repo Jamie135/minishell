@@ -92,6 +92,6 @@ int	trim_split(char **split, t_free *free_var)
 			free_var->quoted[i] = true;
 	}
 	free_var->split[i++] = NULL;
-	free_split(split);
+	free_split_parsing(split);
 	return (0);
 }

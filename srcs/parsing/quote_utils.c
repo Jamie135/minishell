@@ -59,6 +59,13 @@ int	is_unexpended(char *str)
 			if (!str[i])
 				return (0);
 		}
+		if (str[i] == '\"')
+		{
+			while (str[++i] && str[i] != '\"')
+				if (!str[i])
+					return (0);
+		}
+		
 	}
 	return (0);
 }
@@ -74,7 +81,7 @@ int	is_quoted(char *str)
 		if (str[i] == '\'')
 		{
 			i++;
-			while (str[++i] && str[i] != '\'')
+			while (str[i] && str[i] != '\'')
 				i++;
 			if (str[i])
 				return (1);
@@ -82,7 +89,7 @@ int	is_quoted(char *str)
 		if (str[i] == '\"')
 		{
 			i++;
-			while (str[++i] && str[i] != '\"')
+			while (str[i] && str[i] != '\"')
 				i++;
 			if (str[i])
 				return (1);
