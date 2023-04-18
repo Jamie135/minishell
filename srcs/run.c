@@ -118,7 +118,7 @@ int	run(char **envp, char *line, t_list *list, t_free *free_var)
 		//test parsing
 		while (list)
 		{
-			printf("list: %s, len: %i\n", list->content, (int)ft_strlen(list->content));
+			printf("list content: %s, len: %i\n", list->content, (int)ft_strlen(list->content));
 			if (!list->next)
 				break ;
 			list = list->next;
