@@ -46,8 +46,8 @@ t_list		*fill(t_list *list, t_free *free_var);
 
 /* quote.c && quote_utils.c */
 int			valid_quote(char *str);
-int			valid_single(char *str, int *single_quote, int *double_quote, int *i);
-int			valid_double(char *str, int *single_quote, int *double_quote, int *i);
+int			valid_single(char *str, bool *single_quote, bool *double_quote, int *i);
+int			valid_double(char *str, bool *single_quote, bool *double_quote, int *i);
 char		*single_quote(char *str, int index);
 char		*double_quote(char *str, int index);
 int			valid_open(char *str);

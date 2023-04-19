@@ -13,61 +13,61 @@
 #include "../../includes/minishell.h"
 
 // verifier les double quotes dans un single quote
-int	valid_single(char *str, int *single_quote, int *double_quote, int *i)
+int	valid_single(char *str, bool *single_quote, bool *double_quote, int *i)
 {
-	if (*single_quote == 1)
-		*single_quote = 0;
+	if (*single_quote == true)
+		*single_quote = false;
 	else
-		*single_quote = 1;
+		*single_quote = true;
 	while (str[*i] && str[*i] != '\'')
 	{
 		if (str[*i] == '\"')
 		{
-			if (*double_quote == 1)
-				*double_quote = 0;
+			if (*double_quote == true)
+				*double_quote = false;
 			else
-				*double_quote = 1;
+				*double_quote = true;
 		}
 		(*i)++;
 	}
-	if (!str[*i] && (*single_quote == 1 || *single_quote == 1))
+	if (!str[*i] && (*single_quote == true || *single_quote == true))
 		return (-1);
 	else
 	{
-		if (*single_quote == 0)
-			*single_quote = 1;
+		if (*single_quote == false)
+			*single_quote = true;
 		else
-			*single_quote = 0;
+			*single_quote = false;
 	}
 	return (0);
 }
 
 // verifier les single quotes dans un double quote
-int	valid_double(char *str, int *single_quote, int *double_quote, int *i)
+int	valid_double(char *str, bool *single_quote, bool *double_quote, int *i)
 {
-	if (*double_quote == 0)
-				*double_quote = 1;
+	if (*double_quote == false)
+				*double_quote = true;
 	else
-		*double_quote = 0;
+		*double_quote = false;
 	while (str[*i] && str[*i] != '\"')
 	{
 		if (str[*i] == '\'')
 		{
-			if (*single_quote == 1)
-				*double_quote = 0;
+			if (*single_quote == true)
+				*double_quote = false;
 			else
-				*single_quote = 1;
+				*single_quote = true;
 		}
 		(*i)++;
 	}
-	if (!str[*i] && (*single_quote == 1 || *single_quote == 1))
+	if (!str[*i] && (*single_quote == true || *single_quote == true))
 		return (-1);
 	else
 	{
-		if (*single_quote == 0)
-			*single_quote = 1;
+		if (*single_quote == false)
+			*single_quote = true;
 		else
-			*single_quote = 0;
+			*single_quote = false;
 	}
 	return (0);
 }
@@ -75,13 +75,13 @@ int	valid_double(char *str, int *single_quote, int *double_quote, int *i)
 // verifier les quotes
 int	valid_quote(char *str)
 {
-	int	i;
-	int	single_quote;
-	int	double_quote;
+	int		i;
+	bool	single_quote;
+	bool	double_quote;
 
 	i = -1;
-	single_quote = 0;
-	double_quote = 0;
+	single_quote = false;
+	double_quote = false;
 	while (str[++i])
 	{
 		if (str[i] == '\'')
