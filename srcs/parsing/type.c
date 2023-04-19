@@ -29,7 +29,7 @@ int	get_type_redir(char *str)
 //determiner le type
 int	get_type(char *str, int	last_type)
 {
-	if (get_type_redir(str) != 1)
+	if (get_type_redir(str) != -1)
 		return (REDIR);
 	else if (str[0] == '|')
 		return (PIPE);
