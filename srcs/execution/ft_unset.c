@@ -34,10 +34,11 @@ int	ft_unset(t_shell *shell)
 	int		k;
 	t_envi	*parcours;
 
+	arg++;
 	k = 0;
 	if (!arg || !arg[0])
 	{
-		printf("unset: trop peu d'arguments");
+		printf("unset: trop peu d'arguments\n");
 		return (EXIT_FAILURE);
 	}
 	while (arg[k])
