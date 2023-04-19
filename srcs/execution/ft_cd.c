@@ -17,6 +17,7 @@ int	ft_cd(t_shell *shell)
 	const char	**arg = (const char **)shell->args[shell->cid];
 	int			erreur;
 
+	arg++;
 	if (!arg || !arg[0])
 	{
 		chdir("~");
