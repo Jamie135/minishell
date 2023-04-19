@@ -64,6 +64,7 @@ int	ft_echo(t_shell *shell)
 	int	option;
 	int	k;
 
+	arg++;
 	(void)shell->envi;
 	option = 0;
 	if (arg)
