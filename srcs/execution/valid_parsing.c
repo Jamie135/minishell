@@ -19,11 +19,14 @@ int	valid_num_redir(t_list *list)
 
 	while (list)
 	{
+		printf("list content: %s, len: %i\n", list->content, (int)ft_strlen(list->content));
+		printf("list type: %i\n", list->type);
 		if (list->type == REDIR)
 		{
 			i = 0;
 			while (list->content[i])
 			{
+				printf("list content[%i]: %c\n", i, list->content[i]);
 				if (i > 1)
 				{
 					if (list->content[0] == '>')
