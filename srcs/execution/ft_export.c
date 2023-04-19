@@ -52,6 +52,7 @@ int	ft_export(t_shell *shell)
 	int			trouvee;
 	t_envi		*parcours;
 
+	arg++;
 	k = 0;
 	if (!arg || !arg[0])
 	{
