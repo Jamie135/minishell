@@ -47,7 +47,7 @@ int	ft_unset(t_shell *shell)
 		while (parcours)
 		{
 			if (identique(parcours->ve, arg[k]))
-				parcours->value = "";
+				parcours->value[0] = '\0';
 			parcours = parcours->next;
 		}
 		k++;
