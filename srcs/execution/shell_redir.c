@@ -40,7 +40,7 @@ int	cmd_list_redir(t_shell *shell, t_list *list, t_list **redir)
 	char	*name;
 	int		type[2];
 	int		i;
-	
+
 	i = 0;
 	ft_bzero(type, sizeof(int) * 2);
 	while (list && i <= shell->cmd_num)
@@ -66,7 +66,7 @@ int	no_cmd_list_redir(t_shell *shell, t_list *list, t_list **redir)
 	char	*name;
 	int		type[2];
 	int		i;
-	
+
 	i = 0;
 	ft_bzero(type, sizeof(int) * 2);
 	while (list && i <= shell->cmd_num)
