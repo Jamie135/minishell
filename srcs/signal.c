@@ -21,7 +21,6 @@ void	ctrlc(int signum)
 	rl_redisplay();
 }
 
-
 // SIG_IGN dit d'ignorer le signal ctrl+
 void	sig(void)
 {
