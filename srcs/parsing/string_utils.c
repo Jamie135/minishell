@@ -22,7 +22,7 @@ int	quote_index(char *str, int index, char c)
 		while (str[++i])
 		{
 			if (i <= index)
-				continue;
+				continue ;
 			if (str[i] == '\'')
 				return (i);
 		}
