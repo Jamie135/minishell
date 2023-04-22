@@ -34,7 +34,7 @@ void	print_token(char *str)
 	ft_putstr_fd(SYNTAX_ERR, STDERR);
 	ft_putstr_fd(" `", STDERR);
 	ft_putstr_fd(str, STDERR);
-	ft_putendl_fd("\'", STDERR);	
+	ft_putendl_fd("\'", STDERR);
 }
 
 void	message_heredoc(t_heredoc *heredoc, char *str, int n, void (*f)(int))
