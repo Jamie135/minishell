@@ -103,7 +103,6 @@ t_envi	*execution(t_list *list, t_envi *env, int *count, int *exit_value)
 		*exit_value = 2;
 		return (env);
 	}
-	printf("here\n");
 	if (heredoc(list, env, count, exit_value))
 		return (free_list(list), env);
 	if (expend_list(env, list, *exit_value))

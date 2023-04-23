@@ -19,8 +19,8 @@ int	valid_num_redir(t_list *list)
 
 	while (list)
 	{
-		printf("list content: %s, len: %i\n", list->content, (int)ft_strlen(list->content));
-		printf("list type: %i\n", list->type);
+		// printf("list content: %s, len: %i\n", list->content, (int)ft_strlen(list->content));
+		// printf("list type: %i\n", list->type);
 		if (list->type == REDIR)
 		{
 			i = 0;
