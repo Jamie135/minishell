@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-void	exit_print(t_list *list, t_envi *env)
+void	exit_alphabet_print(t_list *list, t_envi *env)
 {
 	ft_putendl_fd("exit", STDERR);
 	ft_putstr_fd("exit: ", STDERR);
@@ -21,6 +21,20 @@ void	exit_print(t_list *list, t_envi *env)
 	if (env)
 		free_envi(env);
 	free_list(list);
+}
+
+int	exit_negative_print(t_list *list, t_envi *env)
+{
+	int	abs;
+
+	abs = ft_atoi((const char *)list->next->content);
+	ft_putendl_fd("exit", STDERR);
+	if (env)
+		free_envi(env);
+	free_list(list);
+	while (abs < 256)
+		abs += 256;
+	return (abs);
 }
 
 int	count_one_minus(char *str)
@@ -42,7 +56,8 @@ int	count_one_minus(char *str)
 static void	exit_alphabet(t_list *list, t_envi *env)
 {
 	const int	num_cmd = num_command(list);
-	
+	int			abs;
+
 	if (ft_strcmp("exit", list->content) == 0)
 	{
 		if (list->next && list->next->content)
@@ -51,13 +66,10 @@ static void	exit_alphabet(t_list *list, t_envi *env)
 			{
 				if (count_one_minus(list->next->content))
 				{
-					ft_putendl_fd("exit", STDERR);
-					if (env)
-						free_envi(env);
-					free_list(list);
-					exit(251);
+					abs = exit_negative_print(list, env);
+					exit(abs);
 				}
-				exit_print(list, env);
+				exit_alphabet_print(list, env);
 				exit(2);
 			}
 		}
@@ -83,8 +95,6 @@ void	ft_exit(t_list *list, t_envi *env, char *line, t_free *free_var)
 		if (env)
 			free_envi(env);
 		free_list(list);
-		while (exit_value > 255)
-			exit_value -= 256;
 		exit(exit_value);
 	}
 }
