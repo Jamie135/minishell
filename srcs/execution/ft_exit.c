@@ -12,6 +12,33 @@
 
 #include "../../includes/minishell.h"
 
+void	exit_print(t_list *list, t_envi *env)
+{
+	ft_putendl_fd("exit", STDERR);
+	ft_putstr_fd("exit: ", STDERR);
+	ft_putstr_fd(list->next->content, STDERR);
+	ft_putendl_fd(": numeric argument required", STDERR);
+	if (env)
+		free_envi(env);
+	free_list(list);
+}
+
+int	count_one_minus(char *str)
+{
+	int	i;
+
+	i = 1;
+	if (str[0] != '-')
+		return (0);
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 static void	exit_alphabet(t_list *list, t_envi *env)
 {
 	const int	num_cmd = num_command(list);
@@ -22,13 +49,15 @@ static void	exit_alphabet(t_list *list, t_envi *env)
 		{
 			if (ft_all_isdigit(list->next->content) && num_cmd == 1)
 			{
-				ft_putendl_fd("exit", STDERR);
-				ft_putstr_fd("exit: ", STDERR);
-				ft_putstr_fd(list->next->content, STDERR);
-				ft_putendl_fd(": numeric argument required", STDERR);
-				if (env)
-					free_envi(env);
-				free_list(list);
+				if (count_one_minus(list->next->content))
+				{
+					ft_putendl_fd("exit", STDERR);
+					if (env)
+						free_envi(env);
+					free_list(list);
+					exit(251);
+				}
+				exit_print(list, env);
 				exit(2);
 			}
 		}
