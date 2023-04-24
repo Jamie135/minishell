@@ -25,11 +25,14 @@ int	ft_cd(t_shell *shell)
 	}
 	if (arg[1])
 	{
-		printf("cd: ERREUR trop d'arguments\n");
+		message_builtins("cd", NULL, TOOMANY);
 		return (EXIT_FAILURE);
 	}
 	erreur = chdir(arg[0]);
 	if (erreur == -1)
-		printf("cd: ERREUR entrez un chemin relatif ou absolu valide\n");
+	{
+		message_free_exit(NULL, "cd", errno, NULL);
+		return (EXIT_FAILURE);
+	}
 	return (EXIT_SUCCESS);
 }
