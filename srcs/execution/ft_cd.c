@@ -12,23 +12,107 @@
 
 #include "../../includes/minishell.h"
 
+int	ve_est_OLDPWD(char *str)
+{
+	if (!str)
+		return (0);
+	if (str[0] != 'O')
+		return (0);
+	if (str[1] != 'L')
+		return (0);
+	if (str[2] != 'D')
+		return (0);
+	if (str[3] != 'P')
+		return (0);
+	if (str[4] != 'W')
+		return (0);
+	if (str[5] != 'D')
+		return (0);
+	if (str[6] != '\0')
+		return (0);
+	return (1);
+}
+
+int	ve_est_HOME(char *str)
+{
+	if (!str)
+		return (0);
+	if (str[0] != 'H')
+		return (0);
+	if (str[1] != 'O')
+		return (0);
+	if (str[2] != 'M')
+		return (0);
+	if (str[3] != 'E')
+		return (0);
+	if (str[4] != '\0')
+		return (0);
+	return (1);
+}
+
+char	*valeur_de_HOME(t_shell *shell)
+{
+	t_envi	*envi;
+
+	envi = shell->envi;
+	if (envi == NULL)
+		return (NULL);
+	while (envi)
+	{
+		if (ve_est_HOME(envi->ve))
+			return (envi->value);
+		envi = envi->next;
+	}
+	return (NULL);
+}
+
+char	*valeur_de_OLDPWD(t_shell *shell)
+{
+	t_envi	*envi;
+
+	envi = shell->envi;
+	if (envi == NULL)
+		return (NULL);
+	while (envi)
+	{
+		if (ve_est_OLDPWD(envi->ve))
+			return (envi->value);
+		envi = envi->next;
+	}
+	return (NULL);
+}
+
+void	transforme_tilde_et_moins(char **arg, t_shell *shell)
+{
+	if (!arg[0])
+		return ;
+	if (arg[0][0] == '~' && arg[0][1] == '\0')
+		arg[0] = valeur_de_HOME(shell);
+	if (arg[0][0] == '-' && arg[0][1] == '\0')
+		arg[0] = valeur_de_OLDPWD(shell);
+}
+
 int	ft_cd(t_shell *shell)
 {
-	const char	**arg = (const char **)shell->args[shell->cid];
+	char	**arg = (char **)shell->args[shell->cid];
 	int			erreur;
 
 	arg++;
+	erreur = 0;
+	transforme_tilde_et_moins(arg, shell);
 	if (!arg || !arg[0])
 	{
-		chdir("~");
-		return (EXIT_FAILURE);
+		if (!valeur_de_HOME(shell))
+			printf("cd: HOME not set\n");
+		chdir(valeur_de_HOME(shell));
 	}
-	if (arg[1])
+	else if (arg[1])
 	{
 		message_builtins("cd", NULL, TOOMANY);
 		return (EXIT_FAILURE);
 	}
-	erreur = chdir(arg[0]);
+	else
+		erreur = chdir(arg[0]);
 	if (erreur == -1)
 	{
 		message_free_exit(NULL, "cd", errno, NULL);
