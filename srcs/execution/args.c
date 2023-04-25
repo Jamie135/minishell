@@ -111,6 +111,7 @@ char	**list_args(t_list *list)
 		args[i] = ft_strdup(list->content);
 		if (!args[i])
 			return (free_n_split(args, i), NULL);
+		printf("args[%li]: %s\n", i, args[i]);
 		list = list->next;
 		i++;
 	}
