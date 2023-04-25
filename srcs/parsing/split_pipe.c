@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 16:32:14 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/14 16:50:26 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:10:54 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ char	*split_pipe(char *str)
 	while (str[++i])
 	{
 		if (str[i] == '\'')
-			i = single_quote_index(str, new, i, j) + 1;
+			i = single_quote_index(str, new, i, j);
 		if (str[i] == '\"')
-			i = double_quote_index(str, new, i, j) + 1;
+			i = double_quote_index(str, new, i, j);
 		else if (str[i] != ' ' && str[i + 1] && str[i + 1] == '|')
 			complete_string(new, &i, &j, str);
 		else

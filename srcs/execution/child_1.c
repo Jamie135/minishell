@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   child.c                                            :+:      :+:    :+:   */
+/*   child_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 23:51:54 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/30 23:51:54 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:18:39 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ void	child_cmd_2(t_shell *shell, const int id)
 		return (free_split(path), free(tmp), \
 				message_free_exit(shell, shell->args[id][0], COMMAND, &exit));
 	free(tmp);
-	printf("cmd: %s\n", cmd);
-	int	i = -1;
-	while (i++ <= id)
-	{
-		printf("args[%i][%i]: %s\n", id, i, shell->args[id][i]);
-	}
+	// printf("cmd: %s\n", cmd);
+	// int	i = -1;
+	// while (i++ <= id)
+	// {
+	// 	printf("args[%i][%i]: %s\n", id, i, shell->args[id][i]);
+	// }
 	execve(cmd, shell->args[id], shell->environment);
 	free_child(shell, path, cmd);
 	exit(EXIT_FAILURE);

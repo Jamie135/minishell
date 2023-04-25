@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 19:50:54 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/30 19:50:54 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:17:49 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ char	**list_args(t_list *list)
 		args[i] = ft_strdup(list->content);
 		if (!args[i])
 			return (free_n_split(args, i), NULL);
-		printf("args[%li]: %s\n", i, args[i]);
 		list = list->next;
 		i++;
 	}
