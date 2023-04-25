@@ -12,69 +12,181 @@
 
 #include "../../includes/minishell.h"
 
-static char	*apres_egal(const char *str)
+// static char	*apres_egal(const char *str)
+// {
+// 	return (value_env((char *)str));
+// }
+
+// static char	*avant_egal(const char *str)
+// {
+// 	return (variable_env((char *)str));
+// }
+
+// static void	liste_complete(t_envi *envi)
+// {
+// 	t_envi	*parcours;
+
+// 	parcours = envi;
+// 	while (parcours)
+// 	{
+// 		printf("declare -x ");
+// 		printf("%s=%s\n", parcours->ve, parcours->value);
+// 		parcours = parcours->next;
+// 	}
+// }
+
+// // ajoute une nouvelle variable d'environement a la fin de la liste chainee.
+// static void	ajoute(const char *str, t_envi *envi)
+// {
+// 	while (envi->next)
+// 		envi = envi->next;
+// 	envi->ve = avant_egal(str);
+// 	envi->value = apres_egal(str);
+// 	envi->next = NULL;
+// }
+
+// int	ft_export(t_shell *shell)
+// {
+// 	const char	**arg = (const char **)shell->args[shell->cid];
+// 	int			k;
+// 	int			trouvee;
+// 	t_envi		*parcours;
+
+// 	k = 0;
+// 	if (arg[1] == NULL)
+// 		return (FAILURE);
+// 	while (arg[k++])
+// 	{
+// 		trouvee = 0;
+// 		parcours = shell->envi;
+// 		while (parcours)
+// 		{
+// 			if (identique(parcours->ve, avant_egal(arg[k])))
+// 			{
+// 				parcours->value = apres_egal(arg[k]);
+// 				trouvee = 1;
+// 			}
+// 		parcours = parcours->next;
+// 		}
+// 		if (!trouvee)
+// 			ajoute(arg[k], shell->envi);
+// 	}
+// 	return (EXIT_SUCCESS);
+// }
+
+//check la validite du variable environnementale
+static int	check_ve(char *str)
 {
-	return (value_env((char *)str));
+	int	len;
+
+	len = 0;
+	while (str[len] && str[len] != '=')
+		len++;
+	if (len >= 1 && str[len - 1] == '+')
+		len--;
+	if (ft_all_isalnum_len(str, len) == 0)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
-static char	*avant_egal(const char *str)
+//export la variable
+static int	do_export(t_shell *shell, char *ve, char *value, int type)
 {
-	return (variable_env((char *)str));
-}
+	t_envi		*new;
 
-static void	liste_complete(t_envi *envi)
-{
-	t_envi	*parcours;
-
-	parcours = envi;
-	while (parcours)
+	if (find_value_envi(ve, shell->envi) != NULL)
 	{
-		printf("declare -x ");
-		printf("%s=%s\n", parcours->ve, parcours->value);
-		parcours = parcours->next;
+		shell->envi = update_value_envi(ve, value, type, shell->envi);
+		if (shell->envi == ERROR)
+			return (EXIT_FAILURE);
+		free(ve);
+		free(value);
 	}
+	else
+	{
+		new = cpy_struct_envi(ve, value, type);
+		if (!new)
+			return (EXIT_FAILURE);
+		add_back_envi(&(shell->envi), new);
+	}
+	return (EXIT_SUCCESS);
 }
 
-// ajoute une nouvelle variable d'environement a la fin de la liste chainee.
-static void	ajoute(const char *str, t_envi *envi)
+//affiche la valeur de export
+static int	create_value(t_shell *shell, char *ve, char *value, int type)
 {
-	while (envi->next)
-		envi = envi->next;
-	envi->ve = avant_egal(str);
-	envi->value = apres_egal(str);
-	envi->next = NULL;
+	char	*tmp;
+	char	*new;
+	size_t	len;
+
+	len = ft_strlen(ve);
+	if (ve[len - 1] == '+')
+		ve[len - 1] = '\0';
+	if (find_value_envi(ve, shell->envi) != NULL)
+	{
+		tmp = find_value_envi(ve, shell->envi);
+		new = ft_strjoin(tmp, value);
+		if (!value)
+			return (EXIT_FAILURE);
+		free(value);
+		if (do_export(shell, ve, new, type) == EXIT_FAILURE)
+			return (EXIT_FAILURE);
+	}
+	else if (do_export(shell, ve, value, type) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
+//creer un nouveau ve
+static int	create_ve(t_shell *shell, char *args)
+{
+	int		flag;
+	char	*ve;
+	char	*value;
+	int		type;
+
+	flag = false;
+	type = VALID;
+	if (ft_strchr(args, '=') == NULL)
+		type = UNVALID;
+	ve = variable_env(args);
+	value = value_env(args);
+	if (!ve || !value)
+		return (malloc_err("export.c (109)"), EXIT_FAILURE);
+	if (check_last_char(ve, '+'))
+		flag = true;
+	if (flag && create_value(shell, ve, value, type))
+		return (free(value), free(ve), malloc_err("export.c (111)"), 1);
+	else if (!flag && do_export(shell, ve, value, type))
+		return (free(value), free(ve), malloc_err("export.c (115)"), 1);
+	return (EXIT_SUCCESS);
 }
 
 int	ft_export(t_shell *shell)
 {
 	const char	**arg = (const char **)shell->args[shell->cid];
 	int			k;
-	int			trouvee;
-	t_envi		*parcours;
 
-	arg++;
 	k = 0;
-	if (!arg || !arg[0])
-	{
-		liste_complete(shell->envi);
+	if (arg[1] == NULL)
 		return (FAILURE);
-	}
-	while (arg[k])
+	while (arg[++k])
 	{
-		trouvee = 0;
-		parcours = shell->envi;
-		while (parcours)
+		if (is_special_var(arg[k][0]) || check_ve((char *)arg[k]))
 		{
-			if (identique(parcours->ve, avant_egal(arg[k])))
-			{
-				parcours->value = apres_egal(arg[k]);
-				trouvee = 1;
-			}
-		parcours = parcours->next;
+			message_builtins("export", (char *)arg[k], ID);
+			shell->mode = 1;
+			continue ;
 		}
-		if (!trouvee)
-			ajoute(arg[k], shell->envi);
-		k++;
+		if (create_ve(shell, (char *)arg[k]))
+			return (EXIT_FAILURE);
+		if (shell->environment)
+			free_split(shell->environment);
+		shell->environment = init_env(shell->envi);
+		if (shell->environment == ERROR)
+			return (EXIT_FAILURE);
 	}
+	if (shell->mode == 1)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

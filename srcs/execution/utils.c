@@ -53,3 +53,32 @@ int	is_str_alnum(char *str)
 		return (1);
 	return (0);
 }
+
+//verifier si str est compose d'uniquement de caracteres alphanumerique
+int	ft_all_isalnum_len(char *str, int len)
+{
+	int	i;
+	int	n;
+
+	i = 0;
+	n = 0;
+	while (str[i] && i < len)
+	{
+		if (ft_isalnum(str[i]))
+			n++;
+		i++;
+	}
+	if (n == len)
+		return (1);
+	return (0);
+}
+
+int	check_last_char(char *str, char c)
+{
+	size_t	len;
+
+	len = ft_strlen(str);
+	if (str[len - 1] == c)
+		return (1);
+	return (0);
+}

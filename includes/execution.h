@@ -224,6 +224,8 @@ void		close_pipes(int	**pipes, size_t num);
 int			is_str_alnum(char *str);
 int			len_array(char **args);
 void		pid_return(int mode);
+int			ft_all_isalnum_len(char *str, int len);
+int			check_last_char(char *str, char c);
 
 /* free_execution.c */
 void		free_ptr(void **ptr);
