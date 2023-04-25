@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:49:29 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/27 16:48:32 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/25 16:18:20 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,13 +116,13 @@ int	run(char **envp, char *line, t_list *list, t_free *free_var)
 			continue ;
 		ft_exit(list, env, line, free_var);
 		//test parsing
-		// while (list)
-		// {
-		// 	printf("list content: %s, len: %i\n", list->content, (int)ft_strlen(list->content));
-		// 	if (!list->next)
-		// 		break ;
-		// 	list = list->next;
-		// }
+		while (list)
+		{
+			printf("list content: %s, len: %i\n", list->content, (int)ft_strlen(list->content));
+			if (!list->next)
+				break ;
+			list = list->next;
+		}
 		env = execution(list, env, &count, &exit_value);
 		if (env == ERROR)
 			return (malloc_err("run.c (2)"), EXIT_FAILURE);
