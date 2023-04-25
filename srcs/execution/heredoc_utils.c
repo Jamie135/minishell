@@ -64,7 +64,7 @@ char	*random_string(int len)
 	buffer = ft_calloc(len + 1, sizeof(char));
 	if (!buffer)
 		return (NULL);
-	fd = open("/dev/random/", O_RDONLY);
+	fd = open("/dev/random", O_RDONLY);
 	if (fd == -1)
 		return (NULL);
 	if (read(fd, buffer, len) == -1)

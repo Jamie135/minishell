@@ -120,6 +120,7 @@ int	heredoc(t_list *list, t_envi *env, int *count, int *exit_value)
 	heredoc.exit_value = exit_value;
 	while (list)
 	{
+		printf("content: %s\n", list->content);
 		if (list->type == REDIR && ft_strcmp(list->content, "<<\0") == 0)
 		{
 			if (list->next && list->next->type == FILES)
