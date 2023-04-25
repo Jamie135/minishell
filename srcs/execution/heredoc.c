@@ -37,7 +37,7 @@ char	*heredoc_get_line(t_heredoc *heredoc, char *limiter, int fd)
 	char	*tmp;
 
 	line = readline("heredoc> ");
-	heredoc->line_num[0]++;
+	(heredoc->line_num[0])++;
 	if (line)
 	{
 		if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
@@ -55,27 +55,22 @@ void	heredoc_exec(char *limiter, char *name, t_heredoc *heredoc)
 {
 	int		fd;
 	char	*line;
-	int		signal_flag;
 
 	fd = open(name, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 		return (message_heredoc(heredoc, "open heredoc", errno, &exit));
 	sig();
-	signal_flag = 0;
-	while (!signal_flag)
+	while (1)
 	{
 		line = heredoc_get_line(heredoc, limiter, fd);
-		if (!line || signal_flag == 1)
+		if (!line)
 		{
-			if (!signal_flag)
-				heredoc_error(heredoc, limiter, fd, signal_flag);
+			heredoc_error(heredoc, limiter);
 			break ;
 		}
 		ft_putendl_fd(line, fd);
 		free_ptr((void **)line);
 	}
-	if (signal_flag == 1)
-		exit_heredoc(heredoc, limiter, line, fd);
 	return (free_heredoc(heredoc, limiter, NULL, fd), exit(0));
 }
 
@@ -120,7 +115,6 @@ int	heredoc(t_list *list, t_envi *env, int *count, int *exit_value)
 	heredoc.exit_value = exit_value;
 	while (list)
 	{
-		printf("content: %s\n", list->content);
 		if (list->type == REDIR && ft_strcmp(list->content, "<<\0") == 0)
 		{
 			if (list->next && list->next->type == FILES)

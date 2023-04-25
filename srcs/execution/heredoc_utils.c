@@ -18,14 +18,8 @@ void	exit_heredoc(t_heredoc *heredoc, char *limiter, char *line, int fd)
 	exit(130);
 }
 
-void	heredoc_error(t_heredoc *heredoc, char *limiter, int fd, int signal_flag)
+void	heredoc_error(t_heredoc *heredoc, char *limiter)
 {
-	if (signal_flag == 1)
-	{
-		free_heredoc(heredoc, limiter, NULL, fd);
-		signal_flag = 0;
-		exit(2);
-	}
 	ft_putstr_fd("bash: warning: here-document at line ", 2);
 	ft_putnbr_fd(heredoc->line_num[0], 2);
 	ft_putstr_fd(" delimited by end-of-file (wanted `", 2);
@@ -78,3 +72,31 @@ char	*random_string(int len)
 	close(fd);
 	return (buffer);
 }
+
+int	gnl(char **line)
+{
+	char	*buffer;
+	int		i;
+	int		r;
+	char	c;
+
+	i = 0;
+	r = 0;
+	buffer = (char *)malloc(10000);
+	if (!buffer)
+		return (-1);
+	r = read(0, &c, 1);
+	while (r && c != '\n' && c != '\0')
+	{
+		if (c != '\n' && c != '\0')
+			buffer[i] = c;
+		i++;
+		r = read(0, &c, 1);
+	}
+	buffer[i] = '\n';
+	buffer[++i] = '\0';
+	*line = buffer;
+	free(buffer);
+	return (r);
+}
+

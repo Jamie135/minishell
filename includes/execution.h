@@ -140,8 +140,9 @@ void		heredoc_unlink(t_list *list);
 
 /* heredoc_utils.c */
 char		*random_string(int len);
-void		heredoc_error(t_heredoc *heredoc, char *limiter, int fd, int signal_flag);
+void		heredoc_error(t_heredoc *heredoc, char *limiter);
 void		exit_heredoc(t_heredoc *heredoc, char *limiter, char *line, int fd);
+int			gnl(char **line);
 
 /* expend.c */
 char		*expend_str(t_envi *envi, char *str, int exit_value);
