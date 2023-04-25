@@ -60,7 +60,7 @@ void	heredoc_exec(char *limiter, char *name, t_heredoc *heredoc)
 	fd = open(name, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 		return (message_heredoc(heredoc, "open heredoc", errno, &exit));
-	//init_signal(HEREDOC);
+	sig();
 	signal_flag = 0;
 	while (!signal_flag)
 	{

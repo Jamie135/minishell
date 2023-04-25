@@ -50,12 +50,6 @@ void	child_cmd_2(t_shell *shell, const int id)
 		return (free_split(path), free(tmp), \
 				message_free_exit(shell, shell->args[id][0], COMMAND, &exit));
 	free(tmp);
-	// printf("cmd: %s\n", cmd);
-	// int	i = -1;
-	// while (i++ <= id)
-	// {
-	// 	printf("args[%i][%i]: %s\n", id, i, shell->args[id][i]);
-	// }
 	execve(cmd, shell->args[id], shell->environment);
 	free_child(shell, path, cmd);
 	exit(EXIT_FAILURE);

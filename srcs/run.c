@@ -79,11 +79,11 @@ int	line_null(char *line, t_envi *env)
 //retourner la ligne de commande lue par readline en l'ajoutant en historique
 char	*ft_readline(char *line, int *count, t_envi *env, int *exit)
 {
-	//init_signal(MINISHELL);
+	sig();
 	(*count)++;
 	line = readline("minishell> ");
 	add_history(line);
-	//init_signal(PARENT);
+	sig();
 	if (line_null(line, env) == -1 || line_space(line) == -1)
 		return (NULL);
 	return (line);
