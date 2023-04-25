@@ -19,10 +19,12 @@ int	ft_env(t_shell *shell)
 
 	if (!shell->environment)
 		return (EXIT_SUCCESS);
+	if (len_array(shell->args[cid]) > 1)
+		return (message_builtins("env", shell->args[cid][1], TOOMANY), 127);
 	i = 0;
 	while (shell->environment[i])
 	{
-		printf("%s\n", shell->environment[i]);
+		ft_putendl_fd(shell->environment[i], STDOUT);
 		i++;
 	}
 	return (SUCCESS);

@@ -16,8 +16,9 @@ int	ft_pwd(t_shell *shell)
 {
 	char	repertoire_actuel[PATH_MAX];
 
+	(void)shell;
 	if (!getcwd(repertoire_actuel, sizeof(repertoire_actuel)))
 		return (message_free_exit(shell, NULL, errno, &exit), EXIT_FAILURE);
-	printf("%s\n", repertoire_actuel);
+	ft_putendl_fd(repertoire_actuel, STDOUT);
 	return (EXIT_SUCCESS);
 }
