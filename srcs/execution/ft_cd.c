@@ -12,42 +12,43 @@
 
 #include "../../includes/minishell.h"
 
-int	ve_est_OLDPWD(char *str)
+void    ajoute(const char *str, t_envi *envi)
 {
-	if (!str)
-		return (0);
-	if (str[0] != 'O')
-		return (0);
-	if (str[1] != 'L')
-		return (0);
-	if (str[2] != 'D')
-		return (0);
-	if (str[3] != 'P')
-		return (0);
-	if (str[4] != 'W')
-		return (0);
-	if (str[5] != 'D')
-		return (0);
-	if (str[6] != '\0')
-		return (0);
-	return (1);
+        while (envi->next)
+                envi = envi->next;
+        envi->ve = avant_egal(str);
+        envi->value = apres_egal(str);
+        envi->next = NULL;
 }
 
-int	ve_est_HOME(char *str)
+void    met_a_jour_OLDPWD(t_shell *shell, char *ancien_chemin)
 {
-	if (!str)
-		return (0);
-	if (str[0] != 'H')
-		return (0);
-	if (str[1] != 'O')
-		return (0);
-	if (str[2] != 'M')
-		return (0);
-	if (str[3] != 'E')
-		return (0);
-	if (str[4] != '\0')
-		return (0);
-	return (1);
+        int                     trouvee;
+        const char      **arg = (const char **)shell->args[shell->cid];
+        t_envi          *parcours;
+
+
+        trouvee = 0;
+        parcours = shell->envi;
+        while (parcours)
+        {
+                if (identique(parcours->ve, "OLDPWD"))
+                {
+                        parcours->value = ancien_chemin;
+                        trouvee = 1;
+                }
+        parcours = parcours->next;
+        }
+}
+
+char    *pwd_avant_CD(t_shell *shell)
+{
+        char    *repertoire_actuel;
+
+        repertoire_actuel = getcwd(NULL, 0);
+        if (!(repertoire_actuel))
+                return (message_free_exit(shell, NULL, errno, &exit), NULL);
+        return (repertoire_actuel);
 }
 
 char	*valeur_de_HOME(t_shell *shell)
@@ -59,7 +60,7 @@ char	*valeur_de_HOME(t_shell *shell)
 		return (NULL);
 	while (envi)
 	{
-		if (ve_est_HOME(envi->ve))
+		if (identique("HOME", (envi->ve)))
 			return (envi->value);
 		envi = envi->next;
 	}
@@ -75,7 +76,7 @@ char	*valeur_de_OLDPWD(t_shell *shell)
 		return (NULL);
 	while (envi)
 	{
-		if (ve_est_OLDPWD(envi->ve))
+		if (identique("OLDPWD", (envi->ve)))
 			return (envi->value);
 		envi = envi->next;
 	}
@@ -104,11 +105,13 @@ int	execute_tilde_et_moins(const char **arg, t_shell *shell)
 int	ft_cd(t_shell *shell)
 {
 	const char	**arg = (const char **)shell->args[shell->cid];
+	char            *ancien_chemin;
 	int		erreur;
 	int		tilde_et_moins;
 
 	arg++;
 	erreur = 0;
+	ancien_chemin = pwd_avant_CD(shell);
 	tilde_et_moins = execute_tilde_et_moins(arg, shell);
 	if (!arg || !arg[0])
 	{
@@ -128,5 +131,6 @@ int	ft_cd(t_shell *shell)
 		message_free_exit(NULL, "cd", errno, NULL);
 		return (EXIT_FAILURE);
 	}
+	met_a_jour_OLDPWD(shell, ancien_chemin);
 	return (EXIT_SUCCESS);
 }
