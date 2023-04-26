@@ -87,9 +87,18 @@ int	execute_tilde_et_moins(const char **arg, t_shell *shell)
 	if (!arg[0])
 		return (0);
 	if (arg[0][0] == '~' && arg[0][1] == '\0')
+	{
+		if (!valeur_de_HOME(shell))
+			printf("cd: HOME not set\n");
 		return(chdir(valeur_de_HOME(shell), 1);
+	}
 	if (arg[0][0] == '-' && arg[0][1] == '\0')
+	{
+		if (!valeur_de_OLDPWD(shell))
+			printf("cd: OLDPWD not set\n");
 		return(chdir(valeur_de_OLDPWD(shell)), 1);
+	}
+	return (0);
 }
 
 int	ft_cd(t_shell *shell)
