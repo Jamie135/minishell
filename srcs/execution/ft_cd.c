@@ -82,24 +82,25 @@ char	*valeur_de_OLDPWD(t_shell *shell)
 	return (NULL);
 }
 
-void	transforme_tilde_et_moins(char **arg, t_shell *shell)
+int	execute_tilde_et_moins(const char **arg, t_shell *shell)
 {
 	if (!arg[0])
-		return ;
+		return (0);
 	if (arg[0][0] == '~' && arg[0][1] == '\0')
-		arg[0] = valeur_de_HOME(shell);
+		return(chdir(valeur_de_HOME(shell), 1);
 	if (arg[0][0] == '-' && arg[0][1] == '\0')
-		arg[0] = valeur_de_OLDPWD(shell);
+		return(chdir(valeur_de_OLDPWD(shell)), 1);
 }
 
 int	ft_cd(t_shell *shell)
 {
-	char	**arg = (char **)shell->args[shell->cid];
-	int			erreur;
+	const char	**arg = (const char **)shell->args[shell->cid];
+	int		erreur;
+	int		tilde_et_moins;
 
 	arg++;
 	erreur = 0;
-	transforme_tilde_et_moins(arg, shell);
+	tilde_et_moins = execute_tilde_et_moins(arg, shell);
 	if (!arg || !arg[0])
 	{
 		if (!valeur_de_HOME(shell))
@@ -111,7 +112,7 @@ int	ft_cd(t_shell *shell)
 		message_builtins("cd", NULL, TOOMANY);
 		return (EXIT_FAILURE);
 	}
-	else
+	else if (!tilde_et_moins)
 		erreur = chdir(arg[0]);
 	if (erreur == -1)
 	{
