@@ -16,8 +16,8 @@ void    ajoute(const char *str, t_envi *envi)
 {
         while (envi->next)
                 envi = envi->next;
-        envi->ve = avant_egal(str);
-        envi->value = apres_egal(str);
+        envi->ve = variable_env((char *)str);
+        envi->value = value_env((char *)str);
         envi->next = NULL;
 }
 
@@ -91,7 +91,7 @@ int	execute_tilde_et_moins(const char **arg, t_shell *shell)
 	{
 		if (!valeur_de_HOME(shell))
 			printf("cd: HOME not set\n");
-		return(chdir(valeur_de_HOME(shell), 1);
+		return(chdir(valeur_de_HOME(shell)), 1);
 	}
 	if (arg[0][0] == '-' && arg[0][1] == '\0')
 	{
