@@ -20,6 +20,12 @@ void	exit_heredoc(t_heredoc *heredoc, char *limiter, char *line, int fd)
 
 void	heredoc_error(t_heredoc *heredoc, char *limiter)
 {
+	// if (ctrlD)
+	// {
+	// 	free_heredoc(heredoc, limiter, NULL, fd);
+	// 	ctrlD = 0;
+	// 	exit(2);
+	// }
 	ft_putstr_fd("bash: warning: here-document at line ", 2);
 	ft_putnbr_fd(heredoc->line_num[0], 2);
 	ft_putstr_fd(" delimited by end-of-file (wanted `", 2);
@@ -73,8 +79,7 @@ char	*random_string(int len)
 	return (buffer);
 }
 
-// give the value of the key in the envi if not found return string null
-// and duplicate the value
+// donner la valeur au variable environnement puis la dupliquer
 char	*give_value(char *key, t_envi *envi)
 {
 	char	*value;

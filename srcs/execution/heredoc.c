@@ -63,14 +63,17 @@ void	heredoc_exec(char *limiter, char *name, t_heredoc *heredoc)
 	while (1)
 	{
 		line = heredoc_get_line(heredoc, limiter, fd);
-		if (!line)
+		if (!line /*|| ctrlD*/)
 		{
-			heredoc_error(heredoc, limiter);
+			// if (!ctrlD)
+			// 	heredoc_error(heredoc, limiter);
 			break ;
 		}
 		ft_putendl_fd(line, fd);
 		free_ptr((void **)line);
 	}
+	// if (ctrlD)
+	// 	exit_heredoc(heredoc, limiter, line, fd);
 	return (free_heredoc(heredoc, limiter, NULL, fd), exit(0));
 }
 
