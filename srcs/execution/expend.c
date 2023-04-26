@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 20:48:23 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/28 20:48:23 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/26 17:06:22 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	expend_exit(char *str, t_list **join, int exit_value)
 	to_join = NULL;
 	if (!ft_strcmp("$", str))
 	{
+		printf("here\n");
 		to_join = ft_strdup("$");
 		if (!to_join)
 			return (EXIT_FAILURE);
@@ -86,7 +87,7 @@ char	*expend_join(t_envi *envi, t_list **join, char *str)
 	}
 	if (!is_special_var(str[1]))
 	{
-		to_join = find_value_envi(&str[1], envi);
+		to_join = give_value(&str[1], envi);
 		if (!to_join)
 			return (NULL);
 		ft_lstadd_front(join, ft_lstnew(to_join, -1));

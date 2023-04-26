@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 15:45:53 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/27 15:51:16 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:44:26 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,11 @@ int	valid_num_redir(t_list *list)
 
 	while (list)
 	{
-		// printf("list content: %s, len: %i\n", list->content, (int)ft_strlen(list->content));
-		// printf("list type: %i\n", list->type);
 		if (list->type == REDIR)
 		{
 			i = 0;
 			while (list->content[i])
 			{
-				printf("list content[%i]: %c\n", i, list->content[i]);
 				if (i > 1)
 				{
 					if (list->content[0] == '>')

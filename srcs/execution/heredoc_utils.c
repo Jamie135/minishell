@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:56:25 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/27 16:56:41 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:58:34 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,30 +73,15 @@ char	*random_string(int len)
 	return (buffer);
 }
 
-int	gnl(char **line)
+// give the value of the key in the envi if not found return string null
+// and duplicate the value
+char	*give_value(char *key, t_envi *envi)
 {
-	char	*buffer;
-	int		i;
-	int		r;
-	char	c;
+	char	*value;
 
-	i = 0;
-	r = 0;
-	buffer = (char *)malloc(10000);
-	if (!buffer)
-		return (-1);
-	r = read(0, &c, 1);
-	while (r && c != '\n' && c != '\0')
-	{
-		if (c != '\n' && c != '\0')
-			buffer[i] = c;
-		i++;
-		r = read(0, &c, 1);
-	}
-	buffer[i] = '\n';
-	buffer[++i] = '\0';
-	*line = buffer;
-	free(buffer);
-	return (r);
+	if (find_value_envi(key, envi) != NULL)
+		value = ft_strdup(find_value_envi(key, envi));
+	else
+		value = ft_strdup("\0");
+	return (value);
 }
-

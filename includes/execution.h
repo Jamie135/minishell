@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 21:08:33 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/29 16:16:49 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:56:39 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ void		heredoc_unlink(t_list *list);
 char		*random_string(int len);
 void		heredoc_error(t_heredoc *heredoc, char *limiter);
 void		exit_heredoc(t_heredoc *heredoc, char *limiter, char *line, int fd);
-int			gnl(char **line);
+char		*give_value(char *key, t_envi *envi);
 
 /* expend.c */
 char		*expend_str(t_envi *envi, char *str, int exit_value);
