@@ -112,7 +112,6 @@ int	ft_export(t_shell *shell)
 	{
 		if (is_special_var(arg[k][0]) || check_ve((char *)arg[k]))
 		{
-			printf("spe var: %i ; check_ve: %i\n", is_special_var(arg[k][0]), check_ve((char *)arg[k]));
 			message_builtins("export", (char *)arg[k], ID);
 			shell->mode = 1;
 			continue ;
