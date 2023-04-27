@@ -7,7 +7,7 @@ srcs/execution/message_1.c srcs/execution/message_2.c \
 srcs/execution/args.c srcs/execution/builtins.c \
 srcs/execution/parent.c srcs/execution/child_1.c srcs/execution/child_2.c \
 srcs/execution/close.c srcs/execution/open.c srcs/execution/command.c srcs/execution/exit.c \
-srcs/execution/expend.c srcs/execution/expend_utils.c \
+srcs/execution/expend.c srcs/execution/expend_2.c srcs/execution/expend_utils.c \
 srcs/execution/free_execution_1.c srcs/execution/free_execution_2.c \
 srcs/execution/free_execution_3.c \
 srcs/execution/ft_cd.c srcs/execution/ft_echo.c srcs/execution/ft_env.c \

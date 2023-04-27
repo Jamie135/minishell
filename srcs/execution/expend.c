@@ -18,13 +18,6 @@ int	expend_list(t_envi *envi, t_list *list, int exit_value)
 	t_list	*lst;
 
 	lst = NULL;
-	// while (list)
-	// {
-	// 	printf("list content: %s, len: %i\n", list->content, (int)ft_strlen(list->content));
-	// 	if (!list->next)
-	// 		break;
-	// 	list = list->next;
-	// }
 	while (envi && list)
 	{
 		if (ft_strchr(list->content, '$') && list->unexpended == false \
@@ -51,6 +44,7 @@ int	expend_exit(char *str, t_list **join, int exit_value)
 	to_join = NULL;
 	if (!ft_strcmp("$", str))
 	{
+
 		to_join = ft_strdup("$");
 		if (!to_join)
 			return (EXIT_FAILURE);

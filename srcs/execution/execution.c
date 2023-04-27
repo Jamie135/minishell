@@ -107,7 +107,13 @@ t_envi	*execution(t_list *list, t_envi *env, int *count, int *exit_value)
 		return (free_list(list), env);
 	if (expend_list(env, list, *exit_value))
 		return (free_list(list), malloc_err("execution.c (1)"), env);
-	
+	while (list)
+	{
+		printf("list content: %s, len: %i\n", list->content, (int)ft_strlen(list->content));
+		if (!list->next)
+			break;
+		list = list->next;
+	}
 	shell = shell_struct(list, env, count, exit_value);
 	if (!shell)
 		return (NULL);
