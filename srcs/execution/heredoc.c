@@ -60,7 +60,7 @@ void	heredoc_exec(char *limiter, char *name, t_heredoc *heredoc)
 	fd = open(name, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 		return (message_heredoc(heredoc, "open heredoc", errno, &exit));
-	parent_heredoc_signal(HEREDOC);
+	parent_child_signal(HEREDOC);
 	while (!signal_flag)
 	{
 		line = heredoc_get_line(heredoc, limiter, fd);

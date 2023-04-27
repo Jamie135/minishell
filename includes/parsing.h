@@ -110,7 +110,7 @@ void		fill_quote_inc(char *str, char *new, int *i, int j);
 /* signals.c */
 void		sig(void);
 void		ctrlc(int signum);
-int			parent_heredoc_signal(int pro);
+int			parent_child_signal(int pro);
 
 void		ft_exit(t_list *list, t_envi *envi, char *line, t_free *free_var);
 

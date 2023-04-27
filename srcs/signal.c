@@ -18,7 +18,6 @@ void	heredoc_handler(int	sig)
 {
 	if (sig == SIGINT)
 	{
-		rl_done = 1;
 		signal_flag = 1;
 		write(1, "\n", 1);
 		printf("minishell> ");
@@ -27,8 +26,32 @@ void	heredoc_handler(int	sig)
 		return ;
 }
 
-int	parent_heredoc_signal(int pro)
+void	minishell_handler(int sig)
 {
+	if (sig == SIGINT)
+	{
+		if (signal_flag == 0 || signal_flag == 2)
+		{
+			signal_flag = 2;
+			rl_on_new_line();
+			write(1, "\n", 1);
+			rl_replace_line("", 0);
+			rl_redisplay();
+		}
+		else
+			signal_flag = 0;
+	}
+	else
+		return ;
+}
+
+int	parent_child_signal(int pro)
+{
+	if (pro == MINISHELL)
+	{
+		signal(SIGQUIT, SIG_IGN);
+		signal(SIGINT, &minishell_handler);
+	}
 	if (pro == CHILD)
 	{
 		signal(SIGINT, SIG_DFL);

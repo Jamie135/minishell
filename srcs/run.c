@@ -82,11 +82,13 @@ int	line_null(char *line, t_envi *env)
 char	*ft_readline(char *line, int *count, t_envi *env, int *exit)
 {
 	signal_flag = 0;
-	sig();
+	parent_child_signal(MINISHELL);
 	(*count)++;
 	line = readline("minishell> ");
 	add_history(line);
-	parent_heredoc_signal(PARENT);
+	if (signal_flag == 2)
+		*exit = 130;
+	parent_child_signal(PARENT);
 	if (line_null(line, env) == -1 || line_space(line) == -1)
 		return (NULL);
 	return (line);
