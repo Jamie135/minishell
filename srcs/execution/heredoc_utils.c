@@ -12,12 +12,14 @@
 
 #include "../../includes/minishell.h"
 
+//exit heredoc quand on fait ctrlC
 void	exit_heredoc(t_heredoc *heredoc, char *limiter, char *line, int fd)
 {
 	free_heredoc(heredoc, limiter, line, fd);
 	exit(130);
 }
 
+//exit heredoc quand on fait ctrlD
 void	heredoc_error(t_heredoc *heredoc, char *limiter)
 {
 	// if (ctrlD)
