@@ -12,68 +12,6 @@
 
 #include "../../includes/minishell.h"
 
-// static char	*apres_egal(const char *str)
-// {
-// 	return (value_env((char *)str));
-// }
-
-// static char	*avant_egal(const char *str)
-// {
-// 	return (variable_env((char *)str));
-// }
-
-// static void	liste_complete(t_envi *envi)
-// {
-// 	t_envi	*parcours;
-
-// 	parcours = envi;
-// 	while (parcours)
-// 	{
-// 		printf("declare -x ");
-// 		printf("%s=%s\n", parcours->ve, parcours->value);
-// 		parcours = parcours->next;
-// 	}
-// }
-
-// // ajoute une nouvelle variable d'environement a la fin de la liste chainee.
-// static void	ajoute(const char *str, t_envi *envi)
-// {
-// 	while (envi->next)
-// 		envi = envi->next;
-// 	envi->ve = avant_egal(str);
-// 	envi->value = apres_egal(str);
-// 	envi->next = NULL;
-// }
-
-// int	ft_export(t_shell *shell)
-// {
-// 	const char	**arg = (const char **)shell->args[shell->cid];
-// 	int			k;
-// 	int			trouvee;
-// 	t_envi		*parcours;
-
-// 	k = 0;
-// 	if (arg[1] == NULL)
-// 		return (FAILURE);
-// 	while (arg[k++])
-// 	{
-// 		trouvee = 0;
-// 		parcours = shell->envi;
-// 		while (parcours)
-// 		{
-// 			if (identique(parcours->ve, avant_egal(arg[k])))
-// 			{
-// 				parcours->value = apres_egal(arg[k]);
-// 				trouvee = 1;
-// 			}
-// 		parcours = parcours->next;
-// 		}
-// 		if (!trouvee)
-// 			ajoute(arg[k], shell->envi);
-// 	}
-// 	return (EXIT_SUCCESS);
-// }
-
 //check la validite du variable environnementale
 static int	check_ve(char *str)
 {
@@ -174,6 +112,7 @@ int	ft_export(t_shell *shell)
 	{
 		if (is_special_var(arg[k][0]) || check_ve((char *)arg[k]))
 		{
+			printf("spe var: %i ; check_ve: %i\n", is_special_var(arg[k][0]), check_ve((char *)arg[k]));
 			message_builtins("export", (char *)arg[k], ID);
 			shell->mode = 1;
 			continue ;

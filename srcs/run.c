@@ -120,6 +120,13 @@ int	run(char **envp, char *line, t_list *list, t_free *free_var)
 		if (free_null_list(list, free_var, line, env) == EXIT_SUCCESS)
 			continue ;
 		ft_exit(list, env, line, free_var);
+		// while (list)
+		// {
+		// 	printf("list content: %s, len: %i\n", list->content, (int)ft_strlen(list->content));
+		// 	if (!list->next)
+		// 		break;
+		// 	list = list->next;
+		// }
 		env = execution(list, env, &count, &exit_value);
 		if (env == ERROR)
 			return (malloc_err("run.c (2)"), EXIT_FAILURE);

@@ -64,7 +64,7 @@ int	ft_all_isalnum_len(char *str, int len)
 	n = 0;
 	while (str[i] && i < len)
 	{
-		if (ft_isalnum(str[i]))
+		if (ft_isalnum(str[i]) || str[i] == '_')
 			n++;
 		i++;
 	}

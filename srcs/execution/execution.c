@@ -107,6 +107,7 @@ t_envi	*execution(t_list *list, t_envi *env, int *count, int *exit_value)
 		return (free_list(list), env);
 	if (expend_list(env, list, *exit_value))
 		return (free_list(list), malloc_err("execution.c (1)"), env);
+	
 	shell = shell_struct(list, env, count, exit_value);
 	if (!shell)
 		return (NULL);
