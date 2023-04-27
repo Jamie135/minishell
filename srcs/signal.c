@@ -12,8 +12,10 @@
 
 #include "../includes/minishell.h"
 
+//signal_flag va etre utiliser pour gerer les ctrlC/D dans la boucle heredoc 
 volatile int	signal_flag = 0;
 
+//handler du signal recu dans heredoc
 void	heredoc_handler(int	sig)
 {
 	if (sig == SIGINT)
@@ -26,6 +28,7 @@ void	heredoc_handler(int	sig)
 		return ;
 }
 
+//handler du signal recu dans le main
 void	minishell_handler(int sig)
 {
 	if (sig == SIGINT)
