@@ -40,7 +40,8 @@ char	*heredoc_get_line(t_heredoc *heredoc, char *limiter, int fd)
 	(heredoc->line_num[0])++;
 	if (line)
 	{
-		if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
+		if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0\
+			&& ft_strlen(line) == ft_strlen(limiter))
 			return (free_heredoc(heredoc, limiter, line, fd), exit(0), NULL);
 		tmp = line;
 		line = expend_str(heredoc->envi, tmp, heredoc->exit_value[0]);

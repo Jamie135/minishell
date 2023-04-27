@@ -80,15 +80,3 @@ char	*random_string(int len)
 	close(fd);
 	return (buffer);
 }
-
-// donner la valeur au variable environnement puis la dupliquer
-char	*give_value(char *key, t_envi *envi)
-{
-	char	*value;
-
-	if (find_value_envi(key, envi) != NULL)
-		value = ft_strdup(find_value_envi(key, envi));
-	else
-		value = ft_strdup("\0");
-	return (value);
-}

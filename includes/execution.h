@@ -118,6 +118,7 @@ void		sort_envi(t_envi **front);
 void		swap_envi(t_envi *e_1, t_envi *e_2);
 char		**get_path(t_shell *shell);
 char		*get_access(char *cmd, char **path);
+char		*give_value(char *key, t_envi *envi);
 
 /* execution.c */
 t_envi		*execution(t_list *list, t_envi *env, int *count, int *exit_value);
@@ -142,7 +143,6 @@ void		heredoc_unlink(t_list *list);
 char		*random_string(int len);
 void		heredoc_error(t_heredoc *heredoc, char *limiter);
 void		exit_heredoc(t_heredoc *heredoc, char *limiter, char *line, int fd);
-char		*give_value(char *key, t_envi *envi);
 
 /* expend.c */
 char		*expend_str(t_envi *envi, char *str, int exit_value);
