@@ -25,7 +25,7 @@ int	parent_no_cmd(t_shell *shell)
 		return (FAILURE);
 	if (*pid == 0)
 	{
-		sig();
+		parent_heredoc_signal(CHILD);
 		child_no_cmd(shell);
 	}
 	waitpid(*pid, &shell->mode, WUNTRACED);
@@ -42,7 +42,7 @@ int	parent_one_cmd(t_shell *shell)
 			return (FAILURE);
 		if (shell->pid[0] == 0)
 		{
-			sig();
+			parent_heredoc_signal(CHILD);
 			child_cmd_1(shell);
 		}
 	}
@@ -66,7 +66,7 @@ int	parent_n_cmd(t_shell *shell)
 				return (FAILURE);
 			if (shell->pid[shell->cid] == 0)
 			{
-				sig();
+				parent_heredoc_signal(CHILD);
 				child_n_cmd(shell);
 			}
 		}
@@ -88,7 +88,7 @@ int	parent_one_cmd_redir(t_shell *shell)
 			return (FAILURE);
 		if (shell->pid[0] == 0)
 		{
-			sig();
+			parent_heredoc_signal(CHILD);
 			child_cmd_redir(shell);
 		}
 	}
@@ -109,7 +109,7 @@ int	parent_n_cmd_redir(t_shell *shell)
 				return (FAILURE);
 			if (shell->pid[shell->cid] == 0)
 			{
-				sig();
+				parent_heredoc_signal(CHILD);
 				child_n_cmd_redir(shell);
 			}
 		}

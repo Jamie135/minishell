@@ -12,6 +12,8 @@
 
 #include "../includes/minishell.h"
 
+extern volatile int	signal_flag;
+
 //verifier si la syntaxe est correcte (ouverture et fermeture des quotes)
 int	valid_syntax(char *line)
 {
@@ -79,11 +81,12 @@ int	line_null(char *line, t_envi *env)
 //retourner la ligne de commande lue par readline en l'ajoutant en historique
 char	*ft_readline(char *line, int *count, t_envi *env, int *exit)
 {
+	signal_flag = 0;
 	sig();
 	(*count)++;
 	line = readline("minishell> ");
 	add_history(line);
-	sig();
+	parent_heredoc_signal(PARENT);
 	if (line_null(line, env) == -1 || line_space(line) == -1)
 		return (NULL);
 	return (line);
@@ -115,14 +118,6 @@ int	run(char **envp, char *line, t_list *list, t_free *free_var)
 		if (free_null_list(list, free_var, line, env) == EXIT_SUCCESS)
 			continue ;
 		ft_exit(list, env, line, free_var);
-		//test parsing
-		// while (list)
-		// {
-		// 	printf("list content: %s, len: %i\n", list->content, (int)ft_strlen(list->content));
-		// 	if (!list->next)
-		// 		break ;
-		// 	list = list->next;
-		// }
 		env = execution(list, env, &count, &exit_value);
 		if (env == ERROR)
 			return (malloc_err("run.c (2)"), EXIT_FAILURE);

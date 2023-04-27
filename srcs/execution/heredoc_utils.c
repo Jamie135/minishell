@@ -19,20 +19,22 @@ void	exit_heredoc(t_heredoc *heredoc, char *limiter, char *line, int fd)
 	exit(130);
 }
 
-//exit heredoc quand on fait ctrlD
-void	heredoc_error(t_heredoc *heredoc, char *limiter)
+//enlever les fichiers de heredoc
+void	heredoc_unlink(t_list *list)
 {
-	// if (ctrlD)
-	// {
-	// 	free_heredoc(heredoc, limiter, NULL, fd);
-	// 	ctrlD = 0;
-	// 	exit(2);
-	// }
-	ft_putstr_fd("bash: warning: here-document at line ", 2);
-	ft_putnbr_fd(heredoc->line_num[0], 2);
-	ft_putstr_fd(" delimited by end-of-file (wanted `", 2);
-	ft_putstr_fd(limiter, 2);
-	ft_putendl_fd("')", 2);
+	while (list)
+	{
+		if (list->type == REDIR && ft_strcmp(list->content, "<<\0") == 0)
+		{
+			if (list->next)
+			{
+				list = list->next;
+				unlink(list->content);
+			}
+		}
+		if (list)
+			list = list->next;
+	}
 }
 
 //rendre le caractere c affichable si besoin  

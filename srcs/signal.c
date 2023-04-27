@@ -12,6 +12,41 @@
 
 #include "../includes/minishell.h"
 
+volatile int	signal_flag = 0;
+
+void	heredoc_handler(int	sig)
+{
+	if (sig == SIGINT)
+	{
+		rl_done = 1;
+		signal_flag = 1;
+		write(1, "\n", 1);
+		printf("minishell> ");
+	}
+	else
+		return ;
+}
+
+int	parent_heredoc_signal(int pro)
+{
+	if (pro == CHILD)
+	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
+	}
+	if (pro == PARENT)
+	{
+		signal(SIGINT, SIG_IGN);
+		signal(SIGQUIT, SIG_IGN);
+	}
+	if (pro == HEREDOC)
+	{
+		signal(SIGINT, &heredoc_handler);
+		signal(SIGQUIT, SIG_IGN);
+	}
+	return (0);
+}
+
 void	ctrlc(int signum)
 {
 	(void)signum;

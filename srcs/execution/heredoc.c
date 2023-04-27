@@ -12,22 +12,22 @@
 
 #include "../../includes/minishell.h"
 
-//enlever les fichiers de heredoc
-void	heredoc_unlink(t_list *list)
+extern volatile int	signal_flag;
+
+//exit heredoc quand on fait ctrlD
+void	heredoc_error(t_heredoc *heredoc, char *limiter, int fd)
 {
-	while (list)
+	if (signal_flag == 1)
 	{
-		if (list->type == REDIR && ft_strcmp(list->content, "<<\0") == 0)
-		{
-			if (list->next)
-			{
-				list = list->next;
-				unlink(list->content);
-			}
-		}
-		if (list)
-			list = list->next;
+		free_heredoc(heredoc, limiter, NULL, fd);
+		signal_flag = 0;
+		exit(2);
 	}
+	ft_putstr_fd("bash: warning: here-document at line ", 2);
+	ft_putnbr_fd(heredoc->line_num[0], 2);
+	ft_putstr_fd(" delimited by end-of-file (wanted `", 2);
+	ft_putstr_fd(limiter, 2);
+	ft_putendl_fd("')", 2);
 }
 
 //recuperer la ligne de commande de heredoc et verifier si c'est un delimiteur
@@ -60,21 +60,21 @@ void	heredoc_exec(char *limiter, char *name, t_heredoc *heredoc)
 	fd = open(name, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 		return (message_heredoc(heredoc, "open heredoc", errno, &exit));
-	sig();
-	while (1)
+	parent_heredoc_signal(HEREDOC);
+	while (!signal_flag)
 	{
 		line = heredoc_get_line(heredoc, limiter, fd);
-		if (!line /*|| ctrlD*/)
+		if (!line || signal_flag == 1)
 		{
-			// if (!ctrlD)
-			// 	heredoc_error(heredoc, limiter);
+			if (!signal_flag)
+				heredoc_error(heredoc, limiter, fd);
 			break ;
 		}
 		ft_putendl_fd(line, fd);
 		free_ptr((void **)&line);
 	}
-	// if (ctrlD)
-	// 	exit_heredoc(heredoc, limiter, line, fd);
+	if (signal_flag == 1)
+		exit_heredoc(heredoc, limiter, line, fd);
 	return (free_heredoc(heredoc, limiter, NULL, fd), exit(0));
 }
 

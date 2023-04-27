@@ -141,7 +141,7 @@ void		heredoc_unlink(t_list *list);
 
 /* heredoc_utils.c */
 char		*random_string(int len);
-void		heredoc_error(t_heredoc *heredoc, char *limiter);
+void		heredoc_error(t_heredoc *heredoc, char *limiter, int fd);
 void		exit_heredoc(t_heredoc *heredoc, char *limiter, char *line, int fd);
 
 /* expend.c */
