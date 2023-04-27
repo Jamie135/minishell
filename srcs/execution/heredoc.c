@@ -70,7 +70,7 @@ void	heredoc_exec(char *limiter, char *name, t_heredoc *heredoc)
 			break ;
 		}
 		ft_putendl_fd(line, fd);
-		free_ptr((void **)line);
+		free_ptr((void **)&line);
 	}
 	// if (ctrlD)
 	// 	exit_heredoc(heredoc, limiter, line, fd);
