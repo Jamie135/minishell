@@ -6,7 +6,7 @@ srcs/execution/execution.c \
 srcs/execution/message_1.c srcs/execution/message_2.c \
 srcs/execution/args.c srcs/execution/builtins.c \
 srcs/execution/parent.c srcs/execution/child_1.c srcs/execution/child_2.c \
-srcs/execution/close.c srcs/execution/open.c srcs/execution/command.c srcs/execution/exit.c \
+srcs/execution/close.c srcs/execution/open.c srcs/execution/command.c \
 srcs/execution/expend.c srcs/execution/expend_utils.c \
 srcs/execution/free_execution_1.c srcs/execution/free_execution_2.c \
 srcs/execution/free_execution_3.c \
@@ -15,7 +15,7 @@ srcs/execution/ft_exit.c srcs/execution/ft_export.c srcs/execution/ft_pwd.c \
 srcs/execution/ft_unset.c \
 srcs/execution/heredoc.c srcs/execution/heredoc_utils.c \
 srcs/execution/shell_redir.c srcs/execution/shell_struct.c srcs/execution/shell_utils.c \
-srcs/execution/utils.c srcs/execution/valid_parsing.c \
+srcs/execution/utils.c srcs/execution/utils_2.c srcs/execution/valid_parsing.c \
 \
 srcs/minishell.c srcs/run.c srcs/signal.c \
 \
