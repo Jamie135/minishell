@@ -14,33 +14,21 @@
 
 extern volatile int	signal_flag;
 
-//verifier si la syntaxe est correcte (ouverture et fermeture des quotes)
-int	valid_syntax(char *line)
+int	line_dollars_alphabet(char *line, int *exit)
 {
-	int	i;
+	size_t	i;
+	int		d;
 
 	i = 0;
-	while (line[i])
-	{
-		if (line[i] && line[i] == '\'' && i++)
-		{
-			while (line[i] && line[i] != '\'')
-				i++;
-			if (!line[i])
-				return (syntax_err(line));
-		}
-		else if (line[i] && line[i] == '\"' && i++)
-		{
-			while (line[i] && line[i] != '\"')
-				i++;
-			if (!line[i])
-				return (syntax_err(line));
-		}
-		if (line[i] && (line[i] == ';' || line[i] == 92))
-			return (syntax_err(line));
+	while (line[i] == '$')
 		i++;
+	if (i == 0 || i == ft_strlen(line))
+		return (0);
+	else
+	{
+		d = dollars_pars(line, exit);
+		return (d);
 	}
-	return (0);
 }
 
 //verifier si la ligne de commande a uniquement que des espaces
@@ -89,7 +77,8 @@ char	*ft_readline(char *line, int *count, t_envi *env, int *exit)
 	if (signal_flag == 2)
 		*exit = 130;
 	parent_child_signal(PARENT);
-	if (line_null(line, env) == -1 || line_space(line) == -1)
+	if (line_null(line, env) == -1 || line_space(line) == -1 \
+		|| line_dollars_alphabet(line, exit) == -1)
 		return (NULL);
 	return (line);
 }

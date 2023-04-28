@@ -104,8 +104,11 @@ void		*free_split_index(char **split, int index, int message);
 void		free_split_parsing(char **split);
 
 /* utils_parsing*/
+int			valid_syntax(char *line);
 void		fill_inc(char *str, char *new, int *i, int j);
 void		fill_quote_inc(char *str, char *new, int *i, int j);
+int			dollars_pars(char *str, int *exit);
+int			find_spe_var(char *str);
 
 /* signals.c */
 void		sig(void);
