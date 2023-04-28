@@ -19,6 +19,7 @@ void	heredoc_error(t_heredoc *heredoc, char *limiter, int fd)
 {
 	if (g_signal == 1)
 	{
+		printf("here\n");
 		free_heredoc(heredoc, limiter, NULL, fd);
 		g_signal = 0;
 		exit(2);

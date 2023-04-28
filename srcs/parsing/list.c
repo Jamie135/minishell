@@ -55,6 +55,9 @@ t_list	*fill_list(char *line, t_free *free_var)
 		return (NULL);
 	list->next = NULL;
 	tab = split_line(str, ' ');
+	// int i = 0;
+	// while (tab[i])
+	// 	printf("TAB = %s\n", tab[i++]);
 	if (!tab)
 		return (free_fill(tab, list, line));
 	if (trim_split(tab, free_var) == -1)

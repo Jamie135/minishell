@@ -111,17 +111,9 @@ char	**list_args(t_list *list)
 	i = 0;
 	if (split_space_cmd(list, args, &i))
 		return (NULL);
-	while (list && i < len)
-	{
-		if (i > 1)
-			list = list->next;
-		args[i] = ft_strdup(list->content);
-		if (!args[i])
-			return (free_n_split(args, i), NULL);
-		if (list->next)
-			list = list->next;
-		i++;
-	}
+	printf("i = %ld\n", i);
+	if (!list_args_2(list, args, &len, &i))
+		return (NULL);
 	args[i] = NULL;
 	return (args);
 }

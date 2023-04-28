@@ -11,3 +11,24 @@
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	list_args_2(t_list *list, char **args, size_t *len, size_t *i)
+{
+	size_t	j;
+
+	j = -1;
+	// while (++j < *i && list->next)
+	// 	list = list->next;
+	while (list && *i < *len)
+	{
+		args[*i] = ft_strdup(list->content);
+		if (!args[*i])
+			return (free_n_split(args, *i), 0);
+		if (list->next)
+			list = list->next;
+		(*i)++;
+	}
+	return (1);
+}
+
+// printf("args content: %s\n", list->content);
