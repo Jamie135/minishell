@@ -24,6 +24,8 @@ int	before_space(char *str)
 }
 
 //split la commande si on a un espace
+//ex: list->content = "echo he"
+//    args[0] = echo et args[1] = he
 int	split_space_cmd(t_list *list, char **args, size_t *i)
 {
 	if (list->type == CMD && ft_strchr(list->content, ' '))
@@ -31,11 +33,13 @@ int	split_space_cmd(t_list *list, char **args, size_t *i)
 		args[*i] = ft_substr(list->content, 0, before_space(list->content));
 		if (!args[*i])
 			return (free_n_split(args, *i), EXIT_FAILURE);
+		// printf("args[%ln]: %s\n", i, args[*i]);
 		(*i)++;
 		args[*i] = ft_substr(list->content, before_space(list->content) + 1,
 				ft_strlen(list->content) - before_space(list->content));
 		if (!args[*i])
 			return (free_n_split(args, *i), EXIT_FAILURE);
+		// printf("args[%ln]: %s\n", i, args[*i]);
 		(*i)++;
 	}
 	return (EXIT_SUCCESS);
@@ -98,20 +102,30 @@ char	**list_args(t_list *list)
 	if (list == NULL)
 		return (NULL);
 	len = len_args(list);
+	// printf("len: %li\n", len);
 	args = (char **)malloc(sizeof(char *) * (len + 1));
 	if (!args)
 		return (NULL);
 	while (list && list->type != CMD)
+	{
+		// printf("cont: %s\n",list->content);
 		list = list->next;
+	}
 	i = 0;
 	if (split_space_cmd(list, args, &i))
 		return (NULL);
+	// printf("i = %ld\n", i);
+	// printf("args list content: %s ; type: %i\n", list->content, list->type);
+	// printf("args list next content: %s ; type: %i\n", list->next->content, list->type);
 	while (list && i < len)
 	{
+		if (i > 1)
+			list = list->next;
 		args[i] = ft_strdup(list->content);
 		if (!args[i])
 			return (free_n_split(args, i), NULL);
-		list = list->next;
+		if (list->next)
+			list = list->next;
 		i++;
 	}
 	args[i] = NULL;

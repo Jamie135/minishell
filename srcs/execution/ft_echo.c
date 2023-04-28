@@ -69,6 +69,12 @@ int	ft_echo(t_shell *shell)
 	option = 0;
 	if (arg)
 		option = option_n(arg[0]);
+	// int i = 0;
+	// while (i < len_array((char **)arg))
+	// {
+	// 	printf("arg[%i]: %s, len: %i\n", i, arg[i], (int)ft_strlen(arg[i]));
+	// 	i++;
+	// }
 	if (arg)
 		k = cherche_premier_argument(arg);
 	if (arg[k] == NULL)

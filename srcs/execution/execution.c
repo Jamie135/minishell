@@ -110,13 +110,6 @@ t_envi	*execution(t_list *list, t_envi *env, int *count, int *exit_value)
 	shell = shell_struct(list, env, count, exit_value);
 	if (!shell)
 		return (NULL);
-	while (shell->list)
-	{
-		printf("shell->list->content: %s, len: %i\n", shell->list->content, (int)ft_strlen(shell->list->content));
-		if (!shell->list->next)
-			break;
-		shell->list = shell->list->next;
-	}
 	shlvl_var(shell);
 	if (parent_process(shell, env))
 		return (env);

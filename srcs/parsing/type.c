@@ -35,7 +35,7 @@ int	get_type(char *str, int	last_type)
 		return (PIPE);
 	else if (last_type == REDIR)
 		return (FILES);
-	else if (last_type == CMD || last_type == ARG)
+	else if ((last_type == CMD) || last_type == ARG)
 		return (ARG);
 	else
 		return (CMD);
@@ -47,11 +47,16 @@ void	type(t_list *list)
 	int	last_type;
 
 	last_type = -1;
+
 	while (list)
 	{
+		// printf("(1)list content: %s, type: %i\n", list->content, list->type);
+		// printf("(1)last_type: %i\n", last_type);
 		if (last_type == REDIR || list->type == -1)
 			list->type = get_type(list->content, last_type);
+		// printf("(2)list content: %s, type: %i\n", list->content, list->type);
 		last_type = list->type;
+		// printf("(2)last_type: %i\n", last_type);
 		list = list->next;
 	}	
 }

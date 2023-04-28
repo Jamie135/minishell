@@ -56,9 +56,16 @@ char	***init_args(t_shell *shell, t_list *list)
 	while (i < shell->cmd_num)
 	{
 		args[i] = list_args(list);
+
 		if (!args[i])
 			return (free_args(args, i), \
 					message_free_exit(shell, "shell_struct.c (7)", MALLOC, NULL), NULL);
+		// int j = 0;
+		// while (j < len_array((char **)args[i]))
+		// {
+		// 	printf("args[%i][%i]: %s\n", i, j, args[i][j]);
+		// 	j++;
+		// }
 		while (list && list->type != CMD)
 			list = list->next;
 		len = len_args(list) + 1;
@@ -98,6 +105,8 @@ int	init_shell(t_shell *shell, t_list *list)
 	shell->args = init_args(shell, list);
 	if (!shell->args)
 		return (FAILURE);
+	// printf("list content: %s, type: %i\n", list->content, list->type);
+	// printf("list next content: %s, type: %i\n", list->next->content, list->next->type);
 	shell->pipes = init_pipes(shell);
 	if (shell->pipes == ERROR)
 		return (FAILURE);

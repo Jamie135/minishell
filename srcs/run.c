@@ -127,6 +127,8 @@ int	run(char **envp, char *line, t_list *list, t_free *free_var)
 		// 		break;
 		// 	list = list->next;
 		// }
+		// printf("list content: %s\n", list->content);
+		// printf("list next content: %s\n", list->next->content);
 		env = execution(list, env, &count, &exit_value);
 		if (env == ERROR)
 			return (malloc_err("run.c (2)"), EXIT_FAILURE);
