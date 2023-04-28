@@ -111,7 +111,6 @@ char	**list_args(t_list *list)
 	i = 0;
 	if (split_space_cmd(list, args, &i))
 		return (NULL);
-	printf("i = %ld\n", i);
 	if (!list_args_2(list, args, &len, &i))
 		return (NULL);
 	args[i] = NULL;

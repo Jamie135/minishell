@@ -105,12 +105,8 @@ t_envi	*execution(t_list *list, t_envi *env, int *count, int *exit_value)
 	}
 	if (heredoc(list, env, count, exit_value))
 		return (free_list(list), env);
-	printf("list content: %s\n", list->content);
-	printf("list next content: %s\n", list->next->content);
 	if (expend_list(env, list, *exit_value))
 		return (free_list(list), malloc_err("execution.c (1)"), env);
-	printf("list content: %s\n", list->content);
-	// printf("list next content: %s\n", list->next->content);
 	shell = shell_struct(list, env, count, exit_value);
 	if (!shell)
 		return (NULL);
