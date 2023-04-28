@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:27:00 by Espéranto         #+#    #+#             */
-/*   Updated: 2023/04/28 14:00:58 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 14:07:57 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,17 @@
 void	ajoute(const char *str, t_envi *envi)
 {
 	while (envi->next)
-        envi = envi->next;
-    envi->ve = variable_env((char *)str);
-    envi->value = value_env((char *)str);
-    envi->next = NULL;
+		envi = envi->next;
+	envi->ve = variable_env((char *)str);
+	envi->value = value_env((char *)str);
+	envi->next = NULL;
 }
 
-void    met_a_jour_OLDPWD(t_shell *shell, char *ancien_chemin)
+void	met_a_jour_OLDPWD(t_shell *shell, char *ancien_chemin)
 {
-        int                     trouvee;
-        const char      **arg = (const char **)shell->args[shell->cid];
-        t_envi          *parcours;
-
+        int				trouvee;
+        const char		**arg = (const char **)shell->args[shell->cid];
+        t_envi			*parcours;
 
         trouvee = 0;
         parcours = shell->envi;
