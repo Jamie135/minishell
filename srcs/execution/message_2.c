@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:31:58 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/28 13:39:15 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:14:59 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	message(char *str, int value, char **args)
 		message_exit(args, n);
 }
 
-void	message_free_exit(t_shell *shell, char *str, int value, void (*f)(int))
+void	msgexit(t_shell *shell, char *str, int value, void (*f)(int))
 {
 	if (value > 0 && str)
 		perror(str);

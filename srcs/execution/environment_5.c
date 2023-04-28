@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 19:05:16 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/11 19:05:16 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:16:04 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ char	**get_path(t_shell *shell)
 
 	tmp = find_value_envi("PATH", shell->envi);
 	if (!tmp)
-		return (message_free_exit(shell, NULL, PATH, &exit), NULL);
+		return (msgexit(shell, NULL, PATH, &exit), NULL);
 	path = ft_split(tmp, ':');
 	if (!path)
-		return (message_free_exit(shell, NULL, MALLOC, &exit), NULL);
+		return (msgexit(shell, NULL, MALLOC, &exit), NULL);
 	return (path);
 }
 

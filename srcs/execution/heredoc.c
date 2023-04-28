@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:02:14 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/28 13:47:29 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:19:13 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*heredoc_get_line(t_heredoc *heredoc, char *limiter, int fd)
 	(heredoc->line_num[0])++;
 	if (line)
 	{
-		if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0\
+		if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0 \
 			&& ft_strlen(line) == ft_strlen(limiter))
 			return (free_heredoc(heredoc, limiter, line, fd), exit(0), NULL);
 		tmp = line;
@@ -104,7 +104,7 @@ int	heredoc_init(t_heredoc *heredoc, t_list *list)
 		heredoc_exec(limiter, list->content, heredoc);
 	else
 		waitpid(pid, NULL, 0);
-	return(free_ptr((void **)&limiter), EXIT_SUCCESS);
+	return (free_ptr((void **)&limiter), EXIT_SUCCESS);
 }
 
 //attribuer les valeurs des arguments aux struct t_heredoc

@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 12:52:46 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/29 16:33:27 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:21:37 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	**init_pipes(t_shell *shell)
 		return (NULL);
 	pipes = (int **)ft_calloc(sizeof(int *), (shell->cmd_num - 1));
 	if (!pipes)
-		return (message_free_exit(shell, "shell_struct.c (8)", MALLOC, NULL), ERROR);
+		return (msgexit(shell, "shell_struct.c (8)", MALLOC, NULL), ERROR);
 	i = -1;
 	while (++i < shell->cmd_num - 1)
 	{
@@ -31,13 +31,13 @@ int	**init_pipes(t_shell *shell)
 		if (!pipes[i])
 			return (free_pipes(pipes, (int)i), \
 					close_pipes(pipes, shell->cmd_num - 1), \
-					message_free_exit(shell, "shell_struct.c (9)", MALLOC, NULL), ERROR);
+					msgexit(shell, "shell_struct.c (9)", MALLOC, NULL), ERROR);
 	}
 	i = -1;
 	while (++i < shell->cmd_num - 1)
-		if(pipe(pipes[i]) == -1)
+		if (pipe(pipes[i]) == -1)
 			return (close_pipes(pipes, shell->cmd_num - 1), \
-					message_free_exit(shell, "pipes: ", errno, NULL), ERROR);
+					msgexit(shell, "pipes: ", errno, NULL), ERROR);
 	return (pipes);
 }
 
@@ -51,21 +51,14 @@ char	***init_args(t_shell *shell, t_list *list)
 	args = NULL;
 	args = (char ***)ft_calloc(sizeof(char **), (shell->cmd_num + 1));
 	if (!args)
-		return (message_free_exit(shell, "shell_struct.c (6)", MALLOC, NULL), NULL);
+		return (msgexit(shell, "shell_struct.c (6)", MALLOC, NULL), NULL);
 	i = 0;
 	while (i < shell->cmd_num)
 	{
 		args[i] = list_args(list);
-
 		if (!args[i])
 			return (free_args(args, i), \
-					message_free_exit(shell, "shell_struct.c (7)", MALLOC, NULL), NULL);
-		// int j = 0;
-		// while (j < len_array((char **)args[i]))
-		// {
-		// 	printf("args[%i][%i]: %s\n", i, j, args[i][j]);
-		// 	j++;
-		// }
+					msgexit(shell, "shell_struct.c (7)", MALLOC, NULL), NULL);
 		while (list && list->type != CMD)
 			list = list->next;
 		len = len_args(list) + 1;
@@ -77,6 +70,13 @@ char	***init_args(t_shell *shell, t_list *list)
 	return (args);
 }
 
+// int j = 0;
+// while (j < len_array((char **)args[i]))
+// {
+// 	printf("args[%i][%i]: %s\n", i, j, args[i][j]);
+// 	j++;
+// }
+
 //creer un array de pid ou chaque indice est initialise a 0
 pid_t	*init_pid(t_shell *shell)
 {
@@ -86,7 +86,7 @@ pid_t	*init_pid(t_shell *shell)
 	pid = NULL;
 	pid = (pid_t *)ft_calloc(sizeof(pid_t), shell->cmd_num);
 	if (!pid)
-		return (message_free_exit(shell, "shell_struct.c (5)", MALLOC, NULL), NULL);
+		return (msgexit(shell, "shell_struct.c (5)", MALLOC, NULL), NULL);
 	i = 0;
 	while (i < shell->cmd_num)
 	{
@@ -105,13 +105,14 @@ int	init_shell(t_shell *shell, t_list *list)
 	shell->args = init_args(shell, list);
 	if (!shell->args)
 		return (FAILURE);
-	// printf("list content: %s, type: %i\n", list->content, list->type);
-	// printf("list next content: %s, type: %i\n", list->next->content, list->next->type);
 	shell->pipes = init_pipes(shell);
 	if (shell->pipes == ERROR)
 		return (FAILURE);
 	return (SUCCESS);
 }
+
+// printf("content: %s, type: %i\n", content, type);
+// printf("next content: %s, type: %i\n", next content, next type);
 
 //initialiser la struct de shell
 t_shell	*shell_struct(t_list *list, t_envi *envi, int *count, int *exit_value)
@@ -125,16 +126,16 @@ t_shell	*shell_struct(t_list *list, t_envi *envi, int *count, int *exit_value)
 	shell->list = list;
 	shell->environment = init_env(envi);
 	if (shell->environment == ERROR)
-		return (message_free_exit(shell, "shell_struct.c (2)", MALLOC, NULL), NULL);
+		return (msgexit(shell, "shell_struct.c (2)", MALLOC, NULL), NULL);
 	shell->envi = envi;
 	shell->line_num = count;
 	shell->exit_value = exit_value;
 	shell->cmd_num = num_command(list);
 	shell->redir_num = num_redir(list);
 	if (list_redir(shell, list))
-		return (message_free_exit(shell, "shell_struct.c (3)", MALLOC, NULL), NULL);
+		return (msgexit(shell, "shell_struct.c (3)", MALLOC, NULL), NULL);
 	if (!shell->redir && shell->redir_num > 0)
-		return (message_free_exit(shell, "shell_struct.c (4)", MALLOC, NULL), NULL);
+		return (msgexit(shell, "shell_struct.c (4)", MALLOC, NULL), NULL);
 	if (shell->cmd_num > 0 && init_shell(shell, list) == FAILURE)
 		return (NULL);
 	return (shell);

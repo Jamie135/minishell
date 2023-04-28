@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 23:56:06 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/30 23:56:06 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:14:34 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	open_infile(t_shell *shell, t_list *redir)
 		{
 			fd = open_file(redir->content, TO_INFILE);
 			if (fd == -1)
-				return (message_free_exit(shell, redir->content, errno, &exit), FAILURE);
+				return (msgexit(shell, redir->content, errno, &exit), FAILURE);
 		}
 		redir = redir->next;
 	}
@@ -56,13 +56,13 @@ int	open_outfile(t_shell *shell, t_list *redir)
 		{
 			fd = open_file(redir->content, TO_OUTFILE);
 			if (fd == -1)
-				return (message_free_exit(shell, redir->content, errno, &exit), FAILURE);
+				return (msgexit(shell, redir->content, errno, &exit), FAILURE);
 		}
 		else if (redir->type == APPEND)
 		{
 			fd = open_file(redir->content, APPEND);
 			if (fd == -1)
-				return (message_free_exit(shell, redir->content, errno, &exit), FAILURE);
+				return (msgexit(shell, redir->content, errno, &exit), FAILURE);
 		}
 		redir = redir->next;
 	}

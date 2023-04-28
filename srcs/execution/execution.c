@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:30:42 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/29 12:55:26 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:15:53 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ int	parent_process(t_shell *shell, t_envi *envi)
 	{
 		envi = dup_envi(shell->envi);
 		if (!envi)
-			return (message_free_exit(shell, "execution.c (4)", MALLOC, NULL), \
+			return (msgexit(shell, "execution.c (4)", MALLOC, NULL), \
 					EXIT_FAILURE);
-		message_free_exit(shell, NULL, errno, NULL);
+		msgexit(shell, NULL, errno, NULL);
 		return (EXIT_FAILURE);
 	}
 	heredoc_unlink(shell->list);

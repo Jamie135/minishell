@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 20:40:11 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/11 20:40:11 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:16:35 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ static void	child_pipe_in(t_shell *shell)
 
 	infile = open_infile(shell, shell->redir[id]);
 	if (dup2(infile, STDIN) == FAILURE)
-		return (close(infile), message_free_exit(shell, NULL, errno, &exit));
+		return (close(infile), msgexit(shell, NULL, errno, &exit));
 	close_fd(&infile);
 	if (id < shell->cmd_num - 1)
 	{
 		if (dup2(shell->pipes[id][1], STDOUT) == FAILURE)
-			return (message_free_exit(shell, NULL, errno, &exit));
+			return (msgexit(shell, NULL, errno, &exit));
 		close_fd(&shell->pipes[id][1]);
 	}
 }
@@ -56,12 +56,12 @@ static void	child_pipe_out(t_shell *shell)
 	if (id > 0)
 	{
 		if (dup2(shell->pipes[id - 1][0], STDIN) == FAILURE)
-			return (message_free_exit(shell, NULL, errno, &exit));
+			return (msgexit(shell, NULL, errno, &exit));
 		close_fd(&shell->pipes[id - 1][0]);
 	}
 	outfile = open_outfile(shell, shell->redir[id]);
 	if (dup2(outfile, STDOUT) == FAILURE)
-		return (close(outfile), message_free_exit(shell, NULL, errno, &exit));
+		return (close(outfile), msgexit(shell, NULL, errno, &exit));
 	close_fd(&outfile);
 }
 
@@ -73,22 +73,22 @@ static void	child_pipe_dup(t_shell *shell)
 	if (id == 0)
 	{
 		if (dup2(shell->pipes[id][1], STDOUT) == FAILURE)
-			return (message_free_exit(shell, NULL, errno, &exit));
+			return (msgexit(shell, NULL, errno, &exit));
 		close_fd(&shell->pipes[id][0]);
 	}
 	else if (id == shell->cmd_num - 1)
 	{
 		if (dup2(shell->pipes[id - 1][0], STDIN) == FAILURE)
-			return (message_free_exit(shell, NULL, errno, &exit));
+			return (msgexit(shell, NULL, errno, &exit));
 		close_fd(&shell->pipes[id - 1][1]);
 	}
 	else
 	{
 		if (dup2(shell->pipes[id - 1][0], STDIN) == FAILURE)
-			return (message_free_exit(shell, NULL, errno, &exit));
+			return (msgexit(shell, NULL, errno, &exit));
 		close_fd(&shell->pipes[id - 1][1]);
 		if (dup2(shell->pipes[id][1], STDOUT) == FAILURE)
-			return (message_free_exit(shell, NULL, errno, &exit));
+			return (msgexit(shell, NULL, errno, &exit));
 		close_fd(&shell->pipes[id][0]);
 	}
 }

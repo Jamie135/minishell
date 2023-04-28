@@ -10,7 +10,7 @@ srcs/execution/close.c srcs/execution/open.c srcs/execution/command.c srcs/execu
 srcs/execution/expend.c srcs/execution/expend_utils.c \
 srcs/execution/free_execution_1.c srcs/execution/free_execution_2.c \
 srcs/execution/free_execution_3.c \
-srcs/execution/ft_cd.c srcs/execution/ft_echo.c srcs/execution/ft_env.c \
+srcs/execution/ft_cd.c srcs/execution/ft_cd_2.c srcs/execution/ft_echo.c srcs/execution/ft_env.c \
 srcs/execution/ft_exit.c srcs/execution/ft_export.c srcs/execution/ft_pwd.c \
 srcs/execution/ft_unset.c \
 srcs/execution/heredoc.c srcs/execution/heredoc_utils.c \

@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 21:26:22 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/30 21:26:22 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:16:12 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,16 +112,16 @@ void	print_envi(t_shell *shell, t_envi *envi)
 	{
 		if (ft_putstr_fd("declare -x ", STDOUT) == FAILURE || \
 			ft_putstr_fd(sorted->ve, STDOUT) == FAILURE)
-			return (message_free_exit(shell, EXPORT_ERR, errno, &exit));
+			return (msgexit(shell, EXPORT_ERR, errno, &exit));
 		if (sorted->type == VALID)
 		{
 			if (ft_putstr_fd("=\"", STDOUT) == FAILURE || \
 				ft_putstr_fd(sorted->value, STDOUT) == FAILURE || \
 				ft_putstr_fd("\"", STDOUT) == FAILURE)
-				return (message_free_exit(shell, EXPORT_ERR, errno, &exit));
+				return (msgexit(shell, EXPORT_ERR, errno, &exit));
 		}
 		if (ft_putchar_fd('\n', STDOUT) == FAILURE)
-			return (message_free_exit(shell, EXPORT_ERR, errno, &exit));
+			return (msgexit(shell, EXPORT_ERR, errno, &exit));
 		sorted = sorted->next;
 	}
 	free_envi(front);

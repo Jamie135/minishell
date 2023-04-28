@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 21:08:33 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/28 13:38:39 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:33:01 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,6 +212,8 @@ int			ft_export(t_shell *shell);
 int			ft_pwd(t_shell *shell);
 int			ft_unset(t_shell *shell);
 int			identique(char *str1, const char *str2);
+void		met_a_jour_oldpwd(t_shell *shell, char *ancien_chemin);
+void		ajoute(const char *str, t_envi *envi);
 
 /* open.c */
 int			open_infile(t_shell *shell, t_list *redir);
@@ -250,8 +252,7 @@ int			syntax_err(char *line);
 void		print_token(char *str);
 void		message_heredoc(t_heredoc *heredoc, char *str, int n, \
 							void (*f)(int));
-void		message_free_exit(t_shell *shell, char *str, int value, \
-							void (*f)(int));
+void		msgexit(t_shell *shell, char *str, int value, void (*f)(int));
 void		message_builtins(char *cmd, char *arg, char *str);
 void		dollars_message(char *line, int *exit);
 

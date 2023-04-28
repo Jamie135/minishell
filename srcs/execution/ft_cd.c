@@ -6,48 +6,20 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:27:00 by Espéranto         #+#    #+#             */
-/*   Updated: 2023/04/28 14:07:57 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:31:58 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ajoute(const char *str, t_envi *envi)
+char	*pwd_avant_CD(t_shell *shell)
 {
-	while (envi->next)
-		envi = envi->next;
-	envi->ve = variable_env((char *)str);
-	envi->value = value_env((char *)str);
-	envi->next = NULL;
-}
+	char	*repertoire_actuel;
 
-void	met_a_jour_OLDPWD(t_shell *shell, char *ancien_chemin)
-{
-        int				trouvee;
-        const char		**arg = (const char **)shell->args[shell->cid];
-        t_envi			*parcours;
-
-        trouvee = 0;
-        parcours = shell->envi;
-        while (parcours)
-        {
-                if (identique(parcours->ve, "OLDPWD"))
-                {
-                        parcours->value = ancien_chemin;
-                        trouvee = 1;
-                }
-        parcours = parcours->next;
-        }
-}
-
-char    *pwd_avant_CD(t_shell *shell)
-{
-        char    *repertoire_actuel;
-
-        repertoire_actuel = getcwd(NULL, 0);
-        if (!(repertoire_actuel))
-                return (message_free_exit(shell, NULL, errno, &exit), NULL);
-        return (repertoire_actuel);
+	repertoire_actuel = getcwd(NULL, 0);
+	if (!(repertoire_actuel))
+		return (msgexit(shell, NULL, errno, &exit), NULL);
+	return (repertoire_actuel);
 }
 
 char	*valeur_de_HOME(t_shell *shell)
@@ -127,9 +99,9 @@ int	ft_cd(t_shell *shell)
 		erreur = chdir(arg[0]);
 	if (erreur == -1)
 	{
-		message_free_exit(NULL, "cd", errno, NULL);
+		msgexit(NULL, "cd", errno, NULL);
 		return (EXIT_FAILURE);
 	}
-	met_a_jour_OLDPWD(shell, ancien_chemin);
+	met_a_jour_oldpwd(shell, ancien_chemin);
 	return (EXIT_SUCCESS);
 }
