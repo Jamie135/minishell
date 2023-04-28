@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 01:32:57 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/24 16:07:19 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 13:13:32 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ t_list		*fill(t_list *list, t_free *free_var);
 
 /* quote.c && quote_utils.c */
 int			valid_quote(char *str);
-int			valid_single(char *str, bool *single_quote, bool *double_quote, int *i);
-int			valid_double(char *str, bool *single_quote, bool *double_quote, int *i);
+int			valid_single(char *str, bool *single_quote, \
+						bool *double_quote, int *i);
+int			valid_double(char *str, bool *single_quote, \
+						bool *double_quote, int *i);
 char		*single_quote(char *str, int index);
 char		*double_quote(char *str, int index);
 int			valid_open(char *str);
@@ -91,13 +93,14 @@ char		*strdup_free(char *str, int free_var);
 
 /* type.c */
 void		type(t_list *list);
-int			get_type(char *str, int	last_type);
+int			get_type(char *str, int last_type);
 int			get_type_redir(char *str);
 
 /* free_parsing_1.c && free_parsing_2.c */
 void		*free_quote(char *str);
 void		free_line_and_split(char *line, char **split);
-int			free_null_list(t_list *list, t_free *free_var, char *line, t_envi *env);
+int			free_null_list(t_list *list, t_free *free_var, char *line, \
+							t_envi *env);
 void		*free_fill(char **tab, t_list *list, char *str);
 int			free_trim(t_free *free_var, int i);
 void		*free_split_index(char **split, int index, int message);

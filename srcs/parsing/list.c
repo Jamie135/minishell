@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:04:22 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/20 16:20:14 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 13:28:57 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ t_list	*fill(t_list *list, t_free *free_var)
 	list->type = -1;
 	while (free_var->split[i])
 	{
-		tmp = ft_lstnew_2(free_var->split[i], -1,
-			free_var->unexpended[i], free_var->quoted[i]);
+		tmp = ft_lstnew_2(free_var->split[i], -1, \
+							free_var->unexpended[i], free_var->quoted[i]);
 		if (tmp == NULL)
 			return (NULL);
 		ft_lstadd_back(&list, tmp);

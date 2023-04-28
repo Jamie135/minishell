@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Espéranto <emploi.hebert@laposte.net>      +#+  +:+       +#+        */
+/*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:33:27 by Espéranto         #+#    #+#             */
-/*   Updated: 2023/03/14 15:33:40 by Espéranto        ###   ########.fr       */
+/*   Updated: 2023/04/28 13:59:32 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,14 @@ void	ecrit(const char **arg, int k, int option)
 int	ft_echo(t_shell *shell)
 {
 	const char	**arg = (const char **)shell->args[shell->cid];
-	int	option;
-	int	k;
+	int			option;
+	int			k;
 
 	arg++;
 	(void)shell->envi;
 	option = 0;
 	if (arg)
 		option = option_n(arg[0]);
-	// int i = 0;
-	// while (i < len_array((char **)arg))
-	// {
-	// 	printf("arg[%i]: %s, len: %i\n", i, arg[i], (int)ft_strlen(arg[i]));
-	// 	i++;
-	// }
 	if (arg)
 		k = cherche_premier_argument(arg);
 	if (arg[k] == NULL)
@@ -90,3 +84,10 @@ int	ft_echo(t_shell *shell)
 	ecrit(arg, k, option);
 	return (EXIT_SUCCESS);
 }
+
+// int i = 0;
+// while (i < len_array((char **)arg))
+// {
+// 	printf("arg[%i]: %s, len: %i\n", i, arg[i], (int)ft_strlen(arg[i]));
+// 	i++;
+// }

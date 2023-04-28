@@ -6,11 +6,19 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:31:58 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/29 15:19:48 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 13:39:15 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	dollars_message(char *line, int *exit)
+{
+	ft_putstr_fd(line, STDOUT);
+	ft_putchar_fd(':', STDOUT);
+	ft_putendl_fd(" command not found", STDOUT);
+	*exit = 127;
+}
 
 static void	message_exit(char **args, const int n)
 {

@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 04:29:20 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/18 04:29:20 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 13:39:53 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ int	dollars_pars(char *line, int *exit)
 	{
 		if (find_spe_var(line))
 		{
-			ft_putstr_fd(line, STDOUT);
-			ft_putchar_fd(':', STDOUT);
-			ft_putendl_fd(" command not found", STDOUT);
-			*exit = 127;
+			dollars_message(line, exit);
 			return (-1);
 		}
 		else
@@ -45,10 +42,7 @@ int	dollars_pars(char *line, int *exit)
 	{
 		if (is_special_var(line[1]))
 		{
-			ft_putstr_fd(line, STDOUT);
-			ft_putchar_fd(':', STDOUT);
-			ft_putendl_fd(" command not found", STDOUT);
-			*exit = 127;
+			dollars_message(line, exit);
 			return (-1);
 		}
 		else

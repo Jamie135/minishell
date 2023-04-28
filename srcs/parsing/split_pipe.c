@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 16:32:14 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/25 17:10:54 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 13:29:25 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	len_pipe(char *str)
 {
 	int	len;
 	int	i;
-	
+
 	if (str && str[0])
 		len = ft_strlen(str);
 	else

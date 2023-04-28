@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 00:04:23 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/29 15:17:31 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 13:58:21 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	free_n_split(char **split, int n)
 		free_ptr((void **)&split[i]);
 		i++;
 	}
-	free(split);	
+	free(split);
 }
 
 static void	free_shell_2(t_shell *shell)
@@ -75,5 +75,5 @@ void	free_shell_1(t_shell *shell)
 	if (shell->outfile)
 		free_ptr((void **)&shell->outfile);
 	free_shell_2(shell);
-	free_ptr((void **)&shell);	
+	free_ptr((void **)&shell);
 }

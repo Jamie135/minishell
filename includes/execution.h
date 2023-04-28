@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 21:08:33 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/26 16:56:39 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 13:38:39 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,8 @@ int			is_special_var(char c);
 int			is_dollar(char *str);
 
 /* shell_struct.c */
-t_shell		*shell_struct(t_list *list, t_envi *envi, int *count, int *exit_value);
+t_shell		*shell_struct(t_list *list, t_envi *envi, int *count, \
+						int *exit_value);
 int			init_shell(t_shell *shell, t_list *list);
 pid_t		*init_pid(t_shell *shell);
 char		***init_args(t_shell *shell, t_list *list);
@@ -247,9 +248,11 @@ void		free_one_list(t_list **list, t_list *lst);
 void		malloc_err(char *str);
 int			syntax_err(char *line);
 void		print_token(char *str);
-void		message_heredoc(t_heredoc *heredoc, char *str, int n, void (*f)(int));
-void		message_free_exit(t_shell *shell, char *str, int value, void (*f)(int));
+void		message_heredoc(t_heredoc *heredoc, char *str, int n, \
+							void (*f)(int));
+void		message_free_exit(t_shell *shell, char *str, int value, \
+							void (*f)(int));
 void		message_builtins(char *cmd, char *arg, char *str);
-
+void		dollars_message(char *line, int *exit);
 
 #endif

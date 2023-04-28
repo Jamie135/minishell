@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 16:54:21 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/20 14:47:07 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 13:28:08 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	valid_quote(char *str)
 				return (-1);
 		if (str[i] == '\"')
 			if (valid_double(str, &single_quote, &double_quote, &i) == -1)
-				return (-1);		
+				return (-1);
 	}
 	if (valid_open(str) == -1)
 		return (-1);

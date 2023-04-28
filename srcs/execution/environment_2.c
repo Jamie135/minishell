@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:23:09 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/13 15:52:04 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 13:57:54 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	pwd_envi(t_envi **envi)
 	char	*cmd;
 	char	*value;
 	t_envi	*cpy;
-	
+
 	cmd = ft_strdup("PWD");
 	if (!cmd)
 		return (EXIT_FAILURE);

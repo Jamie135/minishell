@@ -6,13 +6,13 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:49:29 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/25 17:12:08 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 13:56:26 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-extern volatile int	signal_flag;
+extern volatile int	g_signal;
 
 int	line_dollars_alphabet(char *line, int *exit)
 {
@@ -69,12 +69,12 @@ int	line_null(char *line, t_envi *env)
 //retourner la ligne de commande lue par readline en l'ajoutant en historique
 char	*ft_readline(char *line, int *count, t_envi *env, int *exit)
 {
-	signal_flag = 0;
+	g_signal = 0;
 	parent_child_signal(MINISHELL);
 	(*count)++;
 	line = readline("minishell> ");
 	add_history(line);
-	if (signal_flag == 2)
+	if (g_signal == 2)
 		*exit = 130;
 	parent_child_signal(PARENT);
 	if (line_null(line, env) == -1 || line_space(line) == -1 \
@@ -86,13 +86,10 @@ char	*ft_readline(char *line, int *count, t_envi *env, int *exit)
 //fonction qui lance minishell
 int	run(char **envp, char *line, t_list *list, t_free *free_var)
 {
-	static int		count;
-	static int		exit_value;
-	static t_envi	*env;
+	static int		count = 0;
+	static int		exit_value = 0;
+	static t_envi	*env = NULL;
 
-	count = 0;
-	exit_value = 0;
-	env = NULL;
 	env = init_envi(envp);
 	if (env == NULL)
 		env = null_envi(env);
@@ -109,17 +106,18 @@ int	run(char **envp, char *line, t_list *list, t_free *free_var)
 		if (free_null_list(list, free_var, line, env) == EXIT_SUCCESS)
 			continue ;
 		ft_exit(list, env, line, free_var);
-		// while (list)
-		// {
-		// 	printf("list content: %s, len: %i\n", list->content, (int)ft_strlen(list->content));
-		// 	if (!list->next)
-		// 		break;
-		// 	list = list->next;
-		// }
-		// printf("list content: %s\n", list->content);
-		// printf("list next content: %s\n", list->next->content);
 		env = execution(list, env, &count, &exit_value);
 		if (env == ERROR)
 			return (malloc_err("run.c (2)"), EXIT_FAILURE);
 	}
 }
+
+// while (list)
+// {
+// 	printf("list content: %s\n", list->content);
+// 	if (!list->next)
+// 		break ;
+// 	list = list->next;
+// }
+// printf("list content: %s\n", list->content);
+// printf("list next content: %s\n", list->next->content);

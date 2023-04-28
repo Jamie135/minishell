@@ -6,21 +6,21 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:02:14 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/26 17:05:43 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 13:47:29 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern volatile int	signal_flag;
+extern volatile int	g_signal;
 
 //exit heredoc quand on fait ctrlD
 void	heredoc_error(t_heredoc *heredoc, char *limiter, int fd)
 {
-	if (signal_flag == 1)
+	if (g_signal == 1)
 	{
 		free_heredoc(heredoc, limiter, NULL, fd);
-		signal_flag = 0;
+		g_signal = 0;
 		exit(2);
 	}
 	ft_putstr_fd("bash: warning: here-document at line ", 2);
@@ -61,19 +61,19 @@ void	heredoc_exec(char *limiter, char *name, t_heredoc *heredoc)
 	if (fd == -1)
 		return (message_heredoc(heredoc, "open heredoc", errno, &exit));
 	parent_child_signal(HEREDOC);
-	while (!signal_flag)
+	while (!g_signal)
 	{
 		line = heredoc_get_line(heredoc, limiter, fd);
-		if (!line || signal_flag == 1)
+		if (!line || g_signal == 1)
 		{
-			if (!signal_flag)
+			if (!g_signal)
 				heredoc_error(heredoc, limiter, fd);
 			break ;
 		}
 		ft_putendl_fd(line, fd);
 		free_ptr((void **)&line);
 	}
-	if (signal_flag == 1)
+	if (g_signal == 1)
 		exit_heredoc(heredoc, limiter, line, fd);
 	return (free_heredoc(heredoc, limiter, NULL, fd), exit(0));
 }

@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:13:37 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/25 17:03:01 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 13:43:13 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*final_string(char *new)
 	if (!new)
 		return (NULL);
 	else
-		return (new);	
+		return (new);
 }
 
 //retourner une "copie" de la ligne de commande, mais mieux espacer, 
@@ -100,11 +100,10 @@ char	*get_string(char *str)
 		else if (str[i] && str[i] == '<')
 			string_2(&i, &j, str, new);
 		else
-		{
 			fill_inc(str, new, &i, j);
-			// printf("fill_inc: %s\n", new);
-		}
 	}
-	// printf("final_string: %s\n", final_string(new));
 	return (final_string(new));
 }
+
+// printf("final_string: %s\n", final_string(new));
+// printf("fill_inc: %s\n", new);

@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:06:50 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/27 13:04:11 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/28 13:18:15 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	get_type_redir(char *str)
 }
 
 //determiner le type
-int	get_type(char *str, int	last_type)
+int	get_type(char *str, int last_type)
 {
 	if (get_type_redir(str) != -1)
 		return (REDIR);
@@ -47,16 +47,16 @@ void	type(t_list *list)
 	int	last_type;
 
 	last_type = -1;
-
 	while (list)
 	{
-		// printf("(1)list content: %s, type: %i\n", list->content, list->type);
-		// printf("(1)last_type: %i\n", last_type);
 		if (last_type == REDIR || list->type == -1)
 			list->type = get_type(list->content, last_type);
-		// printf("(2)list content: %s, type: %i\n", list->content, list->type);
 		last_type = list->type;
-		// printf("(2)last_type: %i\n", last_type);
 		list = list->next;
 	}	
 }
+
+// printf("(1)list content: %s, type: %i\n", list->content, list->type);
+// printf("(1)last_type: %i\n", last_type);
+// printf("(2)list content: %s, type: %i\n", list->content, list->type);
+// printf("(2)last_type: %i\n", last_type);
