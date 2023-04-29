@@ -63,10 +63,17 @@ t_list	*fill_list(char *line, t_free *free_var, t_envi *env)
 	if (trim_split(tab, free_var) == -1)
 		return (free_list(list), free_split(tab),
 			free(line), free(str), NULL);
-	// i = 0;
+	// int	i = 0;
 	// while (free_var->split[i])
 	// {
 	// 	printf("SPLIT: %s\n", free_var->split[i]);
+	// 	i++;
+	// }
+	// int	i = 0;
+	// while (env[i])
+	// {
+	// 	printf("ve: %s\n", env->ve);
+	// 	printf("value: %s\n", env->value);
 	// 	i++;
 	// }
 	list = fill(list, free_var);
