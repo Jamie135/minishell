@@ -21,7 +21,6 @@ t_list	*fill(t_list *list, t_free *free_var)
 	i = 1;
 	tmp = NULL;
 	list->content = free_var->split[0];
-	// printf("SPLIT[0]: %s\n", list->content);
 	list->unexpended = free_var->unexpended[0];
 	list->type = -1;
 	while (free_var->split[i])
@@ -36,6 +35,8 @@ t_list	*fill(t_list *list, t_free *free_var)
 	type(list);
 	return (list);
 }
+
+// printf("SPLIT[0]: %s\n", list->content);
 
 //creer une liste qui separe la ligne de commande
 //ex: echo "hey"'hey' -> [echo][hey][hey]
@@ -60,23 +61,26 @@ t_list	*fill_list(char *line, t_free *free_var, t_envi *env, int *exit)
 		return (free_fill(tab, list, line));
 	if (trim_split(tab, free_var) == -1)
 		return (free_all_trim(list, tab, line, str), NULL);
-	if (expend_pars(free_var, env, *exit))
-		return (free_var_all(free_var), malloc_err("fill_list.c"), NULL);
 	list = fill(list, free_var);
 	if (!list)
 		return (NULL);
 	return (free(str), list);
 }
 
+// if (expend_pars(free_var, env, *exit))
+// 	return (free_var_all(free_var), malloc_err("fill_list.c"), NULL);
+
 // int i = 0;
 // while (tab[i])
 // 	printf("TAB = %s\n", tab[i++]);
+
 // int	i = 0;
 // while (free_var->split[i])
 // {
 // 	printf("SPLIT: %s\n", free_var->split[i]);
 // 	i++;
 // }
+
 // while (env)
 // {
 // 	printf("ve: %s\n", env->ve);

@@ -17,6 +17,11 @@ int	list_args_2(t_list *list, char **args, size_t *len, size_t *i)
 	size_t	j;
 
 	j = -1;
+	if (*i > 0)
+	{
+		while (++j < 1 && list->next)
+			list = list->next;
+	}
 	while (list && *i < *len)
 	{
 		args[*i] = ft_strdup(list->content);
