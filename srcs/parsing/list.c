@@ -69,12 +69,11 @@ t_list	*fill_list(char *line, t_free *free_var, t_envi *env)
 	// 	printf("SPLIT: %s\n", free_var->split[i]);
 	// 	i++;
 	// }
-	// int	i = 0;
-	// while (env[i])
+	// while (env)
 	// {
 	// 	printf("ve: %s\n", env->ve);
 	// 	printf("value: %s\n", env->value);
-	// 	i++;
+	// 	env = env->next;
 	// }
 	list = fill(list, free_var);
 	if (!list)
