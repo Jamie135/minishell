@@ -37,3 +37,10 @@ void	*free_split_index(char **split, int index, int message)
 	free(split);
 	return (NULL);
 }
+
+void	free_var_all(t_free	*free_var)
+{
+	free_split(free_var->split);
+	free(free_var->unexpended);
+	free(free_var->quoted);
+}

@@ -100,7 +100,7 @@ int	run(char **envp, char *line, t_list *list, t_free *free_var)
 		line = ft_readline(line, &count, env, &exit_value);
 		if (line == NULL)
 			continue ;
-		list = fill_list(line, free_var, env);
+		list = fill_list(line, free_var, env, &exit_value);
 		if (list == NULL)
 			continue ;
 		if (free_null_list(list, free_var, line, env) == EXIT_SUCCESS)

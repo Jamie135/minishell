@@ -39,7 +39,7 @@ t_list	*fill(t_list *list, t_free *free_var)
 
 //creer une liste qui separe la ligne de commande
 //ex: echo "hey"'hey' -> [echo][hey][hey]
-t_list	*fill_list(char *line, t_free *free_var, t_envi *env)
+t_list	*fill_list(char *line, t_free *free_var, t_envi *env, int *exit)
 {
 	char	*str;
 	t_list	*list;
@@ -59,9 +59,9 @@ t_list	*fill_list(char *line, t_free *free_var, t_envi *env)
 	if (!tab)
 		return (free_fill(tab, list, line));
 	if (trim_split(tab, free_var) == -1)
-		return (free_list(list), free_split(tab),
-			free(line), free(str), NULL);
-	expend_pars(free_var, env);
+		return (free_all_trim(list, tab, line, str), NULL);
+	if (expend_pars(free_var, env, *exit))
+		return (free_var_all(free_var), malloc_err("fill_list.c"), NULL);
 	list = fill(list, free_var);
 	if (!list)
 		return (NULL);

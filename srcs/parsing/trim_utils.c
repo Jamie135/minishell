@@ -12,6 +12,14 @@
 
 #include "../../includes/minishell.h"
 
+void	free_all_trim(t_list *list, char **tab, char *line, char *str)
+{
+	free_list(list);
+	free_split(tab);
+	free(line);
+	free(str);
+}
+
 char	*strdup_free(char *str, int free_var)
 {
 	char	*s;

@@ -41,7 +41,8 @@ typedef struct s_free
 int			run(char **envp, char *line, t_list *list, t_free *free_var);
 
 /* list.c */
-t_list		*fill_list(char *line, t_free *free_var, t_envi *env);
+t_list		*fill_list(char *line, t_free *free_var, t_envi *env, \
+						int *exit_value);
 t_list		*fill(t_list *list, t_free *free_var);
 
 /* quote.c && quote_utils.c */
@@ -90,9 +91,10 @@ int			trim_split(char **split, t_free *free_var);
 int			trim_protect(char **split, t_free *free_var);
 char		*clean_string(char *str, int tmp);
 char		*strdup_free(char *str, int free_var);
+void		free_all_trim(t_list *list, char **tab, char *line, char *str);
 
 /* expend_parsing.c */
-void		expend_pars(t_free *free_var, t_envi *env);
+int			expend_pars(t_free *free_var, t_envi *env, int exit_value);
 
 /* type.c */
 void		type(t_list *list);
@@ -108,6 +110,7 @@ void		*free_fill(char **tab, t_list *list, char *str);
 int			free_trim(t_free *free_var, int i);
 void		*free_split_index(char **split, int index, int message);
 void		free_split_parsing(char **split);
+void		free_var_all(t_free	*free_var);
 
 /* utils_parsing*/
 int			valid_syntax(char *line);
