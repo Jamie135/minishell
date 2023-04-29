@@ -38,7 +38,7 @@ t_list	*fill(t_list *list, t_free *free_var)
 
 //creer une liste qui separe la ligne de commande
 //ex: echo "hey"'hey' -> [echo][hey][hey]
-t_list	*fill_list(char *line, t_free *free_var)
+t_list	*fill_list(char *line, t_free *free_var, t_envi *env)
 {
 	char	*str;
 	t_list	*list;
@@ -64,6 +64,12 @@ t_list	*fill_list(char *line, t_free *free_var)
 		return (free_list(list), free_split(tab),
 			free(line), free(str), NULL);
 	list = fill(list, free_var);
+	// i = 0;
+	// while (free_var->split[i])
+	// {
+	// 	printf("SPLIT: %s\n", free_var->split[i]);
+	// 	i++;
+	// }
 	if (!list)
 		return (NULL);
 	return (free(str), list);

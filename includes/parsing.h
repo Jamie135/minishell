@@ -41,7 +41,7 @@ typedef struct s_free
 int			run(char **envp, char *line, t_list *list, t_free *free_var);
 
 /* list.c */
-t_list		*fill_list(char *line, t_free *free_var);
+t_list		*fill_list(char *line, t_free *free_var, t_envi *env);
 t_list		*fill(t_list *list, t_free *free_var);
 
 /* quote.c && quote_utils.c */
