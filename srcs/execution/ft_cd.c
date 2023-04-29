@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-char	*pwd_avant_CD(t_shell *shell)
+char	*pwd_avant_cd(t_shell *shell)
 {
 	char	*repertoire_actuel;
 
@@ -22,7 +22,7 @@ char	*pwd_avant_CD(t_shell *shell)
 	return (repertoire_actuel);
 }
 
-char	*valeur_de_HOME(t_shell *shell)
+char	*valeur_de_home(t_shell *shell)
 {
 	t_envi	*envi;
 
@@ -38,7 +38,7 @@ char	*valeur_de_HOME(t_shell *shell)
 	return (NULL);
 }
 
-char	*valeur_de_OLDPWD(t_shell *shell)
+char	*valeur_de_oldpwd(t_shell *shell)
 {
 	t_envi	*envi;
 
@@ -98,10 +98,6 @@ int	ft_cd(t_shell *shell)
 	else if (!tilde_et_moins)
 		erreur = chdir(arg[0]);
 	if (erreur == -1)
-	{
-		msgexit(NULL, "cd", errno, NULL);
-		return (EXIT_FAILURE);
-	}
-	met_a_jour_oldpwd(shell, ancien_chemin);
-	return (EXIT_SUCCESS);
+		return (msgexit(NULL, "cd", errno, NULL), EXIT_FAILURE);
+	return (met_a_jour_oldpwd(shell, ancien_chemin), EXIT_SUCCESS);
 }
