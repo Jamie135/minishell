@@ -60,15 +60,15 @@ int	execute_tilde_et_moins(const char **arg, t_shell *shell)
 		return (0);
 	if (arg[0][0] == '~' && arg[0][1] == '\0')
 	{
-		if (!valeur_de_HOME(shell))
+		if (!valeur_de_home(shell))
 			printf("cd: HOME not set\n");
-		return (chdir(valeur_de_HOME(shell)), 1);
+		return (chdir(valeur_de_home(shell)), 1);
 	}
 	if (arg[0][0] == '-' && arg[0][1] == '\0')
 	{
-		if (!valeur_de_OLDPWD(shell))
+		if (!valeur_de_oldpwd(shell))
 			printf("cd: OLDPWD not set\n");
-		return (chdir(valeur_de_OLDPWD(shell)), 1);
+		return (chdir(valeur_de_oldpwd(shell)), 1);
 	}
 	return (0);
 }
@@ -82,13 +82,13 @@ int	ft_cd(t_shell *shell)
 
 	arg++;
 	erreur = 0;
-	ancien_chemin = pwd_avant_CD(shell);
+	ancien_chemin = pwd_avant_cd(shell);
 	tilde_et_moins = execute_tilde_et_moins(arg, shell);
 	if (!arg || !arg[0])
 	{
-		if (!valeur_de_HOME(shell))
+		if (!valeur_de_home(shell))
 			printf("cd: HOME not set\n");
-		chdir(valeur_de_HOME(shell));
+		chdir(valeur_de_home(shell));
 	}
 	else if (arg[1])
 	{
