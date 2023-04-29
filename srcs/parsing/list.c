@@ -63,13 +63,13 @@ t_list	*fill_list(char *line, t_free *free_var, t_envi *env)
 	if (trim_split(tab, free_var) == -1)
 		return (free_list(list), free_split(tab),
 			free(line), free(str), NULL);
-	list = fill(list, free_var);
 	// i = 0;
 	// while (free_var->split[i])
 	// {
 	// 	printf("SPLIT: %s\n", free_var->split[i]);
 	// 	i++;
 	// }
+	list = fill(list, free_var);
 	if (!list)
 		return (NULL);
 	return (free(str), list);
