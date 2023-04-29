@@ -21,6 +21,7 @@ t_list	*fill(t_list *list, t_free *free_var)
 	i = 1;
 	tmp = NULL;
 	list->content = free_var->split[0];
+	// printf("SPLIT[0]: %s\n", list->content);
 	list->unexpended = free_var->unexpended[0];
 	list->type = -1;
 	while (free_var->split[i])
@@ -55,28 +56,30 @@ t_list	*fill_list(char *line, t_free *free_var, t_envi *env)
 		return (NULL);
 	list->next = NULL;
 	tab = split_line(str, ' ');
-	// int i = 0;
-	// while (tab[i])
-	// 	printf("TAB = %s\n", tab[i++]);
 	if (!tab)
 		return (free_fill(tab, list, line));
 	if (trim_split(tab, free_var) == -1)
 		return (free_list(list), free_split(tab),
 			free(line), free(str), NULL);
-	// int	i = 0;
-	// while (free_var->split[i])
-	// {
-	// 	printf("SPLIT: %s\n", free_var->split[i]);
-	// 	i++;
-	// }
-	// while (env)
-	// {
-	// 	printf("ve: %s\n", env->ve);
-	// 	printf("value: %s\n", env->value);
-	// 	env = env->next;
-	// }
+	expend_pars(free_var, env);
 	list = fill(list, free_var);
 	if (!list)
 		return (NULL);
 	return (free(str), list);
 }
+
+// int i = 0;
+// while (tab[i])
+// 	printf("TAB = %s\n", tab[i++]);
+// int	i = 0;
+// while (free_var->split[i])
+// {
+// 	printf("SPLIT: %s\n", free_var->split[i]);
+// 	i++;
+// }
+// while (env)
+// {
+// 	printf("ve: %s\n", env->ve);
+// 	printf("value: %s\n", env->value);
+// 	env = env->next;
+// }

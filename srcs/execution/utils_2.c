@@ -17,8 +17,6 @@ int	list_args_2(t_list *list, char **args, size_t *len, size_t *i)
 	size_t	j;
 
 	j = -1;
-	// while (++j < *i && list->next)
-	// 	list = list->next;
 	while (list && *i < *len)
 	{
 		args[*i] = ft_strdup(list->content);
@@ -31,4 +29,6 @@ int	list_args_2(t_list *list, char **args, size_t *len, size_t *i)
 	return (1);
 }
 
+// while (++j < *i && list->next)
+// 	list = list->next;
 // printf("args content: %s\n", list->content);

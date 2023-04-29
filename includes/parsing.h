@@ -91,6 +91,9 @@ int			trim_protect(char **split, t_free *free_var);
 char		*clean_string(char *str, int tmp);
 char		*strdup_free(char *str, int free_var);
 
+/* expend_parsing.c */
+void		expend_pars(t_free *free_var, t_envi *env);
+
 /* type.c */
 void		type(t_list *list);
 int			get_type(char *str, int last_type);
