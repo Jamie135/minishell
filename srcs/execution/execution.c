@@ -6,22 +6,16 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:30:42 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/28 17:15:53 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/30 12:30:08 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-//update la valeur de exitz
+//update la valeur de exit
 void	get_exit_value(t_shell *shell)
 {
-	if (shell->mode == 64512)
-		shell->mode = 127;
-	if (shell->mode == 65280)
-		shell->mode = 1;
-	else if (shell->mode == 64256)
-		shell->mode = 128;
-	else if (shell->mode == 5120)
+	if (shell->mode == 5120)
 		shell->mode = 127;
 	else
 	{
