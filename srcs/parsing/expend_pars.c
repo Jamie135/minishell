@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 17:12:21 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/29 17:12:21 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/04/30 11:58:00 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,6 @@ int	expend_pars(t_free *free_var, t_envi *env, int exit_value)
 	i = 0;
 	while (env && free_var->split[i])
 	{
-		// printf("SPLIT: %s ; strchr: %s ; is_dollar: %i\n", \
-		// 		free_var->split[i], ft_strchr(free_var->split[i], '$'), \
-		// 		is_dollar(free_var->split[i]));
 		if (ft_strchr(free_var->split[i], '$') \
 			&& !is_dollar(free_var->split[i]))
 		{
@@ -97,9 +94,14 @@ int	expend_pars(t_free *free_var, t_envi *env, int exit_value)
 											exit_value);
 			if (!free_var->split[i])
 				return (EXIT_FAILURE);
-			// printf("SPLIT[%i]: %s\n", i, free_var->split[i]);
 		}
 		i++;
 	}
 	return (EXIT_SUCCESS);
 }
+
+// printf("SPLIT: %s ; strchr: %s ; is_dollar: %i\n",
+// 		free_var->split[i], ft_strchr(free_var->split[i], '$'),
+// 		is_dollar(free_var->split[i]));
+
+// printf("SPLIT[%i]: %s\n", i, free_var->split[i]);
