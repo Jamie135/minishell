@@ -64,6 +64,7 @@ static void	string_2(int *i, int *j, char *str, char *new)
 
 char	*final_string(char *new)
 {
+
 	new = split_pipe(new);
 	if (!new)
 		return (NULL);
@@ -73,6 +74,8 @@ char	*final_string(char *new)
 	else
 		return (new);
 }
+
+// printf("new: %s\n", new);
 
 //retourner une "copie" de la ligne de commande, mais mieux espacer, 
 //l'interet est de bien espacer la ligne de commande pour qu'on puisse
@@ -102,8 +105,12 @@ char	*get_string(char *str)
 		else
 			fill_inc(str, new, &i, j);
 	}
+	// printf("final_string: %s\n", final_string(new));
 	return (final_string(new));
 }
+
+// printf("str[%i]: %c\n", i, str[i]);
+// printf("str: %s\n", str);
 
 // printf("final_string: %s\n", final_string(new));
 // printf("fill_inc: %s\n", new);

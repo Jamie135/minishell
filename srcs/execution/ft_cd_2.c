@@ -12,6 +12,20 @@
 
 #include "../../includes/minishell.h"
 
+int	check_inexistance(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == -2)
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+
 void	ajoute(const char *str, t_envi *envi)
 {
 	while (envi->next)

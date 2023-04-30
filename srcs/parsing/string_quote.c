@@ -12,6 +12,22 @@
 
 #include "../../includes/minishell.h"
 
+void	is_quote_next(char *str, int *i, int *len)
+{
+	if (str[*i] == '\'')
+	{
+		while (str[*i] && str[*i] == '\'')
+			(*i)++;
+		*len += 2;
+	}
+	if (str[*i] == '\"')
+	{
+		while (str[*i] && str[*i] == '\"')
+			(*i)++;
+		*len += 2;
+	}
+}
+
 int	len_quote(char *str)
 {
 	int	len;
@@ -21,18 +37,7 @@ int	len_quote(char *str)
 	len = (int)ft_strlen(str);
 	while (str[++i])
 	{
-		if (str[i] == '\'')
-		{
-			while (str[i] && str[i] == '\'')
-				i++;
-			len += 2;
-		}
-		if (str[i] == '\"')
-		{
-			while (str[i] && str[i] == '\"')
-				i++;
-			len += 2;
-		}
+		is_quote_next(str, &i, &len);
 		if (!str[i])
 			return (len + i);
 	}
@@ -90,3 +95,5 @@ char	*string_quote(char *str)
 	free(str);
 	return (new);
 }
+
+// printf("len_quote = %i\n", len_quote(str));

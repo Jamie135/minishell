@@ -72,6 +72,7 @@ char		*string_quote(char *str);
 int			len_quote(char *str);
 void		fill_quote_single_space(char *str, char *new, int *i, int *j);
 void		fill_quote_double_space(char *str, char *new, int *i, int *j);
+void		is_quote_next(char *str, int *i, int *len);
 
 /* split_pipe.c */
 char		*split_pipe(char *str);

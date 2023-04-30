@@ -214,6 +214,7 @@ int			ft_unset(t_shell *shell);
 int			identique(char *str1, const char *str2);
 void		met_a_jour_oldpwd(t_shell *shell, char *ancien_chemin);
 void		ajoute(const char *str, t_envi *envi);
+int			check_inexistance(char *str);
 
 /* open.c */
 int			open_infile(t_shell *shell, t_list *redir);

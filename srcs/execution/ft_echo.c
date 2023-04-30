@@ -12,6 +12,20 @@
 
 #include "../../includes/minishell.h"
 
+int	write_echo(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != -2)
+	{
+		if (write(STDOUT, &str[i], 1) == -1)
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+
 // retourne 1 si il y a l'option n retourne 0 sinon
 static int	option_n(const char *str)
 {
@@ -41,14 +55,20 @@ static int	cherche_premier_argument(const char **arg)
 	return (k);
 }
 
-void	ecrit(const char **arg, int k, int option)
+void	ecrit(const char **arg, int k, int option, t_shell *shell)
 {
 	while (arg[k])
 	{
 		if (option == 0)
-			printf("%s", arg[k]);
+		{
+			if (write_echo((char *)arg[k]) == -1)
+				msgexit(shell, ECHO_ERR, errno, &exit);
+		}
 		if (option == 1 && arg[k][0] != '\0')
-			printf("%s", arg[k]);
+		{
+			if (write_echo((char *)arg[k]) == -1)
+				msgexit(shell, ECHO_ERR, errno, &exit);
+		}
 		k++;
 		if (arg[k])
 			printf(" ");
@@ -81,7 +101,7 @@ int	ft_echo(t_shell *shell)
 		if (option == 1)
 			return (EXIT_FAILURE);
 	}
-	ecrit(arg, k, option);
+	ecrit(arg, k, option, shell);
 	return (EXIT_SUCCESS);
 }
 
