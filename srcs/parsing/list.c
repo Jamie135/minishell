@@ -67,6 +67,8 @@ t_list	*fill_list(char *line, t_free *free_var, t_envi *env, int *exit)
 	return (free(str), list);
 }
 
+// printf("str: %s\n", str);
+
 // if (expend_pars(free_var, env, *exit))
 // 	return (free_var_all(free_var), malloc_err("fill_list.c"), NULL);
 
@@ -79,6 +81,13 @@ t_list	*fill_list(char *line, t_free *free_var, t_envi *env, int *exit)
 // {
 // 	printf("SPLIT: %s\n", free_var->split[i]);
 // 	i++;
+// }
+
+// while (list && list->next)
+// {
+// 	printf("list content: %s ; ", list->content);
+// 	printf("type: %i\n", list->type);
+// 	list = list->next;
 // }
 
 // while (env)
