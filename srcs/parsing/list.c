@@ -61,9 +61,21 @@ t_list	*fill_list(char *line, t_free *free_var, t_envi *env, int *exit)
 		return (free_fill(tab, list, line));
 	if (trim_split(tab, free_var) == -1)
 		return (free_all_trim(list, tab, line, str), NULL);
+	int	i = 0;
+	while (free_var->split[i])
+	{
+		printf("SPLIT: %s\n", free_var->split[i]);
+		i++;
+	}
 	list = fill(list, free_var);
 	if (!list)
 		return (NULL);
+	while (list && list->next)
+	{
+		printf("list content: %s ; ", list->content);
+		printf("type: %i\n", list->type);
+		list = list->next;
+	}
 	return (free(str), list);
 }
 
