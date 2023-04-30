@@ -112,11 +112,9 @@ int	run(char **envp, char *line, t_list *list, t_free *free_var)
 	}
 }
 
-// while (list)
+// while (list && list->next)
 // {
 // 	printf("list content: %s\n", list->content);
-// 	if (!list->next)
-// 		break ;
 // 	list = list->next;
 // }
 // printf("list content: %s\n", list->content);
