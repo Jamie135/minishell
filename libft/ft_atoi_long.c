@@ -49,3 +49,28 @@ ssize_t	ft_atoi_long(const char *nptr)
 	}
 	return (signe * n);
 }
+
+long long	ft_atoll(const char *str)
+{
+	int					i;
+	int					f;
+	unsigned long long	out;
+
+	i = 0;
+	f = 1;
+	out = 0;
+	while (ft_is_white_space(str[i]))
+		++i;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			f = -1;
+		++i;
+	}
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
+	{
+		out = out * 10 + (str[i] - '0');
+		++i;
+	}
+	return (f * out);
+}
