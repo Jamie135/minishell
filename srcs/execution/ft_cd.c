@@ -68,6 +68,7 @@ int	execute_tilde_et_moins(const char **arg, t_shell *shell)
 	{
 		if (!valeur_de_oldpwd(shell))
 			printf("cd: OLDPWD not set\n");
+		printf("%s\n", valeur_de_oldpwd(shell));
 		return (chdir(valeur_de_oldpwd(shell)), 1);
 	}
 	return (0);

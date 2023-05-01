@@ -80,3 +80,15 @@ int	list_args_2(t_list *list, char **args, size_t *len, size_t *i)
 // while (++j < *i && list->next)
 // 	list = list->next;
 // printf("args content: %s\n", list->content);
+
+int	is_command(char *str)
+{
+	if (!ft_strcmp(str, "cd") || !ft_strcmp(str, "echo") \
+		|| !ft_strcmp(str, "export") || !ft_strcmp(str, "unset") \
+		|| !ft_strcmp(str, "exit") || !ft_strcmp(str, "env") \
+		|| !ft_strcmp(str, "pwd") || !ft_strcmp(str, "unset") \
+		|| !ft_strcmp(str, "ls") || !ft_strcmp(str, "cat") \
+		|| !ft_strcmp(str, "grep") || !ft_strcmp(str, "sleep"))
+		return (1);
+	return (0);
+}

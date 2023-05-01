@@ -236,6 +236,7 @@ int			list_args_2(t_list *list, char **args, size_t *len, size_t *i);
 int			check_unknown(char *str);
 void		check_arg_behind(t_list *list, size_t *len);
 int			extra_redir(char *tmp);
+int			is_command(char *str);
 
 /* free_execution.c */
 void		free_ptr(void **ptr);

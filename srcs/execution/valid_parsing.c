@@ -75,12 +75,15 @@ int	valid_extra_token(t_list *list)
 	tmp_content = list->content;
 	type = list->type;
 	list = list->next;
-	if (list->type == REDIR && !ft_strcmp(list->content, "<"))
+	if (list)
 	{
-		if (extra_redir(tmp_content) == -1)
+		if (!ft_strcmp(list->content, "<") && !is_command(tmp_content))
+		{
+			if (extra_redir(tmp_content) == -1)
+				return (free_list((t_list *)tmp), -1);
+			print_token(tmp_content);
 			return (free_list((t_list *)tmp), -1);
-		print_token(tmp_content);
-		return (free_list((t_list *)tmp), -1);
+		}
 	}
 	while (list)
 	{
