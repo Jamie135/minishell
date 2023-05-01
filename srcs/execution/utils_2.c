@@ -12,6 +12,20 @@
 
 #include "../../includes/minishell.h"
 
+int	check_unknown(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == -2)
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+
 int	list_args_2(t_list *list, char **args, size_t *len, size_t *i)
 {
 	size_t	j;

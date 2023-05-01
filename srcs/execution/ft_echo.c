@@ -69,9 +69,9 @@ void	ecrit(const char **arg, int k, int option, t_shell *shell)
 			if (write_echo((char *)arg[k]) == -1)
 				msgexit(shell, ECHO_ERR, errno, &exit);
 		}
+		if (arg[k + 1] && check_unknown((char *)arg[k]) != -1)
+			write(STDOUT, " ", 1);
 		k++;
-		if (arg[k])
-			printf(" ");
 	}
 	if (option == 0)
 		printf("\n");
