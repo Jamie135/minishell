@@ -16,6 +16,8 @@ void	check_arg_behind(t_list *list, size_t *len)
 {
 	while (list)
 	{
+		if (list->type == PIPE)
+			break ;
 		if (list->type == ARG)
 			(*len)++;
 		list = list->next;
