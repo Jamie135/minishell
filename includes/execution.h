@@ -127,6 +127,7 @@ void		shlvl_var(t_shell *shell);
 void		get_exit_value(t_shell *shell);
 
 /* valid_parsing.c */
+int			extra_token(t_list *list, int type, char *tmp);
 int			valid_num_redir(t_list *list);
 int			valid_extra_token(t_list *list);
 int			valid_after_redir(t_list *list);
@@ -234,6 +235,7 @@ int			check_last_char(char *str, char c);
 int			list_args_2(t_list *list, char **args, size_t *len, size_t *i);
 int			check_unknown(char *str);
 void		check_arg_behind(t_list *list, size_t *len);
+int			extra_redir(char *tmp);
 
 /* free_execution.c */
 void		free_ptr(void **ptr);

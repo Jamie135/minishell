@@ -12,6 +12,29 @@
 
 #include "../../includes/minishell.h"
 
+int	extra_token(t_list *list, int type, char *tmp)
+{
+	if (list->type == type)
+	{
+		if (type == PIPE)
+		{
+			if (!ft_strcmp(tmp, "|"))
+			{
+				print_token("||");
+				return (-1);
+			}
+			print_token(list->content);
+			return (-1);
+		}
+		if (type == REDIR)
+		{
+			print_token(list->content);
+			return (-1);
+		}
+	}
+	return (0);
+}
+
 int	valid_num_redir(t_list *list)
 {
 	const t_list	*tmp = list;
@@ -46,30 +69,35 @@ int	valid_num_redir(t_list *list)
 int	valid_extra_token(t_list *list)
 {
 	const t_list	*tmp = list;
+	char			*tmp_content;
 	int				type;
 
+	tmp_content = list->content;
 	type = list->type;
 	list = list->next;
+	if (list->type == REDIR && !ft_strcmp(list->content, "<"))
+	{
+		if (extra_redir(tmp_content) == -1)
+			return (free_list((t_list *)tmp), -1);
+		print_token(tmp_content);
+		return (free_list((t_list *)tmp), -1);
+	}
 	while (list)
 	{
-		if (list->type == type)
-		{
-			if (type == PIPE)
-			{
-				print_token(list->content);
-				return (free_list((t_list *)tmp), -1);
-			}
-			if (type == REDIR)
-			{
-				print_token(list->content);
-				return (free_list((t_list *)tmp), -1);
-			}
-		}
+		if (extra_token(list, type, tmp_content) == -1)
+			return (free_list((t_list *)tmp), -1);
 		type = list->type;
 		list = list->next;
 	}
 	return (0);
 }
+
+// while (list && list->next)
+// {
+// 	printf("content: %s ; ", list->content);
+// 	printf("type: %i\n", list->type);
+// 	list = list->next;
+// }
 
 //verifier qu'on a pas uniquement un \n apres les redirections
 int	valid_after_redir(t_list *list)

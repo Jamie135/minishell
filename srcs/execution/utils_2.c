@@ -12,6 +12,21 @@
 
 #include "../../includes/minishell.h"
 
+int	extra_redir(char *tmp)
+{
+	if (!ft_strcmp(tmp, "<<"))
+	{
+		print_token("newline");
+		return (-1);
+	}
+	else if (!ft_strcmp(tmp, ">>"))
+	{
+		print_token(">");
+		return (-1);
+	}
+	return (0);
+}
+
 void	check_arg_behind(t_list *list, size_t *len)
 {
 	while (list)
