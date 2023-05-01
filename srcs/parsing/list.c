@@ -27,6 +27,7 @@ t_list	*fill(t_list *list, t_free *free_var)
 	{
 		tmp = ft_lstnew_2(free_var->split[i], -1, \
 							free_var->unexpended[i], free_var->quoted[i]);
+		printf("tmp: %s\n", tmp->content);
 		if (tmp == NULL)
 			return (NULL);
 		ft_lstadd_back(&list, tmp);
@@ -61,21 +62,15 @@ t_list	*fill_list(char *line, t_free *free_var, t_envi *env, int *exit)
 		return (free_fill(tab, list, line));
 	if (trim_split(tab, free_var) == -1)
 		return (free_all_trim(list, tab, line, str), NULL);
-	int	i = 0;
-	while (free_var->split[i])
-	{
-		printf("SPLIT: %s\n", free_var->split[i]);
-		i++;
-	}
 	list = fill(list, free_var);
 	if (!list)
 		return (NULL);
-	// while (list && list->next)
-	// {
-	// 	printf("list content: %s ; ", list->content);
-	// 	printf("type: %i\n", list->type);
-	// 	list = list->next;
-	// }
+	while (list)
+	{
+		printf("list content: %s ; ", list->content);
+		printf("type: %i\n", list->type);
+		list = list->next;
+	}
 	return (free(str), list);
 }
 
