@@ -49,13 +49,9 @@ void	type(t_list *list)
 	last_type = -1;
 	while (list)
 	{
-		printf("(1)list content: %s ; ", list->content);
-		printf("type: %i\n", list->type);
 		if (last_type == REDIR || list->type == -1)
 			list->type = get_type(list->content, last_type);
 		last_type = list->type;
-		printf("(2)list content: %s ; ", list->content);
-		printf("type: %i\n", list->type);
 		list = list->next;
 	}	
 }
