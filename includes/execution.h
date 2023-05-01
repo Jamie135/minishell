@@ -233,6 +233,7 @@ int			ft_all_isalnum_len(char *str, int len);
 int			check_last_char(char *str, char c);
 int			list_args_2(t_list *list, char **args, size_t *len, size_t *i);
 int			check_unknown(char *str);
+void		check_arg_behind(t_list *list, size_t *len);
 
 /* free_execution.c */
 void		free_ptr(void **ptr);

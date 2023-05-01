@@ -12,6 +12,16 @@
 
 #include "../../includes/minishell.h"
 
+void	check_arg_behind(t_list *list, size_t *len)
+{
+	while (list)
+	{
+		if (list->type == ARG)
+			(*len)++;
+		list = list->next;
+	}
+}
+
 int	check_unknown(char *str)
 {
 	int	i;
@@ -38,6 +48,8 @@ int	list_args_2(t_list *list, char **args, size_t *len, size_t *i)
 	}
 	while (list && *i < *len)
 	{
+		while (list->type != CMD && list->type != ARG)
+			list = list->next;
 		args[*i] = ft_strdup(list->content);
 		if (!args[*i])
 			return (free_n_split(args, *i), 0);

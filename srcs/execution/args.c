@@ -90,6 +90,7 @@ size_t	len_args(t_list *list)
 		len++;
 		list = list->next;
 	}
+	check_arg_behind(list, &len);
 	return (len + space_flag);
 }
 

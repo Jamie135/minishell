@@ -62,15 +62,8 @@ char	***init_args(t_shell *shell, t_list *list)
 		while (list && list->type != CMD)
 			list = list->next;
 		len = len_args(list) + 1;
-		printf("len = %i\n", len);
 		while (list && len--)
 			list = list->next;
-		int j = 0;
-		while (j < len_array((char **)args[i]))
-		{
-			printf("args[%i][%i]: %s\n", i, j, args[i][j]);
-			j++;
-		}
 		i++;
 	}
 	args[i] = NULL;
