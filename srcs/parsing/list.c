@@ -70,12 +70,12 @@ t_list	*fill_list(char *line, t_free *free_var, t_envi *env, int *exit)
 	list = fill(list, free_var);
 	if (!list)
 		return (NULL);
-	while (list && list->next)
-	{
-		printf("list content: %s ; ", list->content);
-		printf("type: %i\n", list->type);
-		list = list->next;
-	}
+	// while (list && list->next)
+	// {
+	// 	printf("list content: %s ; ", list->content);
+	// 	printf("type: %i\n", list->type);
+	// 	list = list->next;
+	// }
 	return (free(str), list);
 }
 

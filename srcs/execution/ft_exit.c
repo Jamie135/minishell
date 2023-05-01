@@ -62,6 +62,11 @@ static void	exit_alphabet(t_list *list, t_envi *env)
 	{
 		if (list->next && list->next->content)
 		{
+			if (ft_strlen(list->next->content) > 19)
+			{
+				exit_alphabet_print(list, env);
+				exit(2);
+			}
 			if (ft_all_isdigit(list->next->content) && num_cmd == 1)
 			{
 				if (count_one_minus(list->next->content))
