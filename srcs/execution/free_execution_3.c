@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:10:41 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/29 15:15:08 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/05/02 15:05:31 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	free_redir(t_list **list, int n)
 	}
 	free(list);
 }
+
+// printf("content: %s\n", list[i]->content);
 
 void	free_pipes(int **pipes, size_t n)
 {

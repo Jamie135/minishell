@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 21:08:33 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/28 17:33:01 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/05/02 15:12:02 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,6 +225,7 @@ int			open_file(char *name, t_redir type);
 /* close.c */
 void		close_fd(int *fd);
 void		close_pipes(int	**pipes, size_t num);
+int			can_free(t_shell *shell);
 
 /* utils.c */
 int			is_str_alnum(char *str);

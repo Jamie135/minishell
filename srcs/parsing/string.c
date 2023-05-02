@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:13:37 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/28 13:43:13 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/05/02 15:19:42 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ char	*get_string(char *str)
 		else
 			fill_inc(str, new, &i, j);
 	}
-	// printf("final_string: %s\n", final_string(new));
 	return (final_string(new));
 }
 

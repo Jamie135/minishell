@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 00:04:23 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/28 13:58:21 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/05/02 15:18:11 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static void	free_shell_2(t_shell *shell)
 {
 	if (shell->redir)
 	{
-		free_redir(shell->redir, shell->cmd_num + shell->no_cmd + 1);
+		if (can_free(shell) != -1)
+			free_redir(shell->redir, shell->cmd_num + shell->no_cmd + 1);
 		shell->redir = NULL;
 	}
 	if (shell->pid)
@@ -52,6 +53,17 @@ static void	free_shell_2(t_shell *shell)
 		shell->args = NULL;
 	}
 }
+
+// int	i = 0;
+// while (i < shell->cmd_num + shell->no_cmd + 1)
+// {
+// 	while (shell->redir[i])
+// 	{
+// 		printf("redir[%i]: %s\n", i, shell->redir[i]->content);
+// 		shell->redir[i] = shell->redir[i]->next;
+// 	}
+// 	i++;
+// }
 
 void	free_shell_1(t_shell *shell)
 {
