@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:10:41 by pbureera          #+#    #+#             */
-/*   Updated: 2023/05/02 15:05:31 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/05/02 16:24:59 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ void	free_one_list(t_list **list, t_list *lst)
 	t_list	*next;
 
 	next = (*list)->next;
-	ft_lst_print_type(next);
+	if (ft_strcmp(lst->content, "echo"))
+		ft_lst_print_type(next);
 	free_ptr((void **)&(*list)->content);
 	free_ptr((void **)list);
 	(*list) = lst;
@@ -84,3 +85,10 @@ void	free_one_list(t_list **list, t_list *lst)
 	else
 		(*list)->next = NULL;
 }
+
+// while (lst && lst->next)
+// {
+// 	printf("list content: %s ; ", lst->content);
+// 	printf("type: %i\n", lst->type);
+// 	lst = lst->next;
+// }

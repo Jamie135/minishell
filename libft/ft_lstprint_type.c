@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 00:34:39 by pbureera          #+#    #+#             */
-/*   Updated: 2023/03/08 00:34:39 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/05/02 16:21:01 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,15 @@ void	ft_lst_print_type(t_list *lst)
 		ft_putendl_fd("(null)", 1);
 	while (lst)
 	{
-		printf("%s | %s\n", lst->content, ft_print_type(lst->type));
+		printf("%s | %s | not_expend = %d\n", lst->content, \
+				ft_print_type(lst->type), lst->unexpended);
 		lst = lst->next;
 	}
 }
+
+// while (lst && lst->next)
+// {
+// 	printf("list content: %s ; ", lst->content);
+// 	printf("type: %i\n", lst->type);
+// 	lst = lst->next;
+// }
