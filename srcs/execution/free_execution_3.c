@@ -70,12 +70,12 @@ void	free_args(char ***args, size_t n)
 	free(args);
 }
 
-void	free_one_list(t_list **list, t_list *lst)
+void	free_one_list(t_list **list, t_list *lst, char *tmp)
 {
 	t_list	*next;
 
 	next = (*list)->next;
-	if (ft_strcmp(lst->content, "echo"))
+	if (ft_strcmp(tmp, "echo"))
 		ft_lst_print_type(next);
 	free_ptr((void **)&(*list)->content);
 	free_ptr((void **)list);

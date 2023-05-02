@@ -16,8 +16,10 @@
 int	expend_list(t_envi *envi, t_list *list, int exit_value)
 {
 	t_list	*lst;
+	char	*tmp;
 
 	lst = NULL;
+	tmp = list->content;
 	while (envi && list)
 	{
 		if (ft_strchr(list->content, '$') && list->unexpended == false \
@@ -27,7 +29,7 @@ int	expend_list(t_envi *envi, t_list *list, int exit_value)
 			if (!list->content)
 				return (EXIT_FAILURE);
 			if (!ft_strcmp(list->content, ""))
-				free_one_list(&list, lst);
+				free_one_list(&list, lst, tmp);
 		}
 		lst = list;
 		list = list->next;
