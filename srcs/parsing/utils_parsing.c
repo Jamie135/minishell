@@ -81,6 +81,7 @@ int	valid_syntax(char *line, int *exit_value)
 		*exit_value = 127;
 		return (-1);
 	}
+	line = command_in_quoted(line);
 	while (line[i])
 	{
 		if (valid_syntax_2(line, &i) == -1)

@@ -80,6 +80,32 @@
 // 	return (free_list(join), free_split(split), str);
 // }
 
+char	*command_in_quoted(char *line)
+{
+	int	closed;
+
+	if (line[0] == '\'' || line[0] == '\"')
+	{
+		closed = 1;
+		if (line[0] == '\'')
+		{
+			while (line[closed] && line[closed] != '\'')
+				closed++;
+			if (!line[closed])
+				return (line);
+		}
+		else if (line[0] == '\"')
+		{
+			while (line[closed] && line[closed] != '\"')
+				closed++;
+			if (!line[closed])
+				return (line);
+		}
+		line = trim_command(line);
+	}
+	return (line);
+}
+
 int	len_space_str(char *line)
 {
 	int	i;
