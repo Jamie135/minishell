@@ -47,6 +47,7 @@ void	met_a_jour_oldpwd(t_shell *shell, char *ancien_chemin)
 	{
 		if (identique(parcours->ve, "OLDPWD"))
 		{
+			free (parcours->value);
 			parcours->value = ancien_chemin;
 			trouvee = 1;
 		}
