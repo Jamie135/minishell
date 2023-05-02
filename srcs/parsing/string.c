@@ -76,7 +76,6 @@ char	*final_string(char *new)
 }
 
 // printf("new: %s\n", new);
-
 //retourner une "copie" de la ligne de commande, mais mieux espacer, 
 //l'interet est de bien espacer la ligne de commande pour qu'on puisse
 //la split apres
