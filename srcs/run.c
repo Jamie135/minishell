@@ -32,12 +32,12 @@ int	line_dollars_alphabet(char *line, int *exit)
 }
 
 //verifier si la ligne de commande a uniquement que des espaces
-int	line_space(char *line)
+int	line_space(char *line, int *exit)
 {
 	int	i;
 
 	i = 0;
-	if (valid_syntax(line) == -1)
+	if (valid_syntax(line, exit) == -1)
 		return (-1);
 	while (line[i])
 	{
@@ -77,7 +77,7 @@ char	*ft_readline(char *line, int *count, t_envi *env, int *exit)
 	if (g_signal == 2)
 		*exit = 130;
 	parent_child_signal(PARENT);
-	if (line_null(line, env) == -1 || line_space(line) == -1 \
+	if (line_null(line, env) == -1 || line_space(line, exit) == -1 \
 		|| line_dollars_alphabet(line, exit) == -1)
 		return (NULL);
 	return (line);

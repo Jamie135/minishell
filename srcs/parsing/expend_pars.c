@@ -80,6 +80,52 @@
 // 	return (free_list(join), free_split(split), str);
 // }
 
+int	len_space_str(char *line)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (line[i] == ' ')
+		i++;
+	if (line[i] == '\"')
+	{
+		j = i;
+		i++;
+		while (line[i] == ' ')
+			i++;
+		if (line[i] != '\"')
+			return (0);
+	}
+	else if (line[i] == '\'')
+	{
+		j = i;
+		i++;
+		while (line[i] == ' ')
+			i++;
+		if (line[i] != '\'')
+			return (0);
+	}
+	return (i - j);
+}
+
+char	*space_str(char *str)
+{
+	int		i;
+	int		len;
+	char	*tmp;
+
+	i = -1;
+	len = len_space_str(str);
+	tmp = malloc(sizeof(char *) * (len + 1));
+	if (!tmp)
+		return (NULL);
+	while (++i < len)
+		tmp[i] = ' ';
+	tmp[i] = '\0';
+	return (tmp);
+}
+
 int	expend_pars(t_free *free_var, t_envi *env, int exit_value)
 {
 	int		i;

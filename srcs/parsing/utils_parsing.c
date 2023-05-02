@@ -63,28 +63,27 @@ void	fill_inc(char *str, char *new, int *i, int j)
 }
 
 //verifier si la syntaxe est correcte (ouverture et fermeture des quotes)
-int	valid_syntax(char *line)
+int	valid_syntax(char *line, int *exit_value)
 {
-	int	i;
+	int		i;
+	char	*tmp;
 
 	i = 0;
+	if (space_in_double_quote(line) || space_in_single_quote(line))
+	{
+		tmp = space_str(line);
+		if (tmp)
+		{
+			ft_putstr_fd(tmp, STDERR);
+			ft_putstr_fd(": ", STDERR);
+		}
+		ft_putendl_fd("command not found", STDERR);
+		*exit_value = 127;
+		return (-1);
+	}
 	while (line[i])
 	{
-		if (line[i] && line[i] == '\'' && i++)
-		{
-			while (line[i] && line[i] != '\'')
-				i++;
-			if (!line[i])
-				return (syntax_err(line));
-		}
-		else if (line[i] && line[i] == '\"' && i++)
-		{
-			while (line[i] && line[i] != '\"')
-				i++;
-			if (!line[i])
-				return (syntax_err(line));
-		}
-		if (line[i] && (line[i] == ';' || line[i] == 92))
+		if (valid_syntax_2(line, &i) == -1)
 			return (syntax_err(line));
 		i++;
 	}

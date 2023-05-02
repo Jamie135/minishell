@@ -61,3 +61,24 @@ int	len_split(char **split)
 		len++;
 	return (len);
 }
+
+int	valid_syntax_2(char *line, int *i)
+{
+	if (line[*i] && line[*i] == '\'' && (*i)++)
+	{
+		while (line[*i] && line[*i] != '\'')
+			(*i)++;
+		if (!line[*i])
+			return (-1);
+	}
+	else if (line[*i] && line[*i] == '\"' && (*i)++)
+	{
+		while (line[*i] && line[*i] != '\"')
+			(*i)++;
+		if (!line[*i])
+			return (-1);
+	}
+	if (line[*i] && (line[*i] == ';' || line[*i] == 92))
+		return (-1);
+	return (0);
+}

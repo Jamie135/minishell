@@ -12,6 +12,44 @@
 
 #include "../../includes/minishell.h"
 
+int	space_in_double_quote(char *line)
+{
+	int		i;
+
+	i = 0;
+	while (line[i] == ' ')
+		i++;
+	if (line[i] == '\"')
+	{
+		i++;
+		while (line[i] == ' ')
+			i++;
+		if (line[i] == '\"')
+			return (1);
+	}
+	return (0);
+}
+
+int	space_in_single_quote(char *line)
+{
+	int		i;
+
+	i = 0;
+	while (line[i] == ' ')
+		i++;
+	if (line[i] == '\'')
+	{
+		i++;
+		while (line[i] == ' ')
+		{
+			i++;
+		}
+		if (line[i] == '\'')
+			return (1);
+	}
+	return (0);
+}
+
 //verifier si les quotes ouverts sont fermes
 int	valid_open(char *str)
 {

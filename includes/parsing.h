@@ -56,6 +56,8 @@ char		*double_quote(char *str, int index);
 int			valid_open(char *str);
 int			is_unexpended(char *str);
 int			is_quoted(char *str);
+int			space_in_single_quote(char *line);
+int			space_in_double_quote(char *line);
 
 /* string.c && string_quote.c && string_utils.c */
 char		*get_string(char *str);
@@ -86,6 +88,7 @@ size_t		increment_single_quote(const char *s);
 size_t		increment_double_quote(const char *s);
 int			increment_word(const char *s, bool quote);
 int			len_split(char **split);
+int			valid_syntax_2(char *line, int *i);
 
 /* trim.c && trim_utils.c */
 int			trim_split(char **split, t_free *free_var);
@@ -96,6 +99,8 @@ void		free_all_trim(t_list *list, char **tab, char *line, char *str);
 
 /* expend_parsing.c */
 int			expend_pars(t_free *free_var, t_envi *env, int exit_value);
+char		*space_str(char *str);
+int			len_space_str(char *str);
 
 /* type.c */
 void		type(t_list *list);
@@ -114,7 +119,7 @@ void		free_split_parsing(char **split);
 void		free_var_all(t_free	*free_var);
 
 /* utils_parsing*/
-int			valid_syntax(char *line);
+int			valid_syntax(char *line, int *exit_value);
 void		fill_inc(char *str, char *new, int *i, int j);
 void		fill_quote_inc(char *str, char *new, int *i, int j);
 int			dollars_pars(char *str, int *exit);
