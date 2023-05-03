@@ -62,15 +62,20 @@ int	execute_tilde_et_moins(const char **arg, t_shell *shell)
 	{
 		if (!valeur_de_home(shell))
 			printf("cd: HOME not set\n");
-		return (chdir(valeur_de_home(shell)), 1);
+		else
+			chdir(valeur_de_home(shell));
+		return (1);
 	}
 	if (arg[0][0] == '-' && arg[0][1] == '\0')
 	{
 		if (!valeur_de_oldpwd(shell))
 			printf("cd: OLDPWD not set\n");
 		else
+		{
 			printf("%s\n", valeur_de_oldpwd(shell));
-		return (chdir(valeur_de_oldpwd(shell)), 1);
+			chdir(valeur_de_oldpwd(shell));
+		}
+		return (1);
 	}
 	return (0);
 }
