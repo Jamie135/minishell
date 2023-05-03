@@ -80,6 +80,7 @@ void		is_quote_next(char *str, int *i, int *len);
 char		*split_pipe(char *str);
 int			len_pipe(char *str);
 void		complete_string(char *new, int *i, int *j, char *str);
+int			len_unfound(char *line);
 
 /* split_line.c && split_line_utils.c */
 char		**split_line(char const *s, char c);
@@ -98,19 +99,22 @@ char		*strdup_free(char *str, int free_var);
 void		free_all_trim(t_list *list, char **tab, char *line, char *str);
 char		*trim_command(char *line);
 void		spacecmd_not_found(char *line, int *exit_value);
+char		*trim_unfound(char *line);
+
 
 /* expend_parsing.c */
 int			expend_pars(t_free *free_var, t_envi *env, int exit_value);
 char		*space_str(char *str);
 int			len_space_str(char *str);
 char		*command_in_quoted(char *line);
-int			unfound_command(char *line, int *closed, int *exit_value);
+int			unfound_command(char *line, int *exit_value);
 
 /* type.c */
 void		type(t_list *list);
 int			get_type(char *str, int last_type);
 int			get_type_redir(char *str);
 int			line_user(char *line, int *exit);
+void		cmd_unfound(char *line);
 
 /* free_parsing_1.c && free_parsing_2.c */
 void		*free_quote(char *str);

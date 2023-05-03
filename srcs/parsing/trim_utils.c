@@ -12,6 +12,35 @@
 
 #include "../../includes/minishell.h"
 
+char	*trim_unfound(char *line)
+{
+	char	*new;
+	int		len;
+	int		i;
+	int		j;
+	int		flag;
+
+	len = len_unfound(line);
+	new = malloc(sizeof(char *) * (len + 1));
+	if (!new)
+		return (line);
+	i = 0;
+	j = 0;
+	flag = 0;
+	while (line[i])
+	{
+		if (line[i] != '\'' && line[i] != '\"' )
+		{
+			new[j] = line[i];
+			j++;
+			i++;
+		}
+		else
+			i++;
+	}
+	return (new);
+}
+
 void	spacecmd_not_found(char *line, int *exit_value)
 {
 	char	*tmp;

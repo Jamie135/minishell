@@ -12,6 +12,20 @@
 
 #include "../../includes/minishell.h"
 
+void	cmd_unfound(char *line)
+{
+	char	*tmp;
+
+	tmp = trim_unfound(line);
+	if (tmp)
+	{
+		ft_putstr_fd(tmp, STDERR);
+		ft_putstr_fd(": ", STDERR);
+	}
+	ft_putendl_fd("command not found", STDERR);
+	free(line);
+}
+
 int	line_user(char *line, int *exit)
 {
 	if (!ft_strcmp(line, "echo '\"$USER\"'"))

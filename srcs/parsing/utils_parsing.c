@@ -74,6 +74,8 @@ int	valid_syntax(char *line, int *exit_value)
 		return (-1);
 	}
 	line = command_in_quoted(line);
+	if (unfound_command(line, exit_value))
+		return (-1);
 	while (line[i])
 	{
 		if (valid_syntax_2(line, &i) == -1)

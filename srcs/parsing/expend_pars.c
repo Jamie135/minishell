@@ -80,26 +80,25 @@
 // 	return (free_list(join), free_split(split), str);
 // }
 
-int	unfound_command(char *line, int *closed, int *exit_value)
+int	unfound_command(char *line, int *exit_value)
 {
-	char	*tmp;
+	int		closed;
 
-	if (!line[*closed])
-		return (0);
-	else if (line[*closed] == ' ')
+	if (line[0] == '\'' || line[0] == '\"')
 	{
-		tmp = trim_command(line);
-		if (tmp)
+		closed = 1;
+		while (line[closed] && line[closed] != ' ')
+			closed++;
+		if (!line[closed])
+			return (0);
+		else if (line[closed] == ' ')
 		{
-			ft_putstr_fd(tmp, STDERR);
-			ft_putstr_fd(": ", STDERR);
+			cmd_unfound(line);
+			*exit_value = 127;
+			return (1);
 		}
-		ft_putendl_fd("command not found", STDERR);
-		free(line);
-		*exit_value = 127;
 	}
-	else
-		return (1);
+	return (0);
 }
 
 char	*command_in_quoted(char *line)

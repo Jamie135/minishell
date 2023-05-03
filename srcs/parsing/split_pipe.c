@@ -12,6 +12,22 @@
 
 #include "../../includes/minishell.h"
 
+int	len_unfound(char *line)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = 0;
+	while (line[i])
+	{
+		if (line[i] != '\'' && line[i] != '\"')
+			len++;
+		i++;
+	}
+	return (len);
+}
+
 int	len_pipe(char *str)
 {
 	int	len;
