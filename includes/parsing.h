@@ -103,6 +103,7 @@ int			expend_pars(t_free *free_var, t_envi *env, int exit_value);
 char		*space_str(char *str);
 int			len_space_str(char *str);
 char		*command_in_quoted(char *line);
+int			unfound_command(char *line, int *closed, int *exit_value);
 
 /* type.c */
 void		type(t_list *list);

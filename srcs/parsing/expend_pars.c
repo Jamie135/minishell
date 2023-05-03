@@ -80,6 +80,28 @@
 // 	return (free_list(join), free_split(split), str);
 // }
 
+int	unfound_command(char *line, int *closed, int *exit_value)
+{
+	char	*tmp;
+
+	if (!line[*closed])
+		return (0);
+	else if (line[*closed] == ' ')
+	{
+		tmp = trim_command(line);
+		if (tmp)
+		{
+			ft_putstr_fd(tmp, STDERR);
+			ft_putstr_fd(": ", STDERR);
+		}
+		ft_putendl_fd("command not found", STDERR);
+		free(line);
+		*exit_value = 127;
+	}
+	else
+		return (1);
+}
+
 char	*command_in_quoted(char *line)
 {
 	int	closed;
@@ -89,16 +111,16 @@ char	*command_in_quoted(char *line)
 		closed = 1;
 		if (line[0] == '\'')
 		{
-			while (line[closed] && line[closed] != '\'')
+			while (line[closed] && line[closed] != '\'' && line[closed] != ' ')
 				closed++;
-			if (!line[closed])
+			if (!line[closed] || line[closed] == ' ')
 				return (line);
 		}
 		else if (line[0] == '\"')
 		{
-			while (line[closed] && line[closed] != '\"')
+			while (line[closed] && line[closed] != '\"' && line[closed] != ' ')
 				closed++;
-			if (!line[closed])
+			if (!line[closed] || line[closed] == ' ')
 				return (line);
 		}
 		line = trim_command(line);
