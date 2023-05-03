@@ -66,20 +66,11 @@ void	fill_inc(char *str, char *new, int *i, int j)
 int	valid_syntax(char *line, int *exit_value)
 {
 	int		i;
-	char	*tmp;
 
 	i = 0;
 	if (space_in_double_quote(line) || space_in_single_quote(line))
 	{
-		tmp = space_str(line);
-		if (tmp)
-		{
-			ft_putstr_fd(tmp, STDERR);
-			ft_putstr_fd(": ", STDERR);
-		}
-		ft_putendl_fd("command not found", STDERR);
-		free(line);
-		*exit_value = 127;
+		spacecmd_not_found(line, exit_value);
 		return (-1);
 	}
 	line = command_in_quoted(line);

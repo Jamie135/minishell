@@ -12,6 +12,21 @@
 
 #include "../../includes/minishell.h"
 
+void	spacecmd_not_found(char *line, int *exit_value)
+{
+	char	*tmp;
+
+	tmp = space_str(line);
+	if (tmp)
+	{
+		ft_putstr_fd(tmp, STDERR);
+		ft_putstr_fd(": ", STDERR);
+	}
+	ft_putendl_fd("command not found", STDERR);
+	free(line);
+	*exit_value = 127;
+}
+
 char	*trim_command(char *line)
 {
 	char	*new;

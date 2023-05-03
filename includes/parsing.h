@@ -97,6 +97,7 @@ char		*clean_string(char *str, int tmp);
 char		*strdup_free(char *str, int free_var);
 void		free_all_trim(t_list *list, char **tab, char *line, char *str);
 char		*trim_command(char *line);
+void		spacecmd_not_found(char *line, int *exit_value);
 
 /* expend_parsing.c */
 int			expend_pars(t_free *free_var, t_envi *env, int exit_value);
