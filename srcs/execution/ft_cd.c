@@ -14,11 +14,23 @@
 
 char	*pwd_avant_cd(t_shell *shell)
 {
+	t_envi	*envi;
 	char	*repertoire_actuel;
 
+	envi = shell->envi;
 	repertoire_actuel = getcwd(NULL, 0);
-	if (!(repertoire_actuel))
-		return (msgexit(shell, NULL, errno, &exit), NULL);
+	if (!repertoire_actuel)
+	{
+		while (envi)
+		{
+			if (identique("PWD", (envi->ve)))
+				repertoire_actuel = envi->value;
+			envi = envi->next;
+		}
+		if (!repertoire_actuel)
+			return (free_pwd(shell, NULL, errno, &exit), NULL);
+		return (repertoire_actuel);
+	}
 	return (repertoire_actuel);
 }
 
