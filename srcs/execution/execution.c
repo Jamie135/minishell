@@ -114,3 +114,10 @@ t_envi	*execution(t_list *list, t_envi *env, int *count, int *exit_value)
 	*exit_value = shell->mode;
 	return (free_shell_1(shell), envp);
 }
+
+// while (list)
+// {
+// 	printf("list content: %s ; ", list->content);
+// 	printf("type: %i\n", list->type);
+// 	list = list->next;
+// }
