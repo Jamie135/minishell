@@ -78,6 +78,7 @@ int	valid_syntax(char *line, int *exit_value)
 			ft_putstr_fd(": ", STDERR);
 		}
 		ft_putendl_fd("command not found", STDERR);
+		free(line);
 		*exit_value = 127;
 		return (-1);
 	}

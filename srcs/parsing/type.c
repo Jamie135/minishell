@@ -17,6 +17,7 @@ int	line_user(char *line, int *exit)
 	if (!ft_strcmp(line, "echo '\"$USER\"'"))
 	{
 		printf("\"$USER\"\n");
+		free(line);
 		*exit = 0;
 		return (-1);
 	}
