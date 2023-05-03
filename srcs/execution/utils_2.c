@@ -88,7 +88,10 @@ int	is_command(char *str)
 		|| !ft_strcmp(str, "exit") || !ft_strcmp(str, "env") \
 		|| !ft_strcmp(str, "pwd") || !ft_strcmp(str, "unset") \
 		|| !ft_strcmp(str, "ls") || !ft_strcmp(str, "cat") \
-		|| !ft_strcmp(str, "grep") || !ft_strcmp(str, "sleep"))
+		|| !ft_strcmp(str, "grep") || !ft_strcmp(str, "sleep")
+		|| !ft_strcmp(str, "mkdir") || !ft_strcmp(str, "touch")
+		|| !ft_strcmp(str, "awk") || !ft_strcmp(str, "wc") \
+		|| !ft_strcmp(str, "chmod") || !ft_strcmp(str, "expr"))
 		return (1);
 	return (0);
 }
