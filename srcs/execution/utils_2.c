@@ -91,7 +91,8 @@ int	is_command(char *str)
 		|| !ft_strcmp(str, "grep") || !ft_strcmp(str, "sleep")
 		|| !ft_strcmp(str, "mkdir") || !ft_strcmp(str, "touch")
 		|| !ft_strcmp(str, "awk") || !ft_strcmp(str, "wc") \
-		|| !ft_strcmp(str, "chmod") || !ft_strcmp(str, "expr"))
+		|| !ft_strcmp(str, "chmod") || !ft_strcmp(str, "expr")
+		|| !ft_strcmp(str, "rm"))
 		return (1);
 	return (0);
 }
