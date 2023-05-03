@@ -77,7 +77,8 @@ char	*ft_readline(char *line, int *count, t_envi *env, int *exit)
 	if (g_signal == 2)
 		*exit = 130;
 	parent_child_signal(PARENT);
-	if (line_null(line, env) == -1 || line_space(line, exit) == -1 \
+	if (line_user(line, exit) || line_null(line, env) == -1 \
+		|| line_space(line, exit) == -1 \
 		|| line_dollars_alphabet(line, exit) == -1)
 		return (NULL);
 	return (line);

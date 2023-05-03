@@ -108,6 +108,7 @@ char		*command_in_quoted(char *line);
 void		type(t_list *list);
 int			get_type(char *str, int last_type);
 int			get_type_redir(char *str);
+int			line_user(char *line, int *exit);
 
 /* free_parsing_1.c && free_parsing_2.c */
 void		*free_quote(char *str);

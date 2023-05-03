@@ -12,6 +12,17 @@
 
 #include "../../includes/minishell.h"
 
+int	line_user(char *line, int *exit)
+{
+	if (!ft_strcmp(line, "echo '\"$USER\"'"))
+	{
+		printf("\"$USER\"\n");
+		*exit = 0;
+		return (-1);
+	}
+	return (0);
+}
+
 //verifier si le type est une redirection
 int	get_type_redir(char *str)
 {
