@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:49:29 by pbureera          #+#    #+#             */
-/*   Updated: 2023/05/04 17:08:02 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:19:20 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ char	*ft_readline(char *line, int *count, t_envi *env, int *exit)
 	if (g_signal == 2)
 		*exit = 130;
 	parent_child_signal(PARENT);
-	printf("line: %s\n", line);
 	if (line_user(line, exit) || line_null(line, env) == -1 \
 		|| line_space(line, exit) == -1 \
 		|| line_dollars_alphabet(line, exit) == -1)
