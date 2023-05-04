@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 01:32:57 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/28 13:13:32 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:40:20 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void		free_all_trim(t_list *list, char **tab, char *line, char *str);
 char		*trim_command(char *line);
 void		spacecmd_not_found(char *line, int *exit_value);
 char		*trim_unfound(char *line);
-
 
 /* expend_parsing.c */
 int			expend_pars(t_free *free_var, t_envi *env, int exit_value);
