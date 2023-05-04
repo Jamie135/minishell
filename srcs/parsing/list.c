@@ -6,11 +6,31 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:04:22 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/28 13:28:57 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:07:11 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	is_str_dot(char *line)
+{
+	int	dot;
+	int	i;
+
+	dot = 0;
+	i = 0;
+	while (line[i] && (line[i] == ' ' || line[i] == '.'))
+	{
+		if (line[i] == '.')
+			dot++;
+		i++;
+	}
+	if (!dot || line[i])
+		return (0);
+	else if (dot && !line[i])
+		return (dot);
+	return (0);
+}
 
 //recopier les valeurs de la struct t_free a la struct t_list
 t_list	*fill(t_list *list, t_free *free_var)

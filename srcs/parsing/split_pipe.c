@@ -6,11 +6,34 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 16:32:14 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/28 13:29:25 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:11:42 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	dots_not_found(char *line, int *exit_value)
+{
+	if (is_str_dot(line) == 1)
+	{
+		ft_putstr_fd(".", STDERR);
+		ft_putstr_fd(": ", STDERR);
+		ft_putendl_fd("command not found", STDERR);
+		free(line);
+		*exit_value = 127;
+		return (-1);
+	}
+	else if (is_str_dot(line) == 2)
+	{
+		ft_putstr_fd("..", STDERR);
+		ft_putstr_fd(": ", STDERR);
+		ft_putendl_fd("command not found", STDERR);
+		free(line);
+		*exit_value = 127;
+		return (-1);
+	}
+	return (0);
+}
 
 int	len_unfound(char *line)
 {

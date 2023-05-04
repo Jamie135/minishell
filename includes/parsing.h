@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 01:32:57 by pbureera          #+#    #+#             */
-/*   Updated: 2023/05/04 16:40:20 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:12:34 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int			run(char **envp, char *line, t_list *list, t_free *free_var);
 t_list		*fill_list(char *line, t_free *free_var, t_envi *env, \
 						int *exit_value);
 t_list		*fill(t_list *list, t_free *free_var);
+int			is_str_dot(char *line);
 
 /* quote.c && quote_utils.c */
 int			valid_quote(char *str);
@@ -81,6 +82,7 @@ char		*split_pipe(char *str);
 int			len_pipe(char *str);
 void		complete_string(char *new, int *i, int *j, char *str);
 int			len_unfound(char *line);
+int			dots_not_found(char *line, int *exit_value);
 
 /* split_line.c && split_line_utils.c */
 char		**split_line(char const *s, char c);

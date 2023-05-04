@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:49:29 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/28 13:56:26 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:08:02 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,14 @@ int	line_dollars_alphabet(char *line, int *exit)
 //verifier si la ligne de commande a uniquement que des espaces
 int	line_space(char *line, int *exit)
 {
-	int	i;
+	int		i;
 
 	i = 0;
+	if (is_str_dot(line))
+	{
+		if (dots_not_found(line, exit) == -1)
+			return (-1);
+	}
 	if (valid_syntax(line, exit) == -1)
 		return (-1);
 	while (line[i])
@@ -77,6 +82,7 @@ char	*ft_readline(char *line, int *count, t_envi *env, int *exit)
 	if (g_signal == 2)
 		*exit = 130;
 	parent_child_signal(PARENT);
+	printf("line: %s\n", line);
 	if (line_user(line, exit) || line_null(line, env) == -1 \
 		|| line_space(line, exit) == -1 \
 		|| line_dollars_alphabet(line, exit) == -1)
