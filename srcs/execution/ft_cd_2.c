@@ -28,8 +28,18 @@ int	check_inexistance(char *str)
 
 void	ajoute(const char *str, t_envi *envi)
 {
+	char	*oldpwd;
 	t_envi	*cpy;
 
+	oldpwd = malloc(7);
+	oldpwd[0] = 'O';
+	oldpwd[1] = 'L';
+	oldpwd[2] = 'D';
+	oldpwd[3] = 'P';
+	oldpwd[4] = 'W';
+	oldpwd[5] = 'D';
+	oldpwd[6] = '\0';
+	cpy = cpy_struct_envi(oldpwd, (char *)str, 0);
 	cpy = cpy_struct_envi("OLDPWD", (char *)str, 0);
 	add_back_envi(&envi, cpy);
 }
