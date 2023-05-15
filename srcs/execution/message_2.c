@@ -14,6 +14,7 @@
 
 void	dollars_message(char *line, int *exit)
 {
+	
 	ft_putstr_fd(line, STDOUT);
 	ft_putchar_fd(':', STDOUT);
 	ft_putendl_fd(" command not found", STDOUT);

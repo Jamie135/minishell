@@ -134,6 +134,7 @@ void		fill_inc(char *str, char *new, int *i, int j);
 void		fill_quote_inc(char *str, char *new, int *i, int j);
 int			dollars_pars(char *str, int *exit);
 int			find_spe_var(char *str);
+int			dollar_special_var(char c);
 
 /* signals.c */
 void		sig(void);

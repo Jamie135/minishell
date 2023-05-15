@@ -40,7 +40,7 @@ int	dollars_pars(char *line, int *exit)
 	}
 	else
 	{
-		if (is_special_var(line[1]))
+		if (dollar_special_var(line[1]))
 		{
 			dollars_message(line, exit);
 			return (-1);
