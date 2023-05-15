@@ -40,7 +40,6 @@ void	ajoute(const char *str, t_envi *envi)
 	oldpwd[5] = 'D';
 	oldpwd[6] = '\0';
 	cpy = cpy_struct_envi(oldpwd, (char *)str, 0);
-	cpy = cpy_struct_envi("OLDPWD", (char *)str, 0);
 	add_back_envi(&envi, cpy);
 }
 
@@ -52,10 +51,11 @@ void	met_a_jour_oldpwd(t_shell *shell, char *ancien_chemin)
 
 	trouvee = 0;
 	parcours = shell->envi;
-	while (parcours)
+	while (parcours && ancien_chemin)
 	{
 		if (identique(parcours->ve, "OLDPWD"))
 		{
+			free (parcours->value);
 			parcours->value = ancien_chemin;
 			trouvee = 1;
 		}
@@ -63,6 +63,6 @@ void	met_a_jour_oldpwd(t_shell *shell, char *ancien_chemin)
 			parcours->value = pwd_avant_cd(shell);
 		parcours = parcours->next;
 	}
-	if (trouvee == 0)
+	if (trouvee == 0 && ancien_chemin)
 		ajoute(ancien_chemin, shell->envi);
 }
