@@ -99,6 +99,8 @@ int	list_redir(t_shell *shell, t_list *list)
 	if (!shell->redir)
 		return (EXIT_FAILURE);
 	shell->infile = ft_calloc(sizeof(int), len);
+	if (!shell->infile)
+		return (EXIT_FAILURE);
 	shell->outfile = ft_calloc(sizeof(int), len);
 	if (!shell->outfile)
 		return (EXIT_FAILURE);
