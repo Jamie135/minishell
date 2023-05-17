@@ -36,8 +36,7 @@ static void	free_shell_2(t_shell *shell)
 {
 	if (shell->redir)
 	{
-		if (can_free(shell) != -1)
-			free_redir(shell->redir, shell->cmd_num + shell->no_cmd + 1);
+		free_redir(shell->redir, shell->cmd_num + shell->no_cmd);
 		shell->redir = NULL;
 	}
 	if (shell->pid)
