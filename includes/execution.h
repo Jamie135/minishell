@@ -218,6 +218,11 @@ void		ajoute(const char *str, t_envi *envi);
 int			check_inexistance(char *str);
 char		*pwd_avant_cd(t_shell *shell);
 void		free_pwd(t_shell *shell, char *str, int value, void (*f)(int));
+int			ft_cd_update_oldpwd(t_shell *shell, char *oldpwd);
+int			ft_cd_update_pwd(t_shell *shell, char *pwd);
+int			ft_cd_home(t_shell *shell);
+int			ft_cd_back(t_shell *shell);
+int			ft_cd_go_to(t_shell *shell, const char *arg);
 
 /* open.c */
 int			open_infile(t_shell *shell, t_list *redir);

@@ -12,57 +12,169 @@
 
 #include "../../includes/minishell.h"
 
-int	check_inexistance(char *str)
+int	ft_cd_update_oldpwd(t_shell *shell, char *oldpwd)
 {
-	int	i;
+	char	*str;
+	t_envi	*new;
 
-	i = 0;
-	while (str[i] != '\0')
+	if (find_value_envi("OLDPWD", shell->envi))
 	{
-		if (str[i] == -2)
-			return (-1);
-		i++;
+		update_value_envi("OLDPWD", oldpwd, VALID, shell->envi);
+		free(oldpwd);
 	}
-	return (0);
+	else
+	{
+		str = ft_strdup("OLDPWD");
+		if (!str)
+			return (free(oldpwd), msgexit(NULL, "cd", errno, NULL), 1);
+		new = cpy_struct_envi(str, oldpwd, VALID);
+		if (!new)
+			return (free(oldpwd), msgexit(NULL, "cd", errno, NULL), 1);
+		add_back_envi(&shell->envi, new);
+	}
+	return (EXIT_SUCCESS);
 }
 
-void	ajoute(const char *str, t_envi *envi)
+int	ft_cd_update_pwd(t_shell *shell, char *pwd)
+{
+	char	*str;
+	t_envi	*new;
+
+	if (find_value_envi("PWD", shell->envi))
+	{
+		update_value_envi("PWD", pwd, VALID, shell->envi);
+		free(pwd);
+	}
+	else
+	{
+		str = ft_strdup("PWD");
+		if (!str)
+			return (free(pwd), msgexit(NULL, "cd", errno, NULL), 1);
+		new = cpy_struct_envi(str, pwd, VALID);
+		if (!new)
+			return (free(pwd), msgexit(NULL, "cd", errno, NULL), 1);
+		add_back_envi(&shell->envi, new);
+	}
+	return (EXIT_SUCCESS);
+}
+
+int	ft_cd_home(t_shell *shell)
 {
 	char	*oldpwd;
-	t_envi	*cpy;
+	char	*pwd;
 
-	oldpwd = malloc(7);
-	oldpwd[0] = 'O';
-	oldpwd[1] = 'L';
-	oldpwd[2] = 'D';
-	oldpwd[3] = 'P';
-	oldpwd[4] = 'W';
-	oldpwd[5] = 'D';
-	oldpwd[6] = '\0';
-	cpy = cpy_struct_envi(oldpwd, (char *)str, 0);
-	add_back_envi(&envi, cpy);
+	oldpwd = getcwd(NULL, 0);
+	if (!oldpwd)
+		return (msgexit(NULL, "ft_cd (28)", errno, NULL), 1);
+	if (!find_value_envi("HOME", shell->envi))
+		return (free(oldpwd), message_builtins("cd", NULL, HOME), 1);
+	if (chdir(find_value_envi("HOME", shell->envi)))
+		return (free(oldpwd), msgexit(NULL, "cd", errno, NULL), 1);
+	pwd = getcwd(NULL, 0);
+	if (!pwd)
+		return (free(oldpwd), msgexit(NULL, "cd", errno, NULL), 1);
+	if (ft_cd_update_oldpwd(shell, oldpwd))
+		return (free(pwd), EXIT_FAILURE);
+	if (ft_cd_update_pwd(shell, pwd))
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
-void	met_a_jour_oldpwd(t_shell *shell, char *ancien_chemin)
+int	ft_cd_back(t_shell *shell)
 {
-	int			trouvee;
-	const char	**arg = (const char **)shell->args[shell->cid];
-	t_envi		*parcours;
+	char	*pwd;
+	char	*oldpwd;
 
-	trouvee = 0;
-	parcours = shell->envi;
-	while (parcours && ancien_chemin)
-	{
-		if (identique(parcours->ve, "OLDPWD"))
-		{
-			free (parcours->value);
-			parcours->value = ancien_chemin;
-			trouvee = 1;
-		}
-		if (identique(parcours->ve, "PWD"))
-			parcours->value = pwd_avant_cd(shell);
-		parcours = parcours->next;
-	}
-	if (trouvee == 0 && ancien_chemin)
-		ajoute(ancien_chemin, shell->envi);
+	if (find_value_envi("OLDPWD", shell->envi) == NULL)
+		return (message_builtins("cd", NULL, OLDPWD), 1);
+	oldpwd = getcwd(NULL, 0);
+	if (!oldpwd)
+		return (msgexit(NULL, "cd", errno, NULL), 1);
+	if (chdir(find_value_envi("OLDPWD", shell->envi)))
+		return (msgexit(NULL, "cd", errno, NULL), 1);
+	pwd = getcwd(NULL, 0);
+	if (!pwd)
+		return (free(oldpwd), msgexit(NULL, "cd", errno, NULL), 1);
+	ft_putendl_fd(pwd, STDOUT);
+	if (ft_cd_update_oldpwd(shell, oldpwd))
+		return (EXIT_FAILURE);
+	if (ft_cd_update_pwd(shell, pwd))
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
+
+int	ft_cd_go_to(t_shell *shell, const char *arg)
+{
+	char	*pwd;
+	char	*oldpwd;
+
+	oldpwd = getcwd(NULL, 0);
+	if (!oldpwd)
+		return (msgexit(NULL, "cd", errno, NULL), 1);
+	if (chdir(arg))
+		return (free(oldpwd), \
+				message_builtins("cd", (char *)arg, strerror(errno)), 1);
+	pwd = getcwd(NULL, 0);
+	if (!pwd)
+		return (free(oldpwd), msgexit(NULL, "cd", errno, NULL), 1);
+	if (ft_cd_update_oldpwd(shell, oldpwd))
+		return (free(pwd), EXIT_FAILURE);
+	if (ft_cd_update_pwd(shell, pwd))
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
+// int	check_inexistance(char *str)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (str[i] != '\0')
+// 	{
+// 		if (str[i] == -2)
+// 			return (-1);
+// 		i++;
+// 	}
+// 	return (0);
+// }
+
+// void	ajoute(const char *str, t_envi *envi)
+// {
+// 	char	*oldpwd;
+// 	t_envi	*cpy;
+
+// 	oldpwd = malloc(7);
+// 	oldpwd[0] = 'O';
+// 	oldpwd[1] = 'L';
+// 	oldpwd[2] = 'D';
+// 	oldpwd[3] = 'P';
+// 	oldpwd[4] = 'W';
+// 	oldpwd[5] = 'D';
+// 	oldpwd[6] = '\0';
+// 	cpy = cpy_struct_envi(oldpwd, (char *)str, 0);
+// 	add_back_envi(&envi, cpy);
+// }
+
+// void	met_a_jour_oldpwd(t_shell *shell, char *ancien_chemin)
+// {
+// 	int			trouvee;
+// 	const char	**arg = (const char **)shell->args[shell->cid];
+// 	t_envi		*parcours;
+
+// 	trouvee = 0;
+// 	parcours = shell->envi;
+// 	while (parcours && ancien_chemin)
+// 	{
+// 		if (identique(parcours->ve, "OLDPWD"))
+// 		{
+// 			free (parcours->value);
+// 			parcours->value = ancien_chemin;
+// 			trouvee = 1;
+// 		}
+// 		if (identique(parcours->ve, "PWD"))
+// 			parcours->value = pwd_avant_cd(shell);
+// 		parcours = parcours->next;
+// 	}
+// 	if (trouvee == 0 && ancien_chemin)
+// 		ajoute(ancien_chemin, shell->envi);
+// }
