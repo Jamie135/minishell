@@ -56,28 +56,37 @@ void	spacecmd_not_found(char *line, int *exit_value)
 	*exit_value = 127;
 }
 
+// char	*trim_command(char *line)
+// {
+// 	char	*new;
+// 	int		i;
+// 	int		flag;
+
+// 	new = malloc(sizeof(char *) * (ft_strlen(line) - 2));
+// 	if (!new)
+// 		return (line);
+// 	i = 1;
+// 	flag = 0;
+// 	while (line[i])
+// 	{
+// 		if (line[i] != '\'' && line[i] != '\"' )
+// 			new[i] = line[i];
+// 		else if ((line[i] == '\'' || line[i] == '\"') && flag == 1)
+// 			new[i] = line[i];
+// 		else if ((line[i] == '\'' || line[i] == '\"') && flag == 0)
+// 			flag = 1;
+// 		i++;
+// 	}
+// 	return (new);
+// }
+
 char	*trim_command(char *line)
 {
-	char	*new;
-	int		i;
-	int		flag;
-
-	new = malloc(sizeof(char *) * (ft_strlen(line) - 2));
-	if (!new)
-		return (line);
-	i = 1;
-	flag = 0;
-	while (line[i])
-	{
-		if (line[i] != '\'' && line[i] != '\"' )
-			new[i] = line[i];
-		else if ((line[i] == '\'' || line[i] == '\"') && flag == 1)
-			new[i] = line[i];
-		else if ((line[i] == '\'' || line[i] == '\"') && flag == 0)
-			flag = 1;
-		i++;
-	}
-	return (new);
+	if (line[0] == '\'')
+		line = trim_single(line);
+	if (line[0] == '\"')
+		line = trim_double(line);
+	return (line);
 }
 
 void	free_all_trim(t_list *list, char **tab, char *line, char *str)
