@@ -82,5 +82,6 @@ int	valid_syntax(char *line, int *exit_value)
 			return (syntax_err(line));
 		i++;
 	}
+	free(line);
 	return (0);
 }
