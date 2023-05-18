@@ -34,28 +34,17 @@ char	*trim_single(char *line)
 	new = malloc(sizeof(char *) * (ft_strlen(line) - 1));
 	if (!new)
 		return (line);
-	i = 1;
-	j = 0;
+	i = 0;
+	j = -1;
 	flag = 0;
-	while (line[i])
+	while (line[i++])
 	{
 		if (line[i] != '\'')
-		{
-			new[j] = line[i];
-			i++;
-			j++;
-		}
+			new[++j] = line[i];
 		else if (line[i] == '\'' && flag == 0)
-		{
 			flag = 1;
-			i++;
-		}
 		else if (line[i] == '\'' && flag == 1)
-		{
-			new[j] = line[i];
-			i++;
-			j++;
-		}
+			new[++j] = line[i];
 	}
 	new[j] = '\0';
 	return (new);
@@ -71,28 +60,17 @@ char	*trim_double(char *line)
 	new = malloc(sizeof(char *) * (ft_strlen(line) - 1));
 	if (!new)
 		return (line);
-	i = 1;
-	j = 0;
+	i = 0;
+	j = -1;
 	flag = 0;
-	while (line[i])
+	while (line[i++])
 	{
 		if (line[i] != '\"')
-		{
-			new[j] = line[i];
-			i++;
-			j++;
-		}
+			new[++j] = line[i];
 		else if (line[i] == '\"' && flag == 0)
-		{
 			flag = 1;
-			i++;
-		}
 		else if (line[i] == '\"' && flag == 1)
-		{
-			new[j] = line[i];
-			i++;
-			j++;
-		}
+			new[++j] = line[i];
 	}
 	new[j] = '\0';
 	return (new);
