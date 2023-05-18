@@ -24,20 +24,18 @@ char	*trim_unfound(char *line)
 	new = malloc(sizeof(char *) * (len + 1));
 	if (!new)
 		return (line);
-	i = 0;
+	i = -1;
 	j = 0;
 	flag = 0;
-	while (line[i])
+	while (line[++i])
 	{
 		if (line[i] != '\'' && line[i] != '\"' )
 		{
 			new[j] = line[i];
 			j++;
-			i++;
 		}
-		else
-			i++;
 	}
+	new[j] = '\0';
 	return (new);
 }
 
@@ -52,6 +50,7 @@ void	spacecmd_not_found(char *line, int *exit_value)
 		ft_putstr_fd(": ", STDERR);
 	}
 	ft_putendl_fd("command not found", STDERR);
+	free(tmp);
 	free(line);
 	*exit_value = 127;
 }

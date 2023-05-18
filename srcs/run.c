@@ -106,6 +106,9 @@ int	run(char **envp, char *line, t_list *list, t_free *free_var)
 		line = ft_readline(line, &count, env, &exit_value);
 		if (line == NULL)
 			continue ;
+		line = command_in_quoted(line);
+		if (unfound_command(line, &exit_value))
+			continue ;
 		list = fill_list(line, free_var, env, &exit_value);
 		if (list == NULL)
 			continue ;

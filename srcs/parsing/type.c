@@ -23,6 +23,7 @@ void	cmd_unfound(char *line)
 		ft_putstr_fd(": ", STDERR);
 	}
 	ft_putendl_fd("command not found", STDERR);
+	free(tmp);
 	free(line);
 }
 
