@@ -12,6 +12,17 @@
 
 #include "../../includes/minishell.h"
 
+t_envi	*init_environment(char **envp)
+{
+	t_envi	*envi;
+
+	envi = NULL;
+	envi = init_envi(envp);
+	if (envi == NULL)
+		envi = null_envi(envi);
+	return (envi);
+}
+
 int	dollar_special_var(char c)
 {
 	if (c == '?' || c == '#' || c == '&' || c == '\0' || c == '.' \

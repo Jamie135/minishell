@@ -96,9 +96,7 @@ int	run(char **envp, char *line, t_list *list, t_free *free_var)
 	static int		exit_value = 0;
 	static t_envi	*env = NULL;
 
-	env = init_envi(envp);
-	if (env == NULL)
-		env = null_envi(env);
+	env = init_environment(envp);
 	if (env == ERROR)
 		return (malloc_err("run.c (1)"), EXIT_FAILURE);
 	while (1)

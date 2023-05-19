@@ -39,7 +39,7 @@ typedef struct s_free
 }	t_free;
 
 int			run(char **envp, char *line, t_list *list, t_free *free_var);
-
+t_envi		*init_environment(char **envp);
 /* list.c */
 t_list		*fill_list(char *line, t_free *free_var, t_envi *env, \
 						int *exit_value);
