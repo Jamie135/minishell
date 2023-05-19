@@ -138,7 +138,6 @@ int			dollar_special_var(char c);
 char		*trim_single(char *line);
 char		*trim_double(char *line);
 
-
 /* signals.c */
 void		sig(void);
 void		ctrlc(int signum);
