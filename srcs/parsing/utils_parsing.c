@@ -17,9 +17,9 @@ int	find_spe_var(char *line)
 	int	i;
 
 	i = 0;
-	while (line[i] < (int)ft_strlen(line))
+	while (i < (int)ft_strlen(line))
 	{
-		if (is_special_var(line[i]))
+		if (dollar_special_var(line[i]))
 			return (1);
 		i++;
 	}

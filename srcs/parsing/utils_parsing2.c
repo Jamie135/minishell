@@ -23,18 +23,6 @@ t_envi	*init_environment(char **envp)
 	return (envi);
 }
 
-int	dollar_special_var(char c)
-{
-	if (c == '?' || c == '#' || c == '&' || c == '\0' || c == '.' \
-		|| c == ',' || c == '=' || c == '+' || c == '-' || c == '%' \
-		|| c == '!' || c == '/' || c == '0' || c == ':' || c == ';' \
-		|| c == '<' || c == ')' || c == '>' || c == ']' || c == '}' \
-		|| c == '\\' || c == '^' || c == '_' || c == '~' || c == '{' \
-		|| c == '[')
-		return (1);
-	return (0);
-}
-
 char	*trim_single(char *line)
 {
 	char	*new;
@@ -85,6 +73,18 @@ char	*trim_double(char *line)
 	}
 	new[j] = '\0';
 	return (new);
+}
+
+int	dollar_special_var(char c)
+{
+	if (c == '?' || c == '#' || c == '&' || c == '\0' || c == '.' \
+		|| c == ',' || c == '=' || c == '+' || c == '-' || c == '%' \
+		|| c == '!' || c == '/' || c == '0' || c == ':' || c == ';' \
+		|| c == '<' || c == ')' || c == '>' || c == ']' || c == '}' \
+		|| c == '\\' || c == '^' || c == '_' || c == '~' || c == '{' \
+		|| c == '[' || c == '\'' || c == '\"')
+		return (1);
+	return (0);
 }
 
 // char	*trim_single(char *line)
