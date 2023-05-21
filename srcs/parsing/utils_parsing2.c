@@ -75,6 +75,31 @@ char	*trim_double(char *line)
 	return (new);
 }
 
+int	only_quotes(char *line, int *exit_value)
+{
+	int	i;
+
+	i = -1;
+	if (!ft_strcmp(line, "\'\"\"\'") || !ft_strcmp(line, "\"\'\'\""))
+	{
+		if (!ft_strcmp(line, "\'\"\"\'"))
+			ft_putendl_fd("\"\": command not found", STDERR);
+		else if (!ft_strcmp(line, "\"\'\'\""))
+			ft_putendl_fd("\'\': command not found", STDERR);
+		free(line);
+		*exit_value = 127;
+		return (1);
+	}
+	while (line[++i])
+	{
+		if (line[i] != '\'' && line[i] != '\"')
+			return (0);	
+	}
+	ft_putendl_fd("syntax error", STDERR);
+	free(line);
+	return (1);
+}
+
 int	dollar_special_var(char c)
 {
 	if (c == '?' || c == '#' || c == '&' || c == '\0' || c == '.' \

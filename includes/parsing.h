@@ -142,6 +142,7 @@ int			dollar_special_var(char c);
 char		*trim_single(char *line);
 char		*trim_double(char *line);
 char		*trim_inside(char *line);
+int			only_quotes(char *line, int *exit_value);
 
 /* signals.c */
 void		sig(void);

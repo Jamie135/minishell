@@ -15,14 +15,16 @@
 int	is_inside_closed(char *line)
 {
 	int		i;
-	int		j;
 	int		flag;
 	char	tmp;
 
 	i = -1;
-	flag = 0;
+	flag = -1;
+	tmp = 0;
 	while (line[++i])
 	{
+		if ((line[i] == '\'' || line[i] == '\"') && flag == -1)
+			flag = 0;
 		if ((line[i] == '\'' || line[i] == '\"') && flag == 0)
 		{
 			tmp = line[i];

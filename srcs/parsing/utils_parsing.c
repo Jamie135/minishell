@@ -68,6 +68,8 @@ int	valid_syntax(char *line, int *exit_value)
 	int		i;
 
 	i = 0;
+	if (only_quotes(line, exit_value))
+		return (-1);
 	if (space_in_double_quote(line) || space_in_single_quote(line))
 	{
 		spacecmd_not_found(line, exit_value);
