@@ -75,7 +75,7 @@ void	free_one_list(t_list **list, t_list *lst, char *tmp)
 	t_list	*next;
 
 	next = (*list)->next;
-	if (ft_strcmp(tmp, "echo"))
+	if (ft_strcmp(tmp, "echo") && ft_strcmp(tmp, "cd"))
 		ft_lst_print_type(next);
 	free_ptr((void **)&(*list)->content);
 	free_ptr((void **)list);
