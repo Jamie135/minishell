@@ -81,10 +81,16 @@ void	spacecmd_not_found(char *line, int *exit_value)
 
 char	*trim_command(char *line)
 {
-	if (line[0] == '\'')
+	char	*tmp;
+
+	tmp = line;
+	if (tmp[0] == '\'')
 		line = trim_single(line);
-	if (line[0] == '\"')
+	else if (tmp[0] == '\"')
 		line = trim_double(line);
+	if (is_inside_closed(line))
+		line = trim_inside(line);
+	free(tmp);
 	return (line);
 }
 

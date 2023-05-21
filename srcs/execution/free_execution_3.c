@@ -84,6 +84,9 @@ void	free_one_list(t_list **list, t_list *lst, char *tmp)
 		(*list)->next = NULL;
 }
 
+// if (ft_strcmp(tmp, "echo") && ft_strcmp(tmp, "cd"))
+// 	ft_lst_print_type(next);
+
 // while (lst && lst->next)
 // {
 // 	printf("list content: %s ; ", lst->content);

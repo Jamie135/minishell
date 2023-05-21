@@ -128,6 +128,10 @@ void		*free_split_index(char **split, int index, int message);
 void		free_split_parsing(char **split);
 void		free_var_all(t_free	*free_var);
 
+/* inside_quote.c */
+int			is_inside_closed(char *line);
+char		*trim_inside(char *line);
+
 /* utils_parsing*/
 int			valid_syntax(char *line, int *exit_value);
 void		fill_inc(char *str, char *new, int *i, int j);
@@ -137,6 +141,7 @@ int			find_spe_var(char *str);
 int			dollar_special_var(char c);
 char		*trim_single(char *line);
 char		*trim_double(char *line);
+char		*trim_inside(char *line);
 
 /* signals.c */
 void		sig(void);
