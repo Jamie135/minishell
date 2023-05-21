@@ -18,10 +18,10 @@ int	is_inside_closed(char *line)
 	int		flag;
 	char	tmp;
 
-	i = -1;
+	i = 0;
 	flag = -1;
 	tmp = 0;
-	while (line[++i])
+	while (++i < ft_strlen(line) - 1)
 	{
 		if ((line[i] == '\'' || line[i] == '\"') && flag == -1)
 			flag = 0;

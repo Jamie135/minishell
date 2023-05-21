@@ -88,8 +88,6 @@ char	*trim_command(char *line)
 		line = trim_single(line);
 	else if (tmp[0] == '\"')
 		line = trim_double(line);
-	if (is_inside_closed(line))
-		line = trim_inside(line);
 	free(tmp);
 	return (line);
 }

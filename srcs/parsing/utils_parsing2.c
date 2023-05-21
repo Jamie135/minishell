@@ -38,7 +38,7 @@ char	*trim_single(char *line)
 	flag = 0;
 	while (line[i++])
 	{
-		if (line[i] != '\'')
+		if (line[i] != '\'' && line[i] != '\"')
 			new[++j] = line[i];
 		else if (line[i] == '\'' && flag == 0)
 			flag = 1;
@@ -64,7 +64,7 @@ char	*trim_double(char *line)
 	flag = 0;
 	while (line[i++])
 	{
-		if (line[i] != '\"')
+		if (line[i] != '\"' && line[i] != '\'')
 			new[++j] = line[i];
 		else if (line[i] == '\"' && flag == 0)
 			flag = 1;
@@ -74,6 +74,9 @@ char	*trim_double(char *line)
 	new[j] = '\0';
 	return (new);
 }
+
+// int		inside;
+// inside = is_inside_closed(line);
 
 int	only_quotes(char *line, int *exit_value)
 {
