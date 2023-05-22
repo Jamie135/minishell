@@ -96,7 +96,7 @@ int	only_quotes(char *line, int *exit_value)
 	while (line[++i])
 	{
 		if (line[i] != '\'' && line[i] != '\"')
-			return (0);	
+			return (0);
 	}
 	ft_putendl_fd("syntax error", STDERR);
 	free(line);
