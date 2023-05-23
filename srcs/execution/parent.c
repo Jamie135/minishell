@@ -53,6 +53,8 @@ int	parent_one_cmd(t_shell *shell)
 	return (SUCCESS);
 }
 
+// printf("(parent) mode: %i\n", shell->mode);
+
 int	parent_n_cmd(t_shell *shell)
 {
 	int	i;

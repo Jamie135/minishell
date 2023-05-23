@@ -15,6 +15,12 @@
 //update la valeur de exit
 void	get_exit_value(t_shell *shell)
 {
+	if (shell->mode == 64512)
+		shell->mode = 127;
+	if (shell->mode == 65280)
+		shell->mode = 1;
+	else if (shell->mode == 64256)
+		shell->mode = 128;
 	if (shell->mode == 5120)
 		shell->mode = 127;
 	else
@@ -26,6 +32,8 @@ void	get_exit_value(t_shell *shell)
 		}
 	}
 }
+
+// printf("(execution) mode: %i\n", shell->mode);
 
 //faire appel aux child proccess dans plusieurs cas differents
 int	parent_process(t_shell *shell, t_envi *envi)
