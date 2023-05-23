@@ -124,6 +124,7 @@ t_shell	*shell_struct(t_list *list, t_envi *envi, int *count, int *exit_value)
 	if (!shell)
 		return (malloc_err("shell_struct.c (1)"), NULL);
 	shell->list = list;
+	builtins_after_pipe(shell, list);
 	shell->environment = init_env(envi);
 	if (shell->environment == ERROR)
 		return (msgexit(shell, "shell_struct.c (2)", MALLOC, NULL), NULL);

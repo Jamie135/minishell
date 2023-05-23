@@ -129,3 +129,9 @@ t_envi	*execution(t_list *list, t_envi *env, int *count, int *exit_value)
 // 	printf("type: %i\n", list->type);
 // 	list = list->next;
 // }
+
+// while (shell->list)
+// 	{
+// 		printf("list content: %s\n", shell->list->content);
+// 		shell->list = shell->list->next;
+// 	}

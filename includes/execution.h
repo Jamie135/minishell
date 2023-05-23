@@ -55,6 +55,7 @@ typedef struct s_shell
 	int		mode;
 	int		*line_num;
 	int		*exit_value;
+	int		ignore;
 }	t_shell;
 
 typedef struct s_heredoc
@@ -245,6 +246,7 @@ int			check_unknown(char *str);
 void		check_arg_behind(t_list *list, size_t *len);
 int			extra_redir(char *tmp);
 int			is_command(char *str);
+void		builtins_after_pipe(t_shell *shell, t_list *list);
 
 /* free_execution.c */
 void		free_ptr(void **ptr);

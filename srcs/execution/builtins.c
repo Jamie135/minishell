@@ -31,12 +31,14 @@ int	builtins_parent(t_shell *shell)
 {
 	if (!ft_strcmp(shell->args[shell->cid][0], "cd"))
 	{
-		shell->mode = ft_cd(shell);
+		if (!shell->ignore)
+			shell->mode = ft_cd(shell);
 		return (shell->mode);
 	}
 	else if (!ft_strcmp(shell->args[shell->cid][0], "export"))
 	{
-		shell->mode = ft_export(shell);
+		if (!shell->ignore)
+			shell->mode = ft_export(shell);
 		if (shell->mode == FAILURE)
 		{
 			shell->mode = 0;
@@ -46,7 +48,8 @@ int	builtins_parent(t_shell *shell)
 	}
 	else if (!ft_strcmp(shell->args[shell->cid][0], "unset"))
 	{
-		shell->mode = ft_unset(shell);
+		if (!shell->ignore)
+			shell->mode = ft_unset(shell);
 		return (shell->mode);
 	}
 	return (FAILURE);

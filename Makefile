@@ -16,7 +16,7 @@ srcs/execution/ft_unset.c \
 srcs/execution/heredoc.c srcs/execution/heredoc_utils.c \
 srcs/execution/shell_redir.c srcs/execution/shell_struct.c srcs/execution/shell_utils.c \
 srcs/execution/utils.c srcs/execution/utils_2.c srcs/execution/valid_parsing.c \
-\
+srcs/execution/utils_3.c \
 srcs/minishell.c srcs/run.c srcs/signal.c \
 \
 srcs/parsing/list.c srcs/parsing/type.c srcs/parsing/trim.c srcs/parsing/trim_utils.c \
