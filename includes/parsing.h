@@ -33,6 +33,7 @@
 
 typedef struct s_free
 {
+	int		status;
 	char	**split;
 	bool	*unexpended;
 	bool	*quoted;

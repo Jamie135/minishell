@@ -86,6 +86,7 @@ t_list	*fill_list(char *line, t_free *free_var, t_envi *env, int *exit)
 	list = fill(list, free_var);
 	if (!list)
 		return (NULL);
+	free_var->status = *exit;
 	return (free(str), list);
 }
 

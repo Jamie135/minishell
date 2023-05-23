@@ -86,7 +86,10 @@ void	ft_exit(t_list *list, t_envi *env, char *line, t_free *free_var)
 	const size_t	size = ft_lstsize(list);
 	int				exit_value;
 
-	exit_value = 0;
+	if (free_var->status == 127)
+		exit_value = 127;
+	else
+		exit_value = 0;
 	free(free_var->unexpended);
 	free(free_var->split);
 	free(free_var->quoted);
