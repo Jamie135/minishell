@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 01:32:57 by pbureera          #+#    #+#             */
-/*   Updated: 2023/05/04 17:12:34 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/05/23 12:39:52 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ void		free_split_parsing(char **split);
 void		free_var_all(t_free	*free_var);
 
 /* inside_quote.c */
+int			is_str_alnum_dollars(char *str);
 int			is_inside_closed(char *line);
 char		*trim_inside(char *line);
 

@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:49:29 by pbureera          #+#    #+#             */
-/*   Updated: 2023/05/04 17:19:20 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/05/23 12:48:54 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ int	line_dollars_alphabet(char *line, int *exit)
 	i = 0;
 	while (line[i] == '$')
 		i++;
-	if (i == 0 || i == ft_strlen(line))
+	if (i == 0 || i == ft_strlen(line) || is_str_alnum_dollars(line))
 		return (0);
 	else
 	{
 		d = dollars_pars(line, exit);
+		// printf("line: %s ; d=%i\n", line, d);
 		return (d);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:06:50 by pbureera          #+#    #+#             */
-/*   Updated: 2023/05/02 14:37:14 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/05/23 12:35:31 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	type(t_list *list)
 			list->type = get_type(list->content, last_type);
 		last_type = list->type;
 		list = list->next;
-	}	
+	}
 }
 
 // printf("(1)list content: %s ; ", list->content);

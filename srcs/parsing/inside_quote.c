@@ -6,11 +6,31 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:44:18 by pbureera          #+#    #+#             */
-/*   Updated: 2023/05/21 18:44:18 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/05/23 12:45:28 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	is_str_alnum_dollars(char *str)
+{
+	size_t	i;
+	size_t	n;
+	size_t	len;
+
+	len = ft_strlen(str);
+	i = 0;
+	n = 0;
+	while (str[i])
+	{
+		if (ft_isalnum(str[i]) || str[i] == '$' || str[i] == ' ') 
+			n++;
+		i++;
+	}
+	if (n == len)
+		return (1);
+	return (0);
+}
 
 int	is_inside_closed(char *line)
 {
