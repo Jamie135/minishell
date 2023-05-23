@@ -47,7 +47,7 @@ int	line_space(char *line, int *exit)
 		return (-1);
 	while (line[i])
 	{
-		if (line[i] != ' ')
+		if (line[i] != ' ' && line[i] != '\t')
 			return (0);
 		i++;
 	}
