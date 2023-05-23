@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:49:29 by pbureera          #+#    #+#             */
-/*   Updated: 2023/05/23 12:48:54 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/05/23 14:10:43 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ char	*ft_readline(char *line, int *count, t_envi *env, int *exit)
 	parent_child_signal(MINISHELL);
 	(*count)++;
 	line = readline("minishell> ");
-	add_history(line);
+	if (ft_strcmp(line, "\0"))
+		add_history(line);
 	if (g_signal == 2)
 		*exit = 130;
 	parent_child_signal(PARENT);
