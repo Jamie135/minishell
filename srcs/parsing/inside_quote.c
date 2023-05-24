@@ -41,7 +41,7 @@ int	is_inside_closed(char *line)
 	i = 0;
 	flag = -1;
 	tmp = 0;
-	while (++i < ft_strlen(line) - 1)
+	while (++i < ft_strlen(line) - 1 && line[i] != ' ')
 	{
 		if ((line[i] == '\'' || line[i] == '\"') && flag == -1)
 			flag = 0;
@@ -59,29 +59,29 @@ int	is_inside_closed(char *line)
 	return (1);
 }
 
-char	*trim_inside(char *line)
+char	*trim_inside(char *str)
 {
-	char	*new;
+	char	*new_str;
 	int		i;
 	int		j;
-	char	tmp;
+	int		flag;
 
-	new = malloc(sizeof(char *) * (ft_strlen(line) - 1));
-	if (!new)
-		return (line);
-	i = 0;
+	new_str = malloc(sizeof(char *) * (ft_strlen(str) - 1));
+	if (!new_str)
+		return (free(str), NULL);
+	i = -1;
 	j = 0;
-	while (line[i])
+	flag = 0;
+	while (str[++i])
 	{
-		if (line[i] == '\'' || line[i] == '\"')
-			i++;
+		if ((str[i] == '\'' || str[i] == '\"') && flag < 2)
+			flag++;
 		else
 		{
-			new[j] = line[i];
+			new_str[j] = str[i];
 			j++;
-			i++;
 		}
 	}
-	new[j] = '\0';
-	return (new);
+	new_str[j] = '\0';
+	return (free(str), new_str);
 }

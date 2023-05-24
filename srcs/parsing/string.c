@@ -64,6 +64,8 @@ static void	string_2(int *i, int *j, char *str, char *new)
 
 char	*final_string(char *new)
 {
+	if (is_inside_closed(new))
+		new = trim_inside(new);
 	new = split_pipe(new);
 	if (!new)
 		return (NULL);
