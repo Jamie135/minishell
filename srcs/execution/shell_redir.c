@@ -98,7 +98,7 @@ int	list_redir(t_shell *shell, t_list *list)
 	if (shell->cmd_num == 0)
 		shell->no_cmd = 1;
 	len = shell->cmd_num + shell->no_cmd + 1;
-	shell->redir = ft_calloc(sizeof(int), len);
+	shell->redir = ft_calloc(sizeof(int), len + 2);
 	if (!shell->redir)
 		return (EXIT_FAILURE);
 	shell->infile = ft_calloc(sizeof(int), len);
