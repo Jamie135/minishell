@@ -59,6 +59,9 @@ int	cmd_list_redir(t_shell *shell, t_list *list, t_list **redir)
 	return (EXIT_SUCCESS);
 }
 
+// printf("new content: %s ; type: %i\n", new_list->content, new_list->type);
+// printf("redir[%i]: %s\n", i, redir[i]->content);
+
 //set up la liste de redirection pour le cas ou on n'a pas de commande
 int	no_cmd_list_redir(t_shell *shell, t_list *list, t_list **redir)
 {
