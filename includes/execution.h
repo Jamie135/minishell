@@ -55,6 +55,9 @@ typedef struct s_shell
 	int		mode;
 	int		*line_num;
 	int		*exit_value;
+	int		right;
+	int		left;
+	int		pipe;
 	int		ignore;
 }	t_shell;
 

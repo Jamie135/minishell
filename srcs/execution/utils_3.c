@@ -16,8 +16,16 @@ void	builtins_after_pipe(t_shell *shell, t_list *list)
 {
 	while (list)
 	{
+		if (list->type == REDIR)
+		{
+			if (!ft_strcmp(list->content, "<"))
+				shell->left = 1;
+			if (!ft_strcmp(list->content, ">"))
+				shell->right = 1;
+		}
 		if (list->type == PIPE)
 		{
+			shell->pipe = 1;
 			if (!ft_strcmp(list->next->content, "export") \
 				|| !ft_strcmp(list->next->content, "cd") \
 				|| !ft_strcmp(list->next->content, "exit") \
