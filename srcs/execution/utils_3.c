@@ -12,6 +12,15 @@
 
 #include "../../includes/minishell.h"
 
+int	ft_cd_back_2(t_shell *shell, char *oldpwd, char *pwd, int flag)
+{
+	if (ft_cd_update_oldpwd(shell, oldpwd, flag))
+		return (EXIT_FAILURE);
+	if (ft_cd_update_pwd(shell, pwd))
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
 void	builtins_after_pipe(t_shell *shell, t_list *list)
 {
 	while (list)

@@ -222,7 +222,7 @@ void		ajoute(const char *str, t_envi *envi);
 int			check_inexistance(char *str);
 char		*pwd_avant_cd(t_shell *shell);
 void		free_pwd(t_shell *shell, char *str, int value, void (*f)(int));
-int			ft_cd_update_oldpwd(t_shell *shell, char *oldpwd);
+int			ft_cd_update_oldpwd(t_shell *shell, char *oldpwd, int flag);
 int			ft_cd_update_pwd(t_shell *shell, char *pwd);
 int			ft_cd_home(t_shell *shell);
 int			ft_cd_back(t_shell *shell);
@@ -250,6 +250,7 @@ void		check_arg_behind(t_list *list, size_t *len);
 int			extra_redir(char *tmp);
 int			is_command(char *str);
 void		builtins_after_pipe(t_shell *shell, t_list *list);
+int			ft_cd_back_2(t_shell *shell, char *oldpwd, char *pwd, int flag);
 
 /* free_execution.c */
 void		free_ptr(void **ptr);

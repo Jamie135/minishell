@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-int	ft_cd_update_oldpwd(t_shell *shell, char *oldpwd)
+int	ft_cd_update_oldpwd(t_shell *shell, char *oldpwd, int flag)
 {
 	char	*str;
 	t_envi	*new;
@@ -20,7 +20,8 @@ int	ft_cd_update_oldpwd(t_shell *shell, char *oldpwd)
 	if (find_value_envi("OLDPWD", shell->envi))
 	{
 		update_value_envi("OLDPWD", oldpwd, VALID, shell->envi);
-		free(oldpwd);
+		if (!flag)
+			free(oldpwd);
 	}
 	else
 	{
@@ -62,13 +63,16 @@ int	ft_cd_home(t_shell *shell)
 {
 	char	*oldpwd;
 	char	*pwd;
+	int		flag;
 
+	flag = 0;
 	oldpwd = getcwd(NULL, 0);
 	if (!oldpwd)
 	{
 		oldpwd = find_value_envi("PWD", shell->envi);
 		if (!oldpwd)
 			return (msgexit(NULL, "ft_cd (28)", errno, NULL), 1);
+		flag = 1;
 	}
 	if (!find_value_envi("HOME", shell->envi))
 		return (free(oldpwd), message_builtins("cd", NULL, HOME), 1);
@@ -77,7 +81,7 @@ int	ft_cd_home(t_shell *shell)
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
 		return (free(oldpwd), msgexit(NULL, "cd", errno, NULL), 1);
-	if (ft_cd_update_oldpwd(shell, oldpwd))
+	if (ft_cd_update_oldpwd(shell, oldpwd, flag))
 		return (free(pwd), EXIT_FAILURE);
 	if (ft_cd_update_pwd(shell, pwd))
 		return (EXIT_FAILURE);
@@ -88,7 +92,9 @@ int	ft_cd_back(t_shell *shell)
 {
 	char	*pwd;
 	char	*oldpwd;
+	int		flag;
 
+	flag = 0;
 	if (find_value_envi("OLDPWD", shell->envi) == NULL)
 		return (message_builtins("cd", NULL, OLDPWD), 1);
 	oldpwd = getcwd(NULL, 0);
@@ -97,6 +103,7 @@ int	ft_cd_back(t_shell *shell)
 		oldpwd = find_value_envi("PWD", shell->envi);
 		if (!oldpwd)
 			return (msgexit(NULL, "cd", errno, NULL), 1);
+		flag = 1;
 	}
 	if (chdir(find_value_envi("OLDPWD", shell->envi)))
 		return (msgexit(NULL, "cd", errno, NULL), 1);
@@ -104,9 +111,7 @@ int	ft_cd_back(t_shell *shell)
 	if (!pwd)
 		return (free(oldpwd), msgexit(NULL, "cd", errno, NULL), 1);
 	ft_putendl_fd(pwd, STDOUT);
-	if (ft_cd_update_oldpwd(shell, oldpwd))
-		return (EXIT_FAILURE);
-	if (ft_cd_update_pwd(shell, pwd))
+	if (ft_cd_back_2(shell, oldpwd, pwd, flag))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
@@ -115,13 +120,16 @@ int	ft_cd_go_to(t_shell *shell, const char *arg)
 {
 	char	*pwd;
 	char	*oldpwd;
+	int		flag;
 
+	flag = 0;
 	oldpwd = getcwd(NULL, 0);
 	if (!oldpwd)
 	{
 		oldpwd = find_value_envi("PWD", shell->envi);
 		if (!oldpwd)
 			return (msgexit(NULL, "cd", errno, NULL), 1);
+		flag = 1;
 	}
 	if (chdir(arg))
 		return (free(oldpwd), \
@@ -129,7 +137,7 @@ int	ft_cd_go_to(t_shell *shell, const char *arg)
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
 		return (free(oldpwd), msgexit(NULL, "cd", errno, NULL), 1);
-	if (ft_cd_update_oldpwd(shell, oldpwd))
+	if (ft_cd_update_oldpwd(shell, oldpwd, flag))
 		return (free(pwd), EXIT_FAILURE);
 	if (ft_cd_update_pwd(shell, pwd))
 		return (EXIT_FAILURE);
