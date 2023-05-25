@@ -23,7 +23,7 @@ int	is_str_alnum_dollars(char *str)
 	n = 0;
 	while (str[i])
 	{
-		if (ft_isalnum(str[i]) || str[i] == '$' || str[i] == ' ') 
+		if (ft_isalnum(str[i]) || str[i] == '$' || str[i] == ' ')
 			n++;
 		i++;
 	}
