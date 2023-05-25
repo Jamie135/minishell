@@ -65,7 +65,11 @@ int	ft_cd_home(t_shell *shell)
 
 	oldpwd = getcwd(NULL, 0);
 	if (!oldpwd)
-		return (msgexit(NULL, "ft_cd (28)", errno, NULL), 1);
+	{
+		oldpwd = find_value_envi("PWD", shell->envi);
+		if (!oldpwd)
+			return (msgexit(NULL, "ft_cd (28)", errno, NULL), 1);
+	}
 	if (!find_value_envi("HOME", shell->envi))
 		return (free(oldpwd), message_builtins("cd", NULL, HOME), 1);
 	if (chdir(find_value_envi("HOME", shell->envi)))
@@ -89,7 +93,11 @@ int	ft_cd_back(t_shell *shell)
 		return (message_builtins("cd", NULL, OLDPWD), 1);
 	oldpwd = getcwd(NULL, 0);
 	if (!oldpwd)
-		return (msgexit(NULL, "cd", errno, NULL), 1);
+	{
+		oldpwd = find_value_envi("PWD", shell->envi);
+		if (!oldpwd)
+			return (msgexit(NULL, "cd", errno, NULL), 1);
+	}
 	if (chdir(find_value_envi("OLDPWD", shell->envi)))
 		return (msgexit(NULL, "cd", errno, NULL), 1);
 	pwd = getcwd(NULL, 0);
@@ -110,7 +118,11 @@ int	ft_cd_go_to(t_shell *shell, const char *arg)
 
 	oldpwd = getcwd(NULL, 0);
 	if (!oldpwd)
-		return (msgexit(NULL, "cd", errno, NULL), 1);
+	{
+		oldpwd = find_value_envi("PWD", shell->envi);
+		if (!oldpwd)
+			return (msgexit(NULL, "cd", errno, NULL), 1);
+	}
 	if (chdir(arg))
 		return (free(oldpwd), \
 				message_builtins("cd", (char *)arg, strerror(errno)), 1);
