@@ -27,7 +27,6 @@ int	line_dollars_alphabet(char *line, int *exit)
 	else
 	{
 		d = dollars_pars(line, exit);
-		// printf("line: %s ; d=%i\n", line, d);
 		return (d);
 	}
 }
