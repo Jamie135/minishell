@@ -78,6 +78,8 @@ void	heredoc_exec(char *limiter, char *name, t_heredoc *heredoc)
 	return (free_heredoc(heredoc, limiter, NULL, fd), exit(0));
 }
 
+// printf("g_signal: %i\n", g_signal);
+
 //dupliquer le limiteur et recopier le nom du fichier de la liste
 //fork le heredoc et attendre
 int	heredoc_init(t_heredoc *heredoc, t_list *list)
