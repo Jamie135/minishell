@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 00:17:37 by pbureera          #+#    #+#             */
-/*   Updated: 2023/05/26 14:53:34 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:55:10 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	builtins_after_pipe(t_shell *shell, t_list *list)
 		{
 			if (!ft_strcmp(list->content, "<"))
 				shell->left = 1;
-			if (!ft_strcmp(list->content, ">") || !ft_strcmp(list->content, ">>"))
+			if (!ft_strcmp(list->content, ">") \
+				|| !ft_strcmp(list->content, ">>"))
 				shell->right = 1;
 		}
 		if (list->type == PIPE)
