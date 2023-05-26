@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 15:45:53 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/26 15:44:26 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/05/26 16:50:13 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,6 @@ int	valid_extra_token(t_list *list)
 	tmp_content = list->content;
 	type = list->type;
 	list = list->next;
-	if (list)
-	{
-		if (!ft_strcmp(list->content, "<") && !is_command(tmp_content))
-		{
-			if (extra_redir(tmp_content) == -1)
-				return (free_list((t_list *)tmp), -1);
-			print_token(tmp_content);
-			return (free_list((t_list *)tmp), -1);
-		}
-	}
 	while (list)
 	{
 		if (extra_token(list, type, tmp_content) == -1)
@@ -94,6 +84,17 @@ int	valid_extra_token(t_list *list)
 	}
 	return (0);
 }
+
+// if (list)
+// 	{
+// 		if (!ft_strcmp(list->content, "<") && !is_command(tmp_content))
+// 		{
+// 			if (extra_redir(tmp_content) == -1)
+// 				return (free_list((t_list *)tmp), -1);
+// 			print_token(tmp_content);
+// 			return (free_list((t_list *)tmp), -1);
+// 		}
+// 	}
 
 // while (list && list->next)
 // {
