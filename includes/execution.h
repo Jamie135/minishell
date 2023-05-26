@@ -265,7 +265,7 @@ void		free_redir(t_list **list, int n);
 void		free_pipes(int **pipes, size_t n);
 void		free_args(char ***args, size_t n);
 void		free_child(t_shell *shell, char **path, char *cmd);
-void		free_one_list(t_list **list, t_list *lst, char *tmp);
+void		free_one_list(t_list **list, t_list *lst);
 
 /* message.c */
 void		malloc_err(char *str);

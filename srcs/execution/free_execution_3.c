@@ -70,7 +70,7 @@ void	free_args(char ***args, size_t n)
 	free(args);
 }
 
-void	free_one_list(t_list **list, t_list *lst, char *tmp)
+void	free_one_list(t_list **list, t_list *lst)
 {
 	t_list	*next;
 
