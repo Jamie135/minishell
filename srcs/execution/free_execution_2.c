@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 00:04:23 by pbureera          #+#    #+#             */
-/*   Updated: 2023/05/26 14:35:13 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/05/26 16:30:31 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static void	free_shell_2(t_shell *shell)
 {
 	if (shell->redir)
 	{
-		if (shell->right || (shell->left && shell->right && shell->pipe))
+		if (shell->right || (shell->left && shell->pipe) \
+			|| (shell->left && shell->right && shell->pipe))
 			free_redir(shell->redir, shell->cmd_num + shell->no_cmd);
 		else
 			free_redir(shell->redir, shell->cmd_num + shell->no_cmd + 1);
