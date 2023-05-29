@@ -34,6 +34,21 @@ char	*pwd_avant_cd(t_shell *shell)
 	return (repertoire_actuel);
 }
 
+int	tilde_chemin(t_shell *shell, const char *arg)
+{
+	char	*home;
+	char	*nouvelarg;
+	char	*u;
+
+	u = (char *)arg;
+	u++;
+	home = find_value_envi("HOME", shell->envi);
+	nouvelarg = ft_strjoin(home, u);
+	if (ft_cd_go_to(shell, nouvelarg))
+		return (free(nouvelarg), EXIT_FAILURE);
+	return (free(nouvelarg), EXIT_SUCCESS);
+}
+
 int	ft_cd(t_shell *shell)
 {
 	const char	**args = (const char **)shell->args[shell->cid];
@@ -48,6 +63,11 @@ int	ft_cd(t_shell *shell)
 	else if (!ft_strcmp(args[1], "-"))
 	{
 		if (ft_cd_back(shell))
+			return (EXIT_FAILURE);
+	}
+	else if (args[1][0]=='~')
+	{
+		if (tilde_chemin(shell, args[1]))
 			return (EXIT_FAILURE);
 	}
 	else
