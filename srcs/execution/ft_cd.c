@@ -43,6 +43,8 @@ int	tilde_chemin(t_shell *shell, const char *arg)
 	u = (char *)arg;
 	u++;
 	home = find_value_envi("HOME", shell->envi);
+	if (!home)
+		return (message_builtins("cd", NULL, HOME), 1);
 	nouvelarg = ft_strjoin(home, u);
 	if (ft_cd_go_to(shell, nouvelarg))
 		return (free(nouvelarg), EXIT_FAILURE);
@@ -65,7 +67,7 @@ int	ft_cd(t_shell *shell)
 		if (ft_cd_back(shell))
 			return (EXIT_FAILURE);
 	}
-	else if (args[1][0]=='~')
+	else if (args[1][0] == '~')
 	{
 		if (tilde_chemin(shell, args[1]))
 			return (EXIT_FAILURE);
