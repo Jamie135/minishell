@@ -114,7 +114,7 @@ int	valid_after_redir(t_list *list)
 	{
 		if (list->type == REDIR)
 		{
-			if (!list->next && (ft_strcmp(list->content, "<<") || i == 0))
+			if (!list->next && (!ft_strcmp(list->content, "<<") || i == 0))
 			{
 				print_token("newline");
 				return (free_list((t_list *)tmp), -1);

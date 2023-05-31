@@ -74,7 +74,10 @@ void	heredoc_exec(char *limiter, char *name, t_heredoc *heredoc)
 		free_ptr((void **)&line);
 	}
 	if (g_signal == 1)
+	{
+		heredoc->ctrl_c = 1;
 		exit_heredoc(heredoc, limiter, line, fd);
+	}
 	return (free_heredoc(heredoc, limiter, NULL, fd), exit(0));
 }
 
@@ -132,5 +135,10 @@ int	heredoc(t_list *list, t_envi *env, int *count, int *exit_value)
 		}
 		list = list->next;
 	}
+	// if (heredoc.ctrl_c == 79003680)
+	// {
+	// 	*exit_value = 130;
+	// 	return (EXIT_FAILURE);
+	// }
 	return (EXIT_SUCCESS);
 }
