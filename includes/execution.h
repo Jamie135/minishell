@@ -67,7 +67,6 @@ typedef struct s_heredoc
 	t_envi	*envi;
 	int		*line_num;
 	int		*exit_value;
-	int		ctrl_c;
 }	t_heredoc;
 
 typedef enum e_filemode
