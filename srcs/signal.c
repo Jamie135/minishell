@@ -21,12 +21,15 @@ void	heredoc_handler(int sig)
 	if (sig == SIGINT)
 	{
 		g_signal = 1;
-		write(1, "\n", 1);
+    	write(1, "\n", 1);
+    	rl_replace_line("", 0);
+    	rl_on_new_line();
 	}
 	else
 		return ;
 }
 
+// exit(130);
 // printf("minishell> ");
 
 //handler du signal recu dans le main

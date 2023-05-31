@@ -12,12 +12,16 @@
 
 #include "../../includes/minishell.h"
 
+// extern volatile int	g_signal;
+
 //exit heredoc quand on fait ctrlC
 void	exit_heredoc(t_heredoc *heredoc, char *limiter, char *line, int fd)
 {
 	free_heredoc(heredoc, limiter, line, fd);
 	exit(130);
 }
+
+// printf("g_signal: %i\n", g_signal);
 
 //enlever les fichiers de heredoc
 void	heredoc_unlink(t_list *list)
