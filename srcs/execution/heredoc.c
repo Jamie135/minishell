@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:02:14 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/28 17:19:13 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/06/02 11:01:27 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,10 +134,11 @@ int	heredoc(t_list *list, t_envi *env, int *count, int *exit_value)
 		}
 		list = list->next;
 	}
-	// if (indicateur)
+	return (EXIT_SUCCESS);
+}
+
+// if (indicateur)
 	// {
 	// 	*exit_value = 130;
 	// 	return (EXIT_FAILURE);
 	// }
-	return (EXIT_SUCCESS);
-}

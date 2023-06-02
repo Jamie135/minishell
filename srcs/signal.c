@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:57:15 by pbureera          #+#    #+#             */
-/*   Updated: 2023/05/26 17:24:33 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/06/02 11:00:10 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	heredoc_handler(int sig)
 	if (sig == SIGINT)
 	{
 		g_signal = 1;
-    	write(1, "\n", 1);
+		write(1, "\n", 1);
 		exit(130);
 	}
 	else
