@@ -31,7 +31,7 @@ OBJ = $(SRC:.c=.o)
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror -MMD -g3 -lreadline
+FLAGS = -Wall -Wextra -Werror -MMD -g3 -fsanitize=address -lreadline
 
 all: $(NAME)
 
