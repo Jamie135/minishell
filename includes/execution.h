@@ -35,6 +35,7 @@ typedef struct s_envi
 	char			*value;
 	int				type;
 	struct s_envi	*next;
+	int				negative;
 }	t_envi;
 
 typedef struct s_shell

@@ -13,7 +13,7 @@
 #include "../../includes/minishell.h"
 
 //update la valeur de exit
-void	get_exit_value(t_shell *shell, t_list *list)
+void	get_exit_value(t_shell *shell)
 {
 	if (shell->mode == 64512)
 		shell->mode = 127;
@@ -122,7 +122,7 @@ t_envi	*execution(t_list *list, t_envi *env, int *count, int *exit_value)
 	envp = dup_envi(shell->envi);
 	if (envp == ERROR)
 		return (free_shell_1(shell), NULL);
-	get_exit_value(shell, list);
+	get_exit_value(shell);
 	*exit_value = shell->mode;
 	return (free_shell_1(shell), envp);
 }
