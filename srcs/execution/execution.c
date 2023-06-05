@@ -13,25 +13,29 @@
 #include "../../includes/minishell.h"
 
 //update la valeur de exit
-void	get_exit_value(t_shell *shell)
+void	get_exit_value(t_shell *shell, t_list *list)
 {
 	if (shell->mode == 64512)
 		shell->mode = 127;
-	if (shell->mode == 65280)
-		shell->mode = 1;
 	else if (shell->mode == 64256)
 		shell->mode = 128;
 	if (shell->mode == 5120)
 		shell->mode = 127;
-	else
-	{
-		if (shell->mode > 255)
-		{
-			while (shell->mode > 255)
-				shell->mode -= 255;
-		}
-	}
+	if (WIFEXITED(shell->mode))
+		shell->mode = WEXITSTATUS(shell->mode);
 }
+
+// printf("negative: %i\n", list->exit_negative);
+// 	printf("status: %i\n", shell->mode);
+
+// else
+// 	{
+// 		if (shell->mode > 255)
+// 		{
+// 			while (shell->mode > 255)
+// 				shell->mode -= 255;
+// 		}
+// 	}
 
 // printf("(execution) mode: %i\n", shell->mode);
 
@@ -118,7 +122,7 @@ t_envi	*execution(t_list *list, t_envi *env, int *count, int *exit_value)
 	envp = dup_envi(shell->envi);
 	if (envp == ERROR)
 		return (free_shell_1(shell), NULL);
-	get_exit_value(shell);
+	get_exit_value(shell, list);
 	*exit_value = shell->mode;
 	return (free_shell_1(shell), envp);
 }
