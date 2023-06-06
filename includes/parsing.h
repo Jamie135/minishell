@@ -119,7 +119,7 @@ int			line_user(char *line, int *exit);
 void		cmd_unfound(char *line);
 
 /* free_parsing_1.c && free_parsing_2.c */
-void		*free_quote(char *str);
+void		*free_quote(char *str, int *exit);
 void		free_line_and_split(char *line, char **split);
 int			free_null_list(t_list *list, t_free *free_var, char *line, \
 							t_envi *env);

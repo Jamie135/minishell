@@ -69,7 +69,7 @@ t_list	*fill_list(char *line, t_free *free_var, t_envi *env, int *exit)
 	char	**tab;
 
 	if (valid_quote(line) == -1)
-		return (free_quote(line));
+		return (free_quote(line, exit));
 	str = get_string(line);
 	if (!str)
 		return (free(line), NULL);

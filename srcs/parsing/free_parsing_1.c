@@ -12,9 +12,10 @@
 
 #include "../../includes/minishell.h"
 
-void	*free_quote(char *str)
+void	*free_quote(char *str, int *exit)
 {
 	ft_putendl_fd("syntax error", 2);
+	*exit = 2;
 	free(str);
 	return (NULL);
 }
