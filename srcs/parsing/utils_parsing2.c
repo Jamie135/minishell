@@ -99,6 +99,7 @@ int	only_quotes(char *line, int *exit_value)
 			return (0);
 	}
 	ft_putendl_fd("syntax error", STDERR);
+	*exit_value = 2;
 	free(line);
 	return (1);
 }

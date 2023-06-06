@@ -17,8 +17,6 @@ void	get_exit_value(t_shell *shell)
 {
 	if (shell->mode == 64512)
 		shell->mode = 127;
-	else if (shell->mode == 64256)
-		shell->mode = 128;
 	if (shell->mode == 5120)
 		shell->mode = 127;
 	if (WIFEXITED(shell->mode))
