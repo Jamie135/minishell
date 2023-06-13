@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 17:30:50 by pbureera          #+#    #+#             */
-/*   Updated: 2023/04/28 17:31:48 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/06/13 11:46:12 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,8 +132,11 @@ int	ft_cd_go_to(t_shell *shell, const char *arg)
 		flag = 1;
 	}
 	if (chdir(arg))
-		return (free(oldpwd), \
-				message_builtins("cd", (char *)arg, strerror(errno)), 1);
+	{
+		if (!flag)
+			free(oldpwd);
+		return (message_builtins("cd", (char *)arg, strerror(errno)), 1);
+	}
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
 		return (free(oldpwd), msgexit(NULL, "cd", errno, NULL), 1);
