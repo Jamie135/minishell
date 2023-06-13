@@ -138,11 +138,7 @@ int	ft_cd_go_to(t_shell *shell, const char *arg)
 		return (message_builtins("cd", (char *)arg, strerror(errno)), 1);
 	}
 	pwd = getcwd(NULL, 0);
-	if (!pwd)
-		return (free(oldpwd), msgexit(NULL, "cd", errno, NULL), 1);
-	if (ft_cd_update_oldpwd(shell, oldpwd, flag))
-		return (free(pwd), EXIT_FAILURE);
-	if (ft_cd_update_pwd(shell, pwd))
+	if (ft_cd_go_to_2(shell, oldpwd, pwd, flag))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
