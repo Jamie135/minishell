@@ -12,6 +12,17 @@
 
 #include "../../includes/minishell.h"
 
+int ft_cd_go_to_2(t_shell *shell, char *oldpwd, char *pwd, int flag)
+{
+	if (!pwd)
+		return (free(oldpwd), msgexit(NULL, "cd", errno, NULL), 1);
+	if (ft_cd_update_oldpwd(shell, oldpwd, flag))
+		return (free(pwd), EXIT_FAILURE);
+	if (ft_cd_update_pwd(shell, pwd))
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
 int	ft_cd_back_2(t_shell *shell, char *oldpwd, char *pwd, int flag)
 {
 	if (ft_cd_update_oldpwd(shell, oldpwd, flag))
