@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-int ft_cd_go_to_2(t_shell *shell, char *oldpwd, char *pwd, int flag)
+int	ft_cd_go_to_2(t_shell *shell, char *oldpwd, char *pwd, int flag)
 {
 	if (!pwd)
 		return (free(oldpwd), msgexit(NULL, "cd", errno, NULL), 1);
