@@ -252,6 +252,7 @@ int			extra_redir(char *tmp);
 int			is_command(char *str);
 void		builtins_after_pipe(t_shell *shell, t_list *list);
 int			ft_cd_back_2(t_shell *shell, char *oldpwd, char *pwd, int flag);
+int			ft_cd_go_to_2(t_shell *shell, char *oldpwd, char *pwd, int flag);
 
 /* free_execution.c */
 void		free_ptr(void **ptr);
