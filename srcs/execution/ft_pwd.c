@@ -74,6 +74,7 @@ int	ft_pwd(t_shell *shell)
 	char	repertoire_actuel[PATH_MAX];
 	char	*tmp;
 
+	tmp = NULL;
 	envi = shell->envi;
 	(void)shell;
 	if (!getcwd(repertoire_actuel, sizeof(repertoire_actuel)))
@@ -84,7 +85,8 @@ int	ft_pwd(t_shell *shell)
 				tmp = envi->value;
 			envi = envi->next;
 		}
-		ft_putendl_fd(tmp, STDOUT);
+		if (tmp)
+			ft_putendl_fd(tmp, STDOUT);
 		return (free_pwd(shell, NULL, errno, &exit), EXIT_FAILURE);
 	}
 	ft_putendl_fd(repertoire_actuel, STDOUT);
