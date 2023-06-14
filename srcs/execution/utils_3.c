@@ -25,6 +25,9 @@ int	ft_cd_go_to_2(t_shell *shell, char *oldpwd, char *pwd, int flag)
 
 int	ft_cd_back_2(t_shell *shell, char *oldpwd, char *pwd, int flag)
 {
+	if (!pwd)
+		return (free(oldpwd), msgexit(NULL, "cd", errno, NULL), 1);
+	ft_putendl_fd(pwd, STDOUT);
 	if (ft_cd_update_oldpwd(shell, oldpwd, flag))
 		return (EXIT_FAILURE);
 	if (ft_cd_update_pwd(shell, pwd))
