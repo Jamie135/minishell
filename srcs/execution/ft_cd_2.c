@@ -106,11 +106,12 @@ int	ft_cd_back(t_shell *shell)
 		flag = 1;
 	}
 	if (chdir(find_value_envi("OLDPWD", shell->envi)))
+	{
+		if (!flag)
+			free(oldpwd);
 		return (msgexit(NULL, "cd", errno, NULL), 1);
+	}
 	pwd = getcwd(NULL, 0);
-	if (!pwd)
-		return (free(oldpwd), msgexit(NULL, "cd", errno, NULL), 1);
-	ft_putendl_fd(pwd, STDOUT);
 	if (ft_cd_back_2(shell, oldpwd, pwd, flag))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
