@@ -54,3 +54,9 @@ int	builtins_parent(t_shell *shell)
 	}
 	return (FAILURE);
 }
+
+// else if (!ft_strcmp(shell->args[shell->cid][0], "echo"))
+	// {
+	// 	shell->mode = ft_echo(shell);
+	// 	return (shell->mode);
+	// }

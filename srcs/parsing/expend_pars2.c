@@ -69,6 +69,9 @@ void	expand_base(t_expand *exp, char *str, t_envi *env)
 	}
 }
 
+// printf("res1: %s\n", exp->result);
+// printf("res2: %s\n", exp->result);
+
 char	*expand(char *str, t_envi *env)
 {
 	t_expand	*exp;

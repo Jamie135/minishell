@@ -81,6 +81,8 @@ char	*join_character(char *str, char c)
 		str[0] = '\0';
 	}
 	result = malloc(sizeof(char) * (ft_strlen(str) + 2));
+	if (!result)
+        return (free(str), NULL);
 	while (str[i])
 	{
 		result[i] = str[i];
