@@ -80,7 +80,7 @@ char	*final_string(char *new)
 //retourner une "copie" de la ligne de commande, mais mieux espacer, 
 //l'interet est de bien espacer la ligne de commande pour qu'on puisse
 //la split apres
-char	*get_string(char *str)
+char	*get_string(char *str, t_envi *env)
 {
 	int			i;
 	int			j;
@@ -105,6 +105,7 @@ char	*get_string(char *str)
 		else
 			fill_inc(str, new, &i, j);
 	}
+	new = expand(new, env);
 	return (final_string(new));
 }
 

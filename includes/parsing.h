@@ -39,6 +39,12 @@ typedef struct s_free
 	bool	*quoted;
 }	t_free;
 
+typedef struct s_expand
+{
+	char	*result;
+	int		i;
+}	t_expand;
+
 int			run(char **envp, char *line, t_list *list, t_free *free_var);
 t_envi		*init_environment(char **envp);
 /* list.c */
@@ -62,7 +68,7 @@ int			space_in_single_quote(char *line);
 int			space_in_double_quote(char *line);
 
 /* string.c && string_quote.c && string_utils.c */
-char		*get_string(char *str);
+char		*get_string(char *str, t_envi *env);
 int			len_string(char *str);
 static void	string_1(int *i, int *j, char *str, char *new);
 static void	string_2(int *i, int *j, char *str, char *new);
@@ -110,6 +116,13 @@ char		*space_str(char *str);
 int			len_space_str(char *str);
 char		*command_in_quoted(char *line);
 int			unfound_command(char *line, int *exit_value);
+char		*expand(char *str, t_envi *env);
+void		expand_base(t_expand *exp, char *str, t_envi *env);
+void		expand_found_quote(t_expand *exp, char *str);
+void		expand_found_dollar(t_expand *exp, char *str, t_envi *env);
+void		expand_env(char *str, t_expand *exp, int j, t_envi *env);
+char		*cpy_env_line(char *to_find, t_envi *env);
+int			ft_isset(char c, char const *set);
 
 /* type.c */
 void		type(t_list *list);
@@ -145,6 +158,10 @@ char		*trim_single(char *line);
 char		*trim_double(char *line);
 char		*trim_inside(char *line);
 int			only_quotes(char *line, int *exit_value);
+int			find_end_quote(char *str, char c, int start);
+char		*join_character(char *str, char c);
+char		*replace_by_variable(char *src, int start, int end, t_envi *env);
+char		*cpy_var(char *src, int start, int end);
 
 /* signals.c */
 void		sig(void);

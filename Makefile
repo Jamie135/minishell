@@ -25,7 +25,8 @@ srcs/parsing/quote.c srcs/parsing/quote_utils.c \
 srcs/parsing/split_line.c srcs/parsing/split_line_utils.c srcs/parsing/split_pipe.c \
 srcs/parsing/string.c srcs/parsing/string_utils.c srcs/parsing/utils_parsing.c \
 srcs/parsing/string_quote.c srcs/parsing/expend_pars.c srcs/parsing/utils_parsing2.c \
-srcs/parsing/inside_quote.c
+srcs/parsing/inside_quote.c srcs/parsing/expend_pars2.c srcs/parsing/utils_parsing3.c \
+srcs/parsing/exp_utils.c
 
 OBJ = $(SRC:.c=.o)
 
