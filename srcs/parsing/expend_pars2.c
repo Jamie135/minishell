@@ -14,12 +14,15 @@
 
 void	expand_env(char *str, t_expand *exp, int j, t_envi *env)
 {
-	char	*to_join;
+	char    *to_join;
+    char    *tmp;
 
-	to_join = NULL;
-	to_join = replace_by_variable(str, j, exp->i, env);
-	exp->result = ft_strjoin(exp->result, to_join);
-	free(to_join);
+    to_join = NULL;
+    to_join = replace_by_variable(str, j, exp->i, env);
+    tmp = exp->result;
+    exp->result = ft_strjoin(exp->result, to_join);
+    free(tmp);
+    free(to_join);
 }
 
 void	expand_found_dollar(t_expand *exp, char *str, t_envi *env)
