@@ -28,10 +28,18 @@ void	expand_found_dollar(t_expand *exp, char *str, t_envi *env)
 
 	j = 0;
 	exp->i++;
-	j = exp->i;
-	while (str[exp->i] && !ft_isset(str[exp->i], " /.$!:,'\"+-%%"))
+	if (str[exp->i] == '?')
+	{
+		exp->result = ft_strjoin(exp->result, "$?");
 		exp->i++;
-	expand_env(str, exp, j, env);
+	}
+	else
+	{
+		j = exp->i;
+		while (str[exp->i] && !ft_isset(str[exp->i], " /.$!:,'\"+-%%"))
+			exp->i++;
+		expand_env(str, exp, j, env);
+	}
 }
 
 void	expand_found_quote(t_expand *exp, char *str)
