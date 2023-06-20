@@ -22,6 +22,7 @@ void	heredoc_handler(int sig)
 	{
 		g_signal = 1;
 		write(1, "\n", 1);
+		close(0);
 	}
 	else
 		return ;
