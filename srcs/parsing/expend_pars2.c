@@ -14,15 +14,15 @@
 
 void	expand_env(char *str, t_expand *exp, int j, t_envi *env)
 {
-	char    *to_join;
-    char    *tmp;
+	char	*to_join;
+	char    *tmp;
 
-    to_join = NULL;
-    to_join = replace_by_variable(str, j, exp->i, env);
-    tmp = exp->result;
-    exp->result = ft_strjoin(exp->result, to_join);
-    free(tmp);
-    free(to_join);
+	to_join = NULL;
+	to_join = replace_by_variable(str, j, exp->i, env);
+	tmp = exp->result;
+	exp->result = ft_strjoin(exp->result, to_join);
+	free(tmp);
+	free(to_join);
 }
 
 void	expand_found_dollar(t_expand *exp, char *str, t_envi *env)
@@ -74,15 +74,12 @@ void	expand_found_quote(t_expand *exp, char *str)
 
 void	expand_base(t_expand *exp, char *str, t_envi *env)
 {
-	char	*tmp;
-
 	if (str[exp->i] == '\'' || str[exp->i] == '"')
 		expand_found_quote(exp, str);
 	else if (str[exp->i] == '$' && str[exp->i + 1])
 		expand_found_dollar(exp, str, env);
 	else
 	{
-		tmp = 
 		exp->result = join_character(exp->result, str[exp->i]);
 		exp->i++;
 	}
