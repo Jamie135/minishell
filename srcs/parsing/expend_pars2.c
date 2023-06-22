@@ -15,7 +15,7 @@
 void	expand_env(char *str, t_expand *exp, int j, t_envi *env)
 {
 	char	*to_join;
-	char    *tmp;
+	char	*tmp;
 
 	to_join = NULL;
 	to_join = replace_by_variable(str, j, exp->i, env);
