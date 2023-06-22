@@ -125,6 +125,7 @@ int	heredoc(t_list *list, t_envi *env, int *count, int *exit_value)
 	{
 		if (list->type == REDIR && ft_strcmp(list->content, "<<\0") == 0)
 		{
+			list->heredoc = 1;
 			if (list->next && list->next->type == FILES)
 			{
 				list = list->next;

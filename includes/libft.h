@@ -82,6 +82,7 @@ typedef struct s_list
 	int				type;
 	struct s_list	*next;
 	bool			unexpended;
+	int				heredoc;
 }	t_list;
 
 t_list		*ft_lstnew(char *content, int type);

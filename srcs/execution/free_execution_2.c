@@ -32,12 +32,13 @@ void	free_n_split(char **split, int n)
 	free(split);
 }
 
-static void	free_shell_2(t_shell *shell)
+static void	free_shell_2(t_shell *shell, t_list *list)
 {
 	if (shell->redir)
 	{
 		if (shell->right || (shell->left && shell->pipe) \
-			|| (shell->left && shell->right && shell->pipe))
+			|| (shell->left && shell->right && shell->pipe) \
+			|| (list->heredoc && shell->pipe))
 			free_redir(shell->redir, shell->cmd_num + shell->no_cmd);
 		else
 			free_redir(shell->redir, shell->cmd_num + shell->no_cmd + 1);
@@ -68,7 +69,7 @@ static void	free_shell_2(t_shell *shell)
 // 	i++;
 // }
 
-void	free_shell_1(t_shell *shell)
+void	free_shell_1(t_shell *shell, t_list *list)
 {
 	if (shell->list)
 	{
@@ -89,6 +90,6 @@ void	free_shell_1(t_shell *shell)
 		free_ptr((void **)&shell->infile);
 	if (shell->outfile)
 		free_ptr((void **)&shell->outfile);
-	free_shell_2(shell);
+	free_shell_2(shell, list);
 	free_ptr((void **)&shell);
 }

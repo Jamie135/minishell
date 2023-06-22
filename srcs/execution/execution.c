@@ -119,10 +119,10 @@ t_envi	*execution(t_list *list, t_envi *env, int *count, int *exit_value)
 		return (env);
 	envp = dup_envi(shell->envi);
 	if (envp == ERROR)
-		return (free_shell_1(shell), NULL);
+		return (free_shell_1(shell, list), NULL);
 	get_exit_value(shell);
 	*exit_value = shell->mode;
-	return (free_shell_1(shell), envp);
+	return (free_shell_1(shell, list), envp);
 }
 
 // while (list)
