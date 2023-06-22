@@ -58,6 +58,7 @@ typedef struct s_shell
 	int		*exit_value;
 	int		right;
 	int		left;
+	int		heredoc;
 	int		pipe;
 	int		ignore;
 }	t_shell;
@@ -262,7 +263,7 @@ void		free_split(char **tab);
 void		free_heredoc(t_heredoc *heredoc, char *limiter, char *line, int fd);
 void		free_one_envi(t_envi *envi);
 void		free_n_split(char **split, int n);
-void		free_shell_1(t_shell *shell, t_list *list);
+void		free_shell_1(t_shell *shell);
 void		free_redir(t_list **list, int n);
 void		free_pipes(int **pipes, size_t n);
 void		free_args(char ***args, size_t n);

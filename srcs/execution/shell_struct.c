@@ -133,6 +133,8 @@ t_shell	*shell_struct(t_list *list, t_envi *envi, int *count, int *exit_value)
 	shell->exit_value = exit_value;
 	shell->cmd_num = num_command(list);
 	shell->redir_num = num_redir(list);
+	if (list->heredoc)
+		shell->heredoc = 1;
 	if (list_redir(shell, list))
 		return (msgexit(shell, "shell_struct.c (3)", MALLOC, NULL), NULL);
 	if (!shell->redir && shell->redir_num > 0)
